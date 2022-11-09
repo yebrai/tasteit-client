@@ -23,8 +23,6 @@ function Navbar() {
         display: "flex",
         gap:"25px",
         margin:"0 20px"
-
-
       }}>
         <LoginModal />
         <SignupModal />
