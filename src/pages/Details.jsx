@@ -1,8 +1,14 @@
 import React from 'react'
+import ProductEditModal from '../components/ProductEditModal'
 
 function Details() {
   return (
-    <div>Details</div>
+    <div>
+
+
+
+      <ProductEditModal />
+    </div>
   )
 }
 
