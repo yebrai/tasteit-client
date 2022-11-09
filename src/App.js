@@ -12,7 +12,9 @@ import Home from "./pages/Home";
 function App() {
   return (
     <div className="App">
+    <div>
       <Navbar />
+      </div>
       {/* Modal de profile/signup product en navbar */}
 
       <Routes>
@@ -21,7 +23,7 @@ function App() {
         {/* Modal de edit product en details */}
         <Route path="/products" element={<FoodList />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/" element={<AddFood />} />
+        <Route path="/add" element={<AddFood />} />
         <Route path="/error" element={<Error />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
