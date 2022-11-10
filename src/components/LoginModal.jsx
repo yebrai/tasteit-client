@@ -1,6 +1,7 @@
 import { Button, Modal } from "antd";
 import React, { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import { loginService } from "../services/auth.services";
 
 function LoginModal() {
   const [open, setOpen] = useState(false);
@@ -9,15 +10,16 @@ function LoginModal() {
   const showModal = () => {
     setOpen(true);
   };
+
   const handleOk = () => {
     setConfirmLoading(true);
     setTimeout(() => {
       setOpen(false);
       setConfirmLoading(false);
       //Meter aqui el axios.post
-      
     }, 1000);
   };
+
   const handleCancel = () => {
     setOpen(false);
   };

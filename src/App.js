@@ -12,10 +12,9 @@ import Home from "./pages/Home";
 function App() {
   return (
     <div className="App">
-    <div>
-      <Navbar />
+      <div>
+        <Navbar />
       </div>
-      {/* Modal de profile/signup product en navbar */}
 
       <Routes>
         <Route path="/" element={<Home />} />
