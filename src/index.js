@@ -3,20 +3,18 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
-//Antdesign
-import 'antd/dist/antd.css'
+import 'antd/dist/antd.min.css'
 
 import { BrowserRouter } from "react-router-dom";
-//import { AuthWrapper } from './context/auth.context';
+import { AuthWrapper } from './context/auth.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      {/* <AuthWrapper> */}
+      <AuthWrapper>
         <App />
-      {/* </AuthWrapper> */}
+      </AuthWrapper>
     </BrowserRouter>
   </React.StrictMode>
 );
