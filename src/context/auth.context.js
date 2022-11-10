@@ -50,7 +50,8 @@ function AuthWrapper(props) {
       </div>
     )
   }
-
+  
+// Consultar
   return (
     <AuthContext.Provider value={passedContext}>
       {props.children}

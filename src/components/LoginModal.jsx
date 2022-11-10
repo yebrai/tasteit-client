@@ -3,19 +3,18 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginService } from "../services/auth.services";
 
-import { useContext } from "react"
+import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 
 function LoginModal() {
   // navigate use configuration
-  const { authenticateUser, isLoggedIn } = useContext(AuthContext)
+  const { authenticateUser, isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
   // Sign up states configuration
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [loginOn, setLoginOn] = useState(false)
 
   // Modal configuration
   const [open, setOpen] = useState(false);
@@ -38,8 +37,12 @@ function LoginModal() {
       const response = await loginService(userCredentials);
       // Store Token in browser local storage
       localStorage.setItem("authToken", response.data.authToken);
-      setLoginOn(true)
-
+      setConfirmLoading(true);
+      setTimeout(() => {
+        setOpen(false);
+        setConfirmLoading(false);
+        authenticateUser();
+      }, 1000);
     } catch (error) {
       if (error.response && error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);
@@ -56,15 +59,6 @@ function LoginModal() {
 
   const handleOk = () => {
     handleLogin();
-    if (loginOn) {
-      return;
-    }
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setOpen(false);
-      setConfirmLoading(false);
-      authenticateUser()
-    }, 1000);
   };
 
   const handleCancel = () => {
