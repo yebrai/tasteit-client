@@ -4,25 +4,63 @@ import { useNavigate } from "react-router-dom";
 import { loginService } from "../services/auth.services";
 
 function LoginModal() {
+  // navigate use configuration
+  const navigate = useNavigate();
+
+  // Sign up states configuration
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  // Modal configuration
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
 
+  // Form states functions
+  const handleEmailChange = (event) => setEmail(event.target.value);
+  const handlePasswordChange = (event) => setPassword(event.target.value);
+
+  const handleLogin = async () => {
+    // e.preventDefault();
+
+    const userCredentials = {
+      email: email,
+      password: password,
+    };
+
+    try {
+      // Token validation
+      const response = await loginService(userCredentials);
+      // Store Token in browser local storage
+      localStorage.setItem("authToken", response.data.authToken);
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        setErrorMessage(error.response.data.errorMessage);
+      } else {
+        navigate("/error");
+      }
+    }
+  };
+
+  // Modal functions
   const showModal = () => {
     setOpen(true);
   };
 
   const handleOk = () => {
     setConfirmLoading(true);
+    handleLogin();
     setTimeout(() => {
       setOpen(false);
       setConfirmLoading(false);
-      //Meter aqui el axios.post
     }, 1000);
   };
 
   const handleCancel = () => {
     setOpen(false);
   };
+
+  // Render
   return (
     <>
       <Button type="primary" onClick={showModal}>
@@ -37,11 +75,23 @@ function LoginModal() {
       >
         <div>
           <form>
-            <label htmlFor="">Email</label>
-            <input type="text" />
+            <label htmlFor="email">Email</label>
+            <input
+              type="text"
+              name="email"
+              value={email}
+              onChange={handleEmailChange}
+            />
             <br />
-            <label htmlFor="">Password</label>
-            <input type="text" />
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={handlePasswordChange}
+            />
+            <br />
+            {errorMessage !== "" && <p>{errorMessage}</p>}
           </form>
         </div>
       </Modal>

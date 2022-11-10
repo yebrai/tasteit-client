@@ -1,10 +1,32 @@
-import { Link } from "react-router-dom";
+/* import { useContext } from "react";
+import { AuthContext } from "../context/auth.context"; */
+import { Link, useNavigate } from "react-router-dom";
 import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
 
+// Antd
+import { Button } from "antd";
+import { PoweroffOutlined } from '@ant-design/icons';
+
+// React icon
 import { AiFillHome } from "react-icons/ai";
 
 function Navbar() {
+
+  //const { authenticateUser } = useContext(AuthContext);
+  const navigate = useNavigate()
+
+  // Log Out
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+
+    // Invoke validate token function
+    //authenticateUser();
+
+    // Redirect to Home
+    navigate("/")
+  };
+
   return (
     <div
       style={{
@@ -26,6 +48,7 @@ function Navbar() {
       }}>
         <LoginModal />
         <SignupModal />
+        <Button icon={<PoweroffOutlined />} onClick={handleLogout}></Button>
       </div>
     </div>
   );

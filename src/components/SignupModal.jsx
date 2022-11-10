@@ -1,19 +1,18 @@
 import { Button, Modal } from "antd";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { loginService, signupService } from "../services/auth.services";
 
 function SignupModal() {
-
   // navigate use configuration
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // Sign up states configuration
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [age, setAge] = useState("")
-  const [password, setPassword] = useState("")
-  const [passwordConfirmation, setPasswordConfirmation] = useState("")
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [age, setAge] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   // Modal configuration
@@ -21,22 +20,22 @@ function SignupModal() {
   const [confirmLoading, setConfirmLoading] = useState(false);
 
   // Form states functions
-  const handleNameChange = event => setName(event.target.value)
-  const handleEmailChange = event => setEmail(event.target.value)
-  const handleAgeChange = event => setAge(event.target.value)
-  const handlePasswordChange = event => setPassword(event.target.value)
-  const handlePasswordConfirmationChange = event => setPasswordConfirmation(event.target.value)
+  const handleNameChange = (event) => setName(event.target.value);
+  const handleEmailChange = (event) => setEmail(event.target.value);
+  const handleAgeChange = (event) => setAge(event.target.value);
+  const handlePasswordChange = (event) => setPassword(event.target.value);
+  const handlePasswordConfirmationChange = (event) => setPasswordConfirmation(event.target.value);
 
   const handleSignup = async () => {
-    //event.preventDefault();
+    // event.preventDefault();
 
     const newUser = {
       name: name,
       email: email,
       age: age,
       password: password,
-      passwordConfirmation: passwordConfirmation
-    }
+      passwordConfirmation: passwordConfirmation,
+    };
 
     const userCredentials = {
       email: email,
@@ -45,19 +44,18 @@ function SignupModal() {
 
     try {
       // Call backend route, create
-      await signupService(newUser)
-      const response = await loginService(userCredentials)
+      await signupService(newUser);
+      const response = await loginService(userCredentials);
       localStorage.setItem("authToken", response.data.authToken);
-
-    } catch(error) {
-
+    } catch (error) {
       if (error.response && error.response.status === 400) {
-        setErrorMessage(error.response.data.errorMessage)
-      } else { // Error 500
-        navigate("/error")
+        setErrorMessage(error.response.data.errorMessage);
+      } else {
+        // Error 500
+        navigate("/error");
       }
     }
-  }
+  };
 
   // Modal functions
   const showModal = () => {
@@ -66,9 +64,7 @@ function SignupModal() {
 
   const handleOk = () => {
     setConfirmLoading(true);
-    // 
     handleSignup();
-
     setTimeout(() => {
       setOpen(false);
       setConfirmLoading(false);
@@ -93,28 +89,53 @@ function SignupModal() {
         onCancel={handleCancel}
       >
         <div>
-          <form >
+          <form>
             <label htmlFor="name">Nombre</label>
-            <input type="text" name="name" value={name} onChange={handleNameChange}/>
+            <input
+              type="text"
+              name="name"
+              value={name}
+              onChange={handleNameChange}
+            />
             <br />
             <label htmlFor="email">Email</label>
-            <input type="text" name="email" value={email} onChange={handleEmailChange}/>
+            <input
+              type="text"
+              name="email"
+              value={email}
+              onChange={handleEmailChange}
+            />
             <br />
             <label htmlFor="age">Edad</label>
-            <input type="number" name="age" value={age} onChange={handleAgeChange}/>
+            <input
+              type="number"
+              name="age"
+              value={age}
+              onChange={handleAgeChange}
+            />
             <br />
             <label htmlFor="password">Contraseña</label>
-            <input type="password" name="password" value={password} onChange={handlePasswordChange}/>
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={handlePasswordChange}
+            />
             <br />
             <label htmlFor="passwordConfirmation">Confirma la contraseña</label>
-            <input type="password" name="passwordConfirmation" value={passwordConfirmation} onChange={handlePasswordConfirmationChange}/>
+            <input
+              type="password"
+              name="passwordConfirmation"
+              value={passwordConfirmation}
+              onChange={handlePasswordConfirmationChange}
+            />
             <br />
             {errorMessage !== "" && <p>{errorMessage}</p>}
           </form>
         </div>
       </Modal>
     </>
-  )
+  );
 }
 
-export default SignupModal
+export default SignupModal;
