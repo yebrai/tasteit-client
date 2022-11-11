@@ -46,11 +46,16 @@ function Navbar() {
 
       {isLoggedIn ? (
         <div>
-        <Link to="/add"><IoIosAddCircle style={{ color: "black", fontSize: "1.5rem", margin:"0 60px" }} /></Link>
-          <Link to="/">
-            <FaUserCircle style={{ color: "black", fontSize: "1.5rem", margin:"0 60px" }} />
+          {/* Add product */}
+          <Link to="/add">
+            <IoIosAddCircle style={{ color: "black", fontSize: "1.5rem", margin:"0 60px" }} />
           </Link>
 
+          <Link to="/profile">
+            <FaUserCircle style={{ color: "black", fontSize: "1.5rem", margin:"0 60px" }} />
+          </Link>
+          
+          {/* Log Out */}
           <Button icon={<PoweroffOutlined />} onClick={handleLogout} style={{margin: "0 60px"}}></Button>
         </div>
       ) : (

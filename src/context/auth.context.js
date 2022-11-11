@@ -20,11 +20,14 @@ function AuthWrapper(props) {
     try {
       //1 Verify token
       const response = await verifyService()
-      console.log(response)
+      //console.log(response)
       setIsLoggedIn(true)
       //2 Update user data
       setUser(response.data)
       setIsFetching(false)
+
+      // Access as product owner
+      // return response.data.user._id;
 
     } catch (error) {
       console.log(error)
@@ -32,7 +35,6 @@ function AuthWrapper(props) {
       setUser(null)
       setIsFetching(false)
     }
-
   }
 
   const passedContext = {
