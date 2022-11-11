@@ -38,7 +38,6 @@ function Navbar() {
         backgroundColor:"grey"
       }}
     >
-
       <Link to="/">
         <AiFillHome style={{ color: "black", fontSize: "1.5rem", margin:"0 80px" }} />
       </Link>
@@ -49,11 +48,10 @@ function Navbar() {
             <FaUserCircle style={{ color: "black", fontSize: "1.5rem", margin:"0 60px" }} />
           </Link>
 
-          {/* Profile button */}
           <Button icon={<PoweroffOutlined />} onClick={handleLogout} style={{margin: "0 60px"}}></Button>
         </div>
       ) : (
-        <div  style={{display: "flex", gap:"25px", margin:"0 80px"}}>
+        <div style={{display: "flex", gap:"25px", margin:"0 80px"}}>
           <LoginModal />
           <SignupModal />
         </div>

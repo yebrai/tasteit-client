@@ -3,8 +3,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginService, signupService } from "../services/auth.services";
 
+import { useContext } from "react"
+import { AuthContext } from "../context/auth.context";
+
 function SignupModal() {
   // navigate use configuration
+  const { authenticateUser } = useContext(AuthContext)
   const navigate = useNavigate();
 
   // Sign up states configuration
@@ -47,6 +51,13 @@ function SignupModal() {
       await signupService(newUser);
       const response = await loginService(userCredentials);
       localStorage.setItem("authToken", response.data.authToken);
+      setConfirmLoading(true);
+      setTimeout(() => {
+        setOpen(false);
+        setConfirmLoading(false);
+        authenticateUser();
+      }, 1000);
+
     } catch (error) {
       if (error.response && error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);
@@ -63,12 +74,7 @@ function SignupModal() {
   };
 
   const handleOk = () => {
-    setConfirmLoading(true);
     handleSignup();
-    setTimeout(() => {
-      setOpen(false);
-      setConfirmLoading(false);
-    }, 1000);
   };
 
   const handleCancel = () => {

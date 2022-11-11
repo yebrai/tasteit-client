@@ -4,7 +4,7 @@ function Home() {
   return (
     <div style={{display: "flex", justifyContent:"center", alignItem:"center"}}>
   <Image
-    width={150}
+    width={100}
     src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
   />
     <Image
