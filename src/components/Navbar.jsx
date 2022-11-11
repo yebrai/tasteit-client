@@ -47,7 +47,7 @@ function Navbar() {
       {isLoggedIn ? (
         <div>
         <Link to="/add"><IoIosAddCircle style={{ color: "black", fontSize: "1.5rem", margin:"0 60px" }} /></Link>
-          <Link to="/">
+          <Link to="/profile">
             <FaUserCircle style={{ color: "black", fontSize: "1.5rem", margin:"0 60px" }} />
           </Link>
 
