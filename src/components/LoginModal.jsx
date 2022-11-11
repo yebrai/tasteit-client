@@ -8,7 +8,7 @@ import { AuthContext } from "../context/auth.context";
 
 function LoginModal() {
   // navigate use configuration
-  const { authenticateUser, isLoggedIn } = useContext(AuthContext);
+  const { authenticateUser} = useContext(AuthContext);
   const navigate = useNavigate();
 
   // Sign up states configuration
