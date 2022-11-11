@@ -1,32 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import { getUserService } from '../services/tasteit.services'
+import EditProfileModal from '../components/EditProfileModal';
 
 function Profile() {
 
   const [user, setUser] = useState("")
-
+  const [isFetching, setIsFetching] = useState(true)
   useEffect(()=> {
     getUser()
-  })
+  },[])
 
-  const getUser = () => {
+  const getUser = async() => {
 
     try {
-      const response = getUserService()
-      console.log(response.data);
+      const response = await getUserService()
+ 
       setUser(response.data)
+      setIsFetching(true)
     } catch (error) {
       console.log(error)
     }
   }
-
+  console.log(user);
+  isFetching && <h3>...cargando</h3>
   return (
     <div style={{textAlign:"center"}}>
     <img src="" alt="" />
-    <h3>Name: </h3>
-    <h5>Email: </h5>
-    <p>Age:</p>
-
+    <h3>Name: {user.name}</h3>
+    <h5>Email: {user.email}</h5>
+    <p>Edad: {user.age}</p>
+    <p>Tipo: {user.role}</p>
+    <EditProfileModal />
     </div>
   )
 }
