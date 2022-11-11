@@ -23,7 +23,8 @@ const tailLayout = {
 function EditProfileModal() {
   const navigate = useNavigate();
   // Context
-  const { user } = useContext(AuthContext);
+  const { user, authenticateUser } = useContext(AuthContext);
+  
 
   // Modal configuration
   const [open, setOpen] = useState(false);
@@ -32,9 +33,11 @@ function EditProfileModal() {
 
   // Cloudinary State
   const [image, setImage] = useState("");
-  const onFinish = async (values) => {
-    // Data transmission element
 
+  //Form submit function
+  const onFinish = async (values) => {
+    
+    // Data transmission element
     const formValue = new FormData();
     formValue.append("name", values.name);
     formValue.append("email", values.email);
@@ -48,10 +51,12 @@ function EditProfileModal() {
       setTimeout(() => {
         setOpen(false);
         setLoadings(false);
+        authenticateUser()
       }, 2000);
     } catch (error) {
       if (error.response && error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);
+        setLoadings(false)
       } else {
         // Error 500
         navigate("/error");
@@ -60,11 +65,6 @@ function EditProfileModal() {
     }
   };
   // Modal functions
-  const enterLoading = () => {
-    setTimeout(() => {
-      setLoadings(false);
-    }, 2000);
-  };
 
   const showModal = () => {
     setOpen(true);
@@ -97,7 +97,7 @@ function EditProfileModal() {
               <Input />
             </Form.Item>
             <Form.Item name="password" label="Nueva Password">
-              <Input />
+              <Input.Password />
             </Form.Item>
 
             <Form.Item name="image" label="Imagen">
@@ -113,7 +113,6 @@ function EditProfileModal() {
                   type="primary"
                   htmlType="submit"
                   loading={loadings}
-                  onClick={enterLoading}
                 >
                   Editar
                 </Button>
