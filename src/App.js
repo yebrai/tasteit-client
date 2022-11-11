@@ -20,7 +20,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/:productId/details" element={<Details />} />
         {/* Modal de edit product en details */}
-        <Route path="/products" element={<FoodList />} />
+        <Route path="/:typeId/products" element={<FoodList />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/add" element={<AddFood />} />
         <Route path="/error" element={<Error />} />

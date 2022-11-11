@@ -31,12 +31,12 @@ function Home() {
   return (
     <div >
     <div className="homeBoxContainer">
-    <Link onClick={() => handleFood(user)} to="/products"><img src={img} alt="" width={400} height={300} /></Link>
-    <img onClick={() => handleFood()} src={img2} alt="" width={400} height={300} />
+    <Link onClick={() => handleFood(user)} to="/all/products"><img src={img} alt="" width={400} height={300} /></Link>
+    <Link onClick={() => handleFood(user)} to="/drinks/products"><img src={img2} alt="" width={400} height={300} /></Link>
     </div>
     <div className="homeBoxContainer">
-    <img onClick={() => handleFood()} src={img3} alt="" width={400} height={300} />
-    <img onClick={() => handleFood()} src={img4} alt="" width={400} height={300} />
+    <Link onClick={() => handleFood(user)} to="/foods/products"><img src={img3} alt="" width={400} height={300} /></Link>
+    <Link onClick={() => handleFood(user)} to="/desserts/products"><img src={img4} alt="" width={400} height={300} /></Link>
     </div>
     </div>
   )
