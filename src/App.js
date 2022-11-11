@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import Error from "./pages/Error";
 import AddFood from "./pages/AddFood";
 import Home from "./pages/Home";
+import IsPrivate from "./components/isPrivate.jsx";
 
 function App() {
   return (

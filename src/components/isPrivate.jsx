@@ -16,3 +16,12 @@ function IsPrivate(props) {
 }
 
 export default IsPrivate;
+
+
+// ruta tipo get, pasamos id de propietario
+// if product.owner.id === 
+
+
+//bonus
+//get pasamos el id del user y que busque segun owner
+//mis productos 

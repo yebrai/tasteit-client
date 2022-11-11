@@ -11,6 +11,8 @@ import { PoweroffOutlined } from '@ant-design/icons';
 // React icon
 import { AiFillHome } from "react-icons/ai";
 import { FaUserCircle } from "react-icons/fa";
+import { IoIosAddCircle } from "react-icons/io";
+
 
 function Navbar() {
 
@@ -32,28 +34,27 @@ function Navbar() {
     <div
       style={{
         display: "flex",
-        alignItems: "flex-end",
+        alignItems: "flex-center",
         justifyContent: "space-between",
         margin: "0px 0px",
         backgroundColor:"grey"
       }}
     >
-
       <Link to="/">
         <AiFillHome style={{ color: "black", fontSize: "1.5rem", margin:"0 80px" }} />
       </Link>
 
       {isLoggedIn ? (
         <div>
+        <Link to="/add"><IoIosAddCircle style={{ color: "black", fontSize: "1.5rem", margin:"0 60px" }} /></Link>
           <Link to="/">
             <FaUserCircle style={{ color: "black", fontSize: "1.5rem", margin:"0 60px" }} />
           </Link>
 
-          {/* Profile button */}
           <Button icon={<PoweroffOutlined />} onClick={handleLogout} style={{margin: "0 60px"}}></Button>
         </div>
       ) : (
-        <div  style={{display: "flex", gap:"25px", margin:"0 80px"}}>
+        <div style={{display: "flex", gap:"25px", margin:"0 80px"}}>
           <LoginModal />
           <SignupModal />
         </div>
