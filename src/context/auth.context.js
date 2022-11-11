@@ -23,11 +23,8 @@ function AuthWrapper(props) {
       //console.log(response)
       setIsLoggedIn(true)
       //2 Update user data
-      setUser(response.data)
+      setUser(response.data.user)
       setIsFetching(false)
-
-      // Access as product owner
-      // return response.data.user._id;
 
     } catch (error) {
       console.log(error)
