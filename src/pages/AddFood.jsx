@@ -1,4 +1,5 @@
 import { Button, Form, Input, Select } from 'antd';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { addProductService } from '../services/tasteit.services';
 
@@ -19,12 +20,23 @@ const tailLayout = {
 };
 const AddFood = () => {
 
+  const [image, setImage] = useState("")
+
   const navigate = useNavigate()
   
   const onFinish = async(values) => {
-    
+    // Data transmission element
+    const valoresFrom = new FormData()
+    valoresFrom.append("name", values.name)
+    valoresFrom.append("price", values.price)
+    valoresFrom.append("location", values.location)
+    valoresFrom.append("description", values.description)
+    valoresFrom.append("category", values.category)
+    valoresFrom.append("image", image)
+
     try {
-      await addProductService(values)
+      await addProductService(valoresFrom)
+      console.log(values)
       navigate("/all/products")
     } catch (error) {
       console.log(error)
@@ -45,7 +57,6 @@ const AddFood = () => {
         ]}
       >
         <Input />
-        
       </Form.Item>
       <Form.Item
         name="price"
@@ -69,12 +80,23 @@ const AddFood = () => {
         ]}
       >
         <Input />
-        
       </Form.Item>
+      <Form.Item
+        name="description"
+        label="Descripción"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+      
       
       <Form.Item
         name="category"
-        label="Categoria"
+        label="Categoría"
         rules={[
           {
             required: true,
@@ -91,8 +113,20 @@ const AddFood = () => {
         </Select>
       </Form.Item>
       
+      <Form.Item
+        name="image"
+        label="Imagen"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Input type="file" onChange={(event)=> setImage(event.target.files[0])}/>
+      </Form.Item>
+      
       <Form.Item {...tailLayout}>
-      <div style={{margin: "10px"}}>
+      <div>
         <Button type="primary" htmlType="submit">
           Submit
         </Button>
