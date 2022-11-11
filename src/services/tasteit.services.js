@@ -12,8 +12,13 @@ const editUserService = (userId, userUpdates) => {
   return service.patch(`/user/${userId}/details`, userUpdates)
 }
 
+const getProductDetailsService = (productId) => {
+  return service.get(`/product/${productId}/details`);
+}
+
   export {
     addProductService,
     getUserService,
-    editUserService
+    editUserService,
+    getProductDetailsService
   }
