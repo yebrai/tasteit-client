@@ -55,6 +55,9 @@ function LoginModal() {
   // Modal functions
   const showModal = () => {
     setOpen(true);
+    setEmail("")
+    setPassword("")
+    setErrorMessage("")
   };
 
   const handleOk = () => {

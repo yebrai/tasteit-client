@@ -22,6 +22,13 @@ const AddFood = () => {
 
   const [image, setImage] = useState("")
 
+  const [loadings, setLoadings] = useState(false)
+  const enterLoading = () => {
+    setTimeout(() => {
+      setLoadings(false)
+    }, 2000);
+  };
+
   const navigate = useNavigate()
   
   const onFinish = async(values) => {
@@ -33,7 +40,8 @@ const AddFood = () => {
     valoresFrom.append("description", values.description)
     valoresFrom.append("category", values.category)
     valoresFrom.append("image", image)
-
+    
+    setLoadings(true)
     try {
       await addProductService(valoresFrom)
       console.log(values)
@@ -127,7 +135,7 @@ const AddFood = () => {
       
       <Form.Item {...tailLayout}>
       <div>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" loading={loadings} onClick={enterLoading}>
           Submit
         </Button>
         </div>
