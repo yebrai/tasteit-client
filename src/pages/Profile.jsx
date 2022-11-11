@@ -21,11 +21,11 @@ function Profile() {
       console.log(error)
     }
   }
-  console.log(user);
+
   isFetching && <h3>...cargando</h3>
   return (
     <div style={{textAlign:"center"}}>
-    <img src="" alt="" />
+    <img src={user.image} alt="" />
     <h3>Name: {user.name}</h3>
     <h5>Email: {user.email}</h5>
     <p>Edad: {user.age}</p>

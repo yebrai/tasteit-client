@@ -33,18 +33,17 @@ const AddFood = () => {
   
   const onFinish = async(values) => {
     // Data transmission element
-    const valoresFrom = new FormData()
-    valoresFrom.append("name", values.name)
-    valoresFrom.append("price", values.price)
-    valoresFrom.append("location", values.location)
-    valoresFrom.append("description", values.description)
-    valoresFrom.append("category", values.category)
-    valoresFrom.append("image", image)
-    
+    const formValue = new FormData()
+    formValue.append("name", values.name)
+    formValue.append("price", values.price)
+    formValue.append("location", values.location)
+    formValue.append("description", values.description)
+    formValue.append("category", values.category)
+    formValue.append("image", image)
+    console.log(values);
     setLoadings(true)
     try {
-      await addProductService(valoresFrom)
-      console.log(values)
+      await addProductService(formValue)
       navigate("/all/products")
     } catch (error) {
       console.log(error)
