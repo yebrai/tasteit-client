@@ -20,7 +20,6 @@ function AuthWrapper(props) {
     try {
       //1 Verify token
       const response = await verifyService()
-      //console.log(response)
       setIsLoggedIn(true)
       //2 Update user data
       setUser(response.data.user)

@@ -4,10 +4,10 @@ import { verifyService } from "../services/auth.services";
 
 function IsOwner(props) {
 
-  const { check } = props;
+  const { owner } = props;
   const { user } = useContext(AuthContext)
   
-  if (user._id === check) {
+  if (user._id === owner) {
     return props.children;
   };
 

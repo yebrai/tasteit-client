@@ -85,10 +85,10 @@ function SignupModal() {
   return (
     <>
       <Button type="primary" onClick={showModal}>
-        Signup
+        Registrarse
       </Button>
       <Modal
-        title="User Login"
+        title="Registrarse"
         open={open}
         onOk={handleOk}
         confirmLoading={confirmLoading}

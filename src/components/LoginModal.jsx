@@ -72,10 +72,10 @@ function LoginModal() {
   return (
     <>
       <Button type="primary" onClick={showModal}>
-        Login
+        Iniciar Sesión
       </Button>
       <Modal
-        title="User Login"
+        title="Iniciar Sesión"
         open={open}
         onOk={handleOk}
         confirmLoading={confirmLoading}

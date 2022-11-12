@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductEditModal from "../components/ProductEditModal";
 import { getProductDetailsService } from "../services/tasteit.services";
+import { Button } from "antd";
+import IsOwner from "../components/IsOwner";
 
 function Details() {
   const { productId } = useParams();
@@ -16,7 +18,6 @@ function Details() {
   const getDetails = async () => {
     try {
       const response = await getProductDetailsService(productId);
-      console.log(response.data);
       setProductDetails(response.data);
       setIsFetching(false);
     } catch (error) {
@@ -30,7 +31,7 @@ function Details() {
   }
 
   return (
-    <div>
+    <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
       <p
         style={{
           textAlign: "center",
@@ -47,11 +48,20 @@ function Details() {
           ? "Bebidas"
           : null}
       </p>
+
+      {/* Checks if product owner is the same as current online user */}
+      <IsOwner owner={productDetails.owner._id}>
+        <div style={{display: "flex", flexDirection: "row"}}>
+          <ProductEditModal product={productDetails}/>
+          <Button style={{margin: "0 60px"}}>Eliminar</Button>
+        </div>
+      </IsOwner>
+
       <div
         style={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "flex-start",
+          justifyContent: "center",
           flexWrap: "wrap",
           margin: "50px 80px",
           width: "100%",
@@ -65,6 +75,7 @@ function Details() {
             height: 360,
             borderRadius: "20px",
             boxShadow: "0 0 5px 5px #229e6b",
+            margin: "0 5% 0 0"
           }}
         />
         <div
@@ -72,7 +83,7 @@ function Details() {
             display: "flex",
             flexDirection: "column",
             alignItems: "start",
-            margin: "0 0 0 60px",
+            margin: "0 0 0 5%"
           }}
         >
           <h2 style={{ fontSize: 50, color: "#324d67" }}>
@@ -96,9 +107,11 @@ function Details() {
             {productDetails.owner.name}
           </p>
         </div>
+        <div>
+
+        </div>
       </div>
 
-      <ProductEditModal />
     </div>
   );
 }

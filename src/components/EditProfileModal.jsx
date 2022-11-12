@@ -25,7 +25,6 @@ function EditProfileModal() {
   // Context
   const { user, authenticateUser } = useContext(AuthContext);
   
-
   // Modal configuration
   const [open, setOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -64,8 +63,8 @@ function EditProfileModal() {
       console.log("error");
     }
   };
+  
   // Modal functions
-
   const showModal = () => {
     setOpen(true);
   };
