@@ -24,11 +24,16 @@ const deleteProductService = (productId) => {
   return service.delete(`/product/${productId}`)
 }
 
+const addCommentService = (productId, newComment) => {
+  return service.post(`/comment/${productId}/add`, newComment)
+}
+
   export {
     addProductService,
     getUserService,
     editUserService,
     getProductDetailsService,
     editProductService,
-    deleteProductService
+    deleteProductService,
+    addCommentService
   }

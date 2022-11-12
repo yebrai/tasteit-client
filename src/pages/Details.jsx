@@ -5,6 +5,7 @@ import { getProductDetailsService } from "../services/tasteit.services";
 import { Button } from "antd";
 import IsOwner from "../components/IsOwner";
 import ProductDeletionModal from "../components/ProductDeletionModal";
+import AddComment from "../components/AddComment";
 
 function Details() {
   const { productId } = useParams();
@@ -100,18 +101,17 @@ function Details() {
             {productDetails.price}€
           </p>
           <p>
-            <span style={{ fontWeight: "bolder" }}>Vendido en:</span>{" "}
+            <span style={{ fontWeight: "bolder" }}>Vendido en:</span>
             {productDetails.location}
           </p>
           <p>
-            <span style={{ fontWeight: "bold" }}>Comercializado por:</span>{" "}
+            <span style={{ fontWeight: "bold" }}>Comercializado por:</span>
             {productDetails.owner.name}
           </p>
         </div>
-        <div>
-
-        </div>
       </div>
+          
+      <AddComment product={productDetails}/>
 
     </div>
   );

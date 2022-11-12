@@ -57,7 +57,7 @@ function FoodList() {
                     <img
                       alt="example"
                       src={eachProduct.image}
-                      style={{ width: 150, margin: "10px auto" }}
+                      style={{ width: "100%", height: 130, margin: 0}}
                     />
                   }
                 >
