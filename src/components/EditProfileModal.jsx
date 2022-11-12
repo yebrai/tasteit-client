@@ -44,7 +44,7 @@ function EditProfileModal() {
     formValue.append("password", values.password);
     formValue.append("image", image);
     setLoadings(true);
-    console.log(values);
+    
     try {
       await editUserService(user._id, formValue);
       setTimeout(() => {

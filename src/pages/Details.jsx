@@ -4,6 +4,7 @@ import ProductEditModal from "../components/ProductEditModal";
 import { getProductDetailsService } from "../services/tasteit.services";
 import { Button } from "antd";
 import IsOwner from "../components/IsOwner";
+import ProductDeletionModal from "../components/ProductDeletionModal";
 
 function Details() {
   const { productId } = useParams();
@@ -53,7 +54,7 @@ function Details() {
       <IsOwner owner={productDetails.owner._id}>
         <div style={{display: "flex", flexDirection: "row"}}>
           <ProductEditModal product={productDetails}/>
-          <Button style={{margin: "0 60px"}}>Eliminar</Button>
+          <ProductDeletionModal product={productDetails}/>
         </div>
       </IsOwner>
 

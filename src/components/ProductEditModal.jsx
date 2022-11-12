@@ -28,7 +28,6 @@ function ProductEditModal(props) {
 
   // Props
   const { product } = props;
-  const productId = product._id
 
   // Context
   const { authenticateUser } = useContext(AuthContext);
@@ -45,16 +44,16 @@ function ProductEditModal(props) {
   const onFinish = async (values) => {
     // Data transmission element
     const formValue = new FormData();
-    formValue.append("name", values.name);
-    formValue.append("description", values.description);
-    formValue.append("category", values.category);
-    formValue.append("price", values.price);
-    formValue.append("location", values.location);
-    formValue.append("image", image);
+    formValue.append("name", values.name)
+    formValue.append("price", values.price)
+    formValue.append("location", values.location)
+    formValue.append("description", values.description)
+    formValue.append("category", values.category)
+    formValue.append("image", image)
     setLoadings(true);
-    console.log(values);
+    
     try {
-      await editProductService(productId, formValue);
+      await editProductService(product._id, formValue);
       setTimeout(() => {
         setOpen(false);
         setLoadings(false);
@@ -82,7 +81,7 @@ function ProductEditModal(props) {
   };
 
   return (
-    <div>
+    <>
       <Button onClick={showModal}>
         Editar mi producto
       </Button>
@@ -132,7 +131,7 @@ function ProductEditModal(props) {
           </Form>
         </div>
       </Modal>
-    </div>
+    </>
   );
 }
 

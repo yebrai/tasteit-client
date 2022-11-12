@@ -20,10 +20,15 @@ const editProductService = (productId, productUpdates) => {
   return service.patch(`/product/${productId}/details`, productUpdates)
 }
 
+const deleteProductService = (productId) => {
+  return service.delete(`/product/${productId}`)
+}
+
   export {
     addProductService,
     getUserService,
     editUserService,
     getProductDetailsService,
-    editProductService
+    editProductService,
+    deleteProductService
   }
