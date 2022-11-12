@@ -1,9 +1,8 @@
 import { Avatar, Button, Comment, Form, Input, List } from "antd";
 import moment from "moment";
-import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/auth.context";
-import { addCommentService } from "../services/tasteit.services";
+import { addCommentService, getCommentService } from "../services/tasteit.services";
 
 const { TextArea } = Input;
 
@@ -11,7 +10,7 @@ const { TextArea } = Input;
 const CommentList = ({ comments }) => (
   <List
     dataSource={comments}
-    header={`${comments.length} ${comments.length > 1 ? "replies" : "reply"}`}
+    header={`${comments.length} ${comments.length > 1 ? "reseñas" : "reseña"}`}
     itemLayout="horizontal"
     renderItem={(props) => <Comment {...props} />}
   />
@@ -38,8 +37,6 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
 // Main function
 function AddComment(props) {
 
-  const navigate = useNavigate();
-
   // Context
   const { user } = useContext(AuthContext);
 
@@ -48,6 +45,7 @@ function AddComment(props) {
 
   // Comments list
   const [comments, setComments] = useState([]);
+  const [isFetching, setIsFetching] = useState(true);
 
   // Submitting state
   const [submitting, setSubmitting] = useState(false);
@@ -60,18 +58,53 @@ function AddComment(props) {
     message: value
   }
 
+  useEffect(() => {
+    handleComments();
+  }, []);
+ 
+  const handleComments = async () => {
+    try {
+      let commentsList = await getCommentService(product._id)
+      
+      let modifiedCommentsList = [];
+      // Array copy from commentsList with fields adapted to the required Ant design comment format (author, avatar, content, datetime)
+      commentsList.data.forEach(eachComment => {
+        modifiedCommentsList.push({
+          author: eachComment.user.name,
+          avatar: eachComment.user.profileImage,
+          content: eachComment.message,
+          datetime: new Intl.DateTimeFormat("es-ES", {
+            timeStyle: "medium",
+            dateStyle: "short",
+          }).format(new Date(eachComment.createdAt))
+        })
+      })
+
+      setComments(modifiedCommentsList)
+      setIsFetching(false);
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  if (isFetching === true) {
+    return <h3>loading...</h3>;
+  }
+
   // Function to execute when comment is submitted
   const handleSubmit = async () => {
     // If there is no input, do nothing
     if (!value) return;
-
+    
     try {
       await addCommentService(product._id, newComment) // Add new comment to the current id product details page
+      
       setSubmitting(true);
       setTimeout(() => {
         setSubmitting(false);
         setValue("");
-        setComments([])
+        handleComments() // execute handleComments another time to render the new comment
       }, 1000);
 
     } catch(error) {
@@ -86,12 +119,9 @@ function AddComment(props) {
 
   return (
     <>
-      {/* If comments list contains at least a comment, show it */}
-      {comments.length > 0 && <CommentList comments={comments} />}
-
       <Comment
         avatar={
-          <Avatar src={user.profileImage} alt="Han Solo" />
+          <Avatar src={user.profileImage} alt={user.name} />
         }
         content={
           <Editor
@@ -102,6 +132,9 @@ function AddComment(props) {
           />
         }
       />
+
+      {/* If comments list contains at least a comment, show it */}
+      {comments.length > 0 && <CommentList comments={comments} />}
     </>
   );
 }

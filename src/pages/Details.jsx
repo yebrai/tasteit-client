@@ -111,7 +111,7 @@ function Details() {
         </div>
       </div>
           
-      <AddComment product={productDetails}/>
+      <AddComment product={productDetails} style={{margin: 0}}/>
 
     </div>
   );

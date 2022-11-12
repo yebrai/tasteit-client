@@ -28,6 +28,10 @@ const addCommentService = (productId, newComment) => {
   return service.post(`/comment/${productId}/add`, newComment)
 }
 
+const getCommentService = (productId) => {
+  return service.get(`/comment/${productId}`)
+}
+
   export {
     addProductService,
     getUserService,
@@ -35,5 +39,6 @@ const addCommentService = (productId, newComment) => {
     getProductDetailsService,
     editProductService,
     deleteProductService,
-    addCommentService
+    addCommentService,
+    getCommentService
   }

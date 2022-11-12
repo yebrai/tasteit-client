@@ -5,3 +5,12 @@
   margin: 50px;
   gap: 50px;
 }
+
+/* Product comments component */
+.ant-comment {
+  width: 500px;
+}
+
+.ant-list {
+  width: 500px;
+}
