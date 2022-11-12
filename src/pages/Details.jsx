@@ -4,12 +4,11 @@ import ProductEditModal from "../components/ProductEditModal";
 import { getProductDetailsService } from "../services/tasteit.services";
 
 function Details() {
-
   const { productId } = useParams();
 
   const [productDetails, setProductDetails] = useState("");
-  const [isFetching, setIsFetching] = useState(true)
-  
+  const [isFetching, setIsFetching] = useState(true);
+
   useEffect(() => {
     getDetails();
   }, []);
@@ -17,30 +16,85 @@ function Details() {
   const getDetails = async () => {
     try {
       const response = await getProductDetailsService(productId);
-      console.log(response);
+      console.log(response.data);
       setProductDetails(response.data);
-      setIsFetching(false)
-
+      setIsFetching(false);
     } catch (error) {
       console.log(error);
     }
   };
 
   // Guard clause
-  isFetching && <h3>Loading...</h3>
+  if (isFetching) {
+    return <h3>Cargando...</h3>;
+  }
 
   return (
     <div>
-      <p style={{textAlign: "center", margin: "30px 0", fontWeight: "bold", color: "darkgray"}}>{productDetails.category === "foods" ? "Comidas" : productDetails.category === "desserts" ? "Postres" : productDetails.category === "drinks" ? "Bebidas" : null}</p>
-      <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-start", flexWrap: "wrap", margin: "50px 80px", width: "100%"}}>
-        <img src={productDetails.image} alt={productDetails.name} style={{width: 360, height: 360, borderRadius: "20px"}}/>
-        <div style={{display: "flex", flexDirection: "column", alignItems: "start", margin: "0 0 0 60px"}}>
-          <h2 style={{fontSize: 50, color: "#324d67"}}>{productDetails.name}</h2>
-          <p><span style={{fontWeight: "bolder", fontSize: 22}}>Detalles:</span></p>
+      <p
+        style={{
+          textAlign: "center",
+          margin: "30px 0",
+          fontWeight: "bold",
+          color: "darkgray",
+        }}
+      >
+        {productDetails.category === "foods"
+          ? "Comidas"
+          : productDetails.category === "desserts"
+          ? "Postres"
+          : productDetails.category === "drinks"
+          ? "Bebidas"
+          : null}
+      </p>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "flex-start",
+          flexWrap: "wrap",
+          margin: "50px 80px",
+          width: "100%",
+        }}
+      >
+        <img
+          src={productDetails.image}
+          alt={productDetails.name}
+          style={{
+            width: 360,
+            height: 360,
+            borderRadius: "20px",
+            boxShadow: "0 0 5px 5px #229e6b",
+          }}
+        />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "start",
+            margin: "0 0 0 60px",
+          }}
+        >
+          <h2 style={{ fontSize: 50, color: "#324d67" }}>
+            {productDetails.name}
+          </h2>
+          <p>
+            <span style={{ fontWeight: "bolder", fontSize: 22 }}>
+              Detalles:
+            </span>
+          </p>
           <p>{productDetails.description}</p>
-          <p style={{fontWeight: "bolder", fontSize: 40, color: "red"}}>{productDetails.price}€</p>
-          <p><span style={{fontWeight: "bolder"}}>Vendido en:</span> {productDetails.location}</p>
-          <p></p>
+          <p style={{ fontWeight: "bolder", fontSize: 40, color: "#229e6b" }}>
+            {productDetails.price}€
+          </p>
+          <p>
+            <span style={{ fontWeight: "bolder" }}>Vendido en:</span>{" "}
+            {productDetails.location}
+          </p>
+          <p>
+            <span style={{ fontWeight: "bold" }}>Comercializado por:</span>{" "}
+            {productDetails.owner.name}
+          </p>
         </div>
       </div>
 
