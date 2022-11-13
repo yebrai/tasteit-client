@@ -1,26 +1,12 @@
-import { Button, Modal, Form, Input, Select } from "antd";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { editProductService } from "../services/tasteit.services";
 
-//Form styles
+// Antd
+import { Button, Modal, Form, Input, Select } from "antd";
 const { Option } = Select;
-
-const layout = {
-  labelCol: {
-    span: 8,
-  },
-  wrapperCol: {
-    span: 16,
-  },
-};
-const tailLayout = {
-  wrapperCol: {
-    offset: 8,
-    span: 16,
-  },
-};
+const { Item } = Form;
 
 function ProductEditModal(props) {
   // Redirect hook
@@ -34,36 +20,50 @@ function ProductEditModal(props) {
 
   // Modal configuration
   const [open, setOpen] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [loadings, setLoadings] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
 
   // Cloudinary State for the product image
   const [image, setImage] = useState("");
 
+  // Form states
+  const [editProductForm, setEditProductForm] = useState({
+    name: "",
+    price: "",
+    location: "",
+    description: "",
+    category: ""
+  });
+
+  const [errorMessage, setErrorMessage] = useState("");
+
   //Form submit function
-  const onFinish = async (values) => {
+  const handleEditProduct = async () => {
     // Data transmission element
     const formValue = new FormData();
-    formValue.append("name", values.name)
-    formValue.append("price", values.price)
-    formValue.append("location", values.location)
-    formValue.append("description", values.description)
-    formValue.append("category", values.category)
+    formValue.append("name", editProductForm.name)
+    formValue.append("price", editProductForm.price)
+    formValue.append("location", editProductForm.location)
+    formValue.append("description", editProductForm.description)
+    formValue.append("category", editProductForm.category)
     formValue.append("image", image)
-    setLoadings(true);
+
+    //console.log(formValue)
+    setConfirmLoading(true);
     
     try {
       await editProductService(product._id, formValue);
+
       setTimeout(() => {
         setOpen(false);
-        setLoadings(false);
+        setConfirmLoading(false);
         authenticateUser();
-      }, 1000);
+      }, 2000);
+
     } catch (error) {
       if (error.response && error.response.status === 400) {
         // Error 400
         setErrorMessage(error.response.data.errorMessage);
-        setLoadings(false);
+        setConfirmLoading(false);
       } else {
         // Error 500
         navigate("/error");
@@ -72,61 +72,65 @@ function ProductEditModal(props) {
     }
   };
 
+
+  // Modal functions
   const showModal = () => {
     setOpen(true);
+  };
+
+  const handleOk = () => {
+    handleEditProduct();
   };
 
   const handleCancel = () => {
     setOpen(false);
   };
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setEditProductForm({ ...editProductForm, [name]: value });
+  };
+
   return (
     <>
-      <Button onClick={showModal}>
-        Editar mi producto
+      <Button type="primary" onClick={showModal}>
+        Editar producto
       </Button>
       <Modal
         title="Editar Producto"
         open={open}
-        footer={null}
+        onOk={handleOk}
+        confirmLoading={confirmLoading}
         onCancel={handleCancel}
+        destroyOnClose
       >
         <div>
-          <Form {...layout} name="control-hooks" onFinish={onFinish}>
-            <Form.Item name="name" label="Nombre del producto">
-              <Input />
-            </Form.Item>
-            <Form.Item name="description" label="Descripción">
-              <Input />
-            </Form.Item>
-            <Form.Item name="category" label="Categoría">
-              <Select placeholder="Elige el tipo de producto" allowClear>
+          <Form>
+            <Item label="Nombre del producto">
+              <Input name="name" onChange={handleChange}/>
+            </Item>
+            <Item label="Descripción">
+              <Input name="description" onChange={handleChange}/>
+            </Item>
+            <Item label="Categoría">
+              <Select placeholder="Elige el tipo de producto" onChange={event => setEditProductForm({...editProductForm, category: event})} allowClear>
                 <Option value="drinks">Bebida</Option>
                 <Option value="desserts">Postre</Option>
                 <Option value="foods">Comida</Option>
               </Select>
-            </Form.Item>
-            <Form.Item name="price" label="Precio">
-              <Input />
-            </Form.Item>
-            <Form.Item name="location" label="Localidad">
-              <Input />
-            </Form.Item>
-            <Form.Item name="image" label="Imagen">
+            </Item>
+            <Item label="Precio">
+              <Input name="price" onChange={handleChange}/>
+            </Item>
+            <Item label="Localidad">
+              <Input name="location" onChange={handleChange}/>
+            </Item>
+            <Item label="Imagen">
               <Input
                 type="file"
                 onChange={(event) => setImage(event.target.files[0])}
               />
-            </Form.Item>
-
-            <Form.Item {...tailLayout}>
-              <div>
-                <Button type="primary" htmlType="submit" loading={loadings}>
-                  Editar
-                </Button>
-              </div>
-            </Form.Item>
-            <br />
+            </Item>
             {errorMessage !== "" && <p>{errorMessage}</p>}
           </Form>
         </div>

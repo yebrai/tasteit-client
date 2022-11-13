@@ -20,7 +20,7 @@ const CommentList = ({ comments }) => (
 const Editor = ({ onChange, onSubmit, submitting, value }) => (
   <>
     <Form.Item>
-      <TextArea rows={4} onChange={onChange} value={value} />
+      <TextArea rows={2} onChange={onChange} value={value} />
     </Form.Item>
     <Form.Item>
       <Button
