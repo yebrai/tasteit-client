@@ -14,23 +14,23 @@ function LoginModal() {
   // navigate use configuration
   const { authenticateUser } = useContext(AuthContext);
   const navigate = useNavigate();
-  
+
   // Sign up states configuration
   const [errorMessage, setErrorMessage] = useState("");
-  
+
   // Modal configuration
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
-  
+
   // Form states
   const [loginForm, setLoginForm] = useState({
     email: "",
-    password: ""
+    password: "",
   });
-  
+
   const handleLogin = async () => {
     try {
-      // Token validation
+      // Login user
       const response = await loginService(loginForm);
       // Store Token in browser local storage
       localStorage.setItem("authToken", response.data.authToken);
@@ -52,7 +52,7 @@ function LoginModal() {
   // Modal functions
   const showModal = () => {
     setOpen(true);
-    setLoginForm("")
+    setLoginForm("");
   };
 
   const handleOk = () => {
@@ -63,11 +63,9 @@ function LoginModal() {
     setOpen(false);
   };
 
-
   const handleChange = (event) => {
-    const {name, value} = event.target;
-    setLoginForm({...loginForm,
-    [name]: value})
+    const { name, value } = event.target;
+    setLoginForm({ ...loginForm, [name]: value });
   };
 
   // Render
@@ -90,7 +88,7 @@ function LoginModal() {
               <Input name="email" onChange={handleChange} />
             </Item>
             <Item label="Password">
-            <Input.Password name="password" onChange={handleChange} />
+              <Input.Password name="password" onChange={handleChange} />
             </Item>
             {errorMessage !== "" && <p>{errorMessage}</p>}
           </Form>
