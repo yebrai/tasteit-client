@@ -14,3 +14,48 @@
 .ant-list {
   width: 500px;
 }
+.shopping-cart-wrapper {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: all 1s ease-in-out;
+}
+
+.shopping-cart {
+  width: 30vw;
+  height: 100vh;
+  background-color: white;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 100;
+  transition: all 1s ease-in-out;
+  border: 1px solid
+}
+
+
+.cart-back-heading {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  gap: 20px;
+  margin-left: 15px;
+  border: none;
+  background-color: transparent;
+}
+
+.top-title {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.quantity-items {
+  margin-left: 10px;
+  color: grey;
+  font-size: 20px;
+}

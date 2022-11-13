@@ -1,5 +1,3 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import img from "../assets/all.jpg"
 import img2 from "../assets/bebidas.jpg"

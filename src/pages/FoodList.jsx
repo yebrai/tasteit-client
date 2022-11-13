@@ -5,10 +5,13 @@ import { Button, Card, Col, Row } from "antd";
 import { AuthContext } from "../context/auth.context";
 import IsOwner from "../components/IsOwner.jsx";
 import SearchFood from "../components/SearchFood";
+
+
 const { Meta } = Card;
 
 function FoodList() {
- 
+
+
   // Food category received from Home.jsx link
   const { type } = useParams();
 
@@ -94,6 +97,8 @@ function FoodList() {
           );
         })}
       </Row>
+      
+
     </div>
   );
 }

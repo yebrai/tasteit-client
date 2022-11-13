@@ -33,12 +33,17 @@ function AuthWrapper(props) {
     }
   }
 
+  // Shopping cart items
+  const [showCart, setShowCart] = useState(false);
+
   const passedContext = {
     isLoggedIn,
     user,
     authenticateUser,
     setIsLoggedIn,
-    setUser
+    setUser,
+    setShowCart,
+    showCart
   }
 
   if (isFetching === true) {

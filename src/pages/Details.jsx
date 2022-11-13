@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductEditModal from "../components/ProductEditModal";
 import { getProductDetailsService } from "../services/tasteit.services";
@@ -7,8 +7,15 @@ import IsOwner from "../components/IsOwner";
 import ProductDeletionModal from "../components/ProductDeletionModal";
 import AddComment from "../components/AddComment";
 
+
+// React icon
+import { FaShoppingCart } from "react-icons/fa";
+import { AuthContext } from "../context/auth.context";
+import ShoppingCart from "../components/ShoppingCart";
+
 function Details() {
   const { productId } = useParams();
+  const {showCart, setShowCart} = useContext(AuthContext)
 
   const [productDetails, setProductDetails] = useState("");
   const [isFetching, setIsFetching] = useState(true);
@@ -110,9 +117,14 @@ function Details() {
           </p>
         </div>
       </div>
+      <button onClick={()=>setShowCart(true)}>
+        <FaShoppingCart />
+        <span>12</span>
+      </button>
+      
           
       <AddComment product={productDetails} style={{margin: 0}}/>
-
+      {showCart && <ShoppingCart />}
     </div>
   );
 }
