@@ -11,7 +11,7 @@ import { PoweroffOutlined } from '@ant-design/icons';
 // React icon
 import { AiFillHome } from "react-icons/ai";
 import { FaUserCircle } from "react-icons/fa";
-import { IoIosAddCircle } from "react-icons/io";
+import AddFoodModal from "./AddFoodModal";
 
 
 function Navbar() {
@@ -47,9 +47,9 @@ function Navbar() {
       {isLoggedIn ? (
         <div>
           {/* Add product */}
-          <Link to="/add">
-            <IoIosAddCircle style={{ color: "black", fontSize: "1.5rem", margin:"0 60px" }} />
-          </Link>
+          <AddFoodModal/>
+            
+         
 
           <Link to="/profile">
             <FaUserCircle style={{ color: "black", fontSize: "1.5rem", margin:"0 60px" }} />
