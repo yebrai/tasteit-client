@@ -50,7 +50,8 @@ function FoodList() {
 
   return (
     <div>
-      <SearchFood filterFood={filterFood} />
+      <SearchFood type={type} filterFood={filterFood} />
+      
       <Row style={{ width: "100%", justifyContent: "center" }}>
         {foodToShow.map((eachProduct) => {
           return (
