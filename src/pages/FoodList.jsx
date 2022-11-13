@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { Button, Card, Col, Row } from "antd";
 import { AuthContext } from "../context/auth.context";
 import IsOwner from "../components/IsOwner.jsx";
+import SearchFood from "../components/SearchFood";
 const { Meta } = Card;
 
 function FoodList() {
@@ -13,7 +14,17 @@ function FoodList() {
 
   // To manage list of selected products from Home.jsx: all, foods, desserts or drinks
   const [list, setList] = useState([]);
+  const [foodToShow, setFoodToShow] = useState([])
   const [isFetching, setIsFetching] = useState(true);
+
+  // Function to manage search in SearchFood.jsx
+  const filterFood = (filterQuery) => {
+    const filteredFood = list.filter((eachFood) => eachFood.name.includes(filterQuery));
+
+    // Updates current displayed list
+    setFoodToShow(filteredFood);
+  };
+
 
   // To show / hide buttons according to the current user
   //const [isOwner, setIsOwner] = useState(false)
@@ -23,9 +34,10 @@ function FoodList() {
   }, []);
 
   const handleFood = async (type) => {
-    try {
+  try {
       const response = await axios.get(`http://localhost:5005/api/product/${type}`);
       setList(response.data);
+      setFoodToShow(response.data)
       setIsFetching(false);
     } catch (error) {
       console.log(error);
@@ -38,8 +50,10 @@ function FoodList() {
 
   return (
     <div>
+      <SearchFood type={type} filterFood={filterFood} />
+      
       <Row style={{ width: "100%", justifyContent: "center" }}>
-        {list.map((eachProduct) => {
+        {foodToShow.map((eachProduct) => {
           return (
             <Col>
               <Link to={`/${eachProduct._id}/details`}>
