@@ -11,7 +11,7 @@ function IsPrivate(props) {
     
   } else {
     // Navigate instead of navigate, because IsPrivate component always must return a JSX component
-    return <Navigate to="/login"/>
+    return <Navigate to="/"/>
   }
 }
 
