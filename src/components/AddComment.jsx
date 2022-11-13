@@ -88,7 +88,7 @@ function AddComment(props) {
     }
   };
 
-  if (isFetching === true) {
+  if (isFetching) {
     return <h3>loading...</h3>;
   }
 

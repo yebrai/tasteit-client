@@ -10,7 +10,11 @@ function AuthWrapper(props) {
   const [ user, setUser ] = useState(null)
   const [ isFetching, setIsFetching ] = useState(true)
 
-//componentDidMount for all app
+  // Shopping cart items
+  const [showCart, setShowCart] = useState(false);
+  
+
+  //componentDidMount for all app
   useEffect(() => {
     authenticateUser()
   }, []) 
@@ -33,8 +37,7 @@ function AuthWrapper(props) {
     }
   }
 
-  // Shopping cart items
-  const [showCart, setShowCart] = useState(false);
+  
 
   const passedContext = {
     isLoggedIn,
