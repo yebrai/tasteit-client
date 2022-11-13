@@ -1,40 +1,37 @@
-import { Button, Modal } from "antd";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginService } from "../services/auth.services";
 
+//Context
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 
+//Antd
+import { Button, Modal, Form, Input } from "antd";
+const { Item } = Form;
+
 function LoginModal() {
   // navigate use configuration
-  const { authenticateUser} = useContext(AuthContext);
+  const { authenticateUser } = useContext(AuthContext);
   const navigate = useNavigate();
-
+  
   // Sign up states configuration
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
+  
   // Modal configuration
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
-
-  // Form states functions
-  const handleEmailChange = (event) => setEmail(event.target.value);
-  const handlePasswordChange = (event) => setPassword(event.target.value);
-
+  
+  // Form states
+  const [loginForm, setLoginForm] = useState({
+    email: "",
+    password: ""
+  });
+  
   const handleLogin = async () => {
-    // e.preventDefault();
-
-    const userCredentials = {
-      email: email,
-      password: password,
-    };
-
     try {
       // Token validation
-      const response = await loginService(userCredentials);
+      const response = await loginService(loginForm);
       // Store Token in browser local storage
       localStorage.setItem("authToken", response.data.authToken);
       setConfirmLoading(true);
@@ -55,9 +52,7 @@ function LoginModal() {
   // Modal functions
   const showModal = () => {
     setOpen(true);
-    setEmail("")
-    setPassword("")
-    setErrorMessage("")
+    setLoginForm("")
   };
 
   const handleOk = () => {
@@ -66,6 +61,13 @@ function LoginModal() {
 
   const handleCancel = () => {
     setOpen(false);
+  };
+
+
+  const handleChange = (event) => {
+    const {name, value} = event.target;
+    setLoginForm({...loginForm,
+    [name]: value})
   };
 
   // Render
@@ -80,27 +82,18 @@ function LoginModal() {
         onOk={handleOk}
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
+        destroyOnClose
       >
         <div>
-          <form>
-            <label htmlFor="email">Email</label>
-            <input
-              type="text"
-              name="email"
-              value={email}
-              onChange={handleEmailChange}
-            />
-            <br />
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              value={password}
-              onChange={handlePasswordChange}
-            />
-            <br />
+          <Form>
+            <Item label="Email">
+              <Input name="email" onChange={handleChange} />
+            </Item>
+            <Item label="Password">
+            <Input.Password name="password" onChange={handleChange} />
+            </Item>
             {errorMessage !== "" && <p>{errorMessage}</p>}
-          </form>
+          </Form>
         </div>
       </Modal>
     </>
