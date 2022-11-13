@@ -25,7 +25,7 @@ function Profile() {
   isFetching && <h3>...cargando</h3>
   return (
     <div style={{textAlign:"center"}}>
-    <img src={user.image} alt="" />
+    <img src={user.profileImage} alt="" />
     <h3>Name: {user.name}</h3>
     <h5>Email: {user.email}</h5>
     <p>Edad: {user.age}</p>

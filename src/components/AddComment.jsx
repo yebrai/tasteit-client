@@ -104,7 +104,7 @@ function AddComment(props) {
       setTimeout(() => {
         setSubmitting(false);
         setValue("");
-        handleComments() // execute handleComments another time to render the new comment
+        handleComments()
       }, 1000);
 
     } catch(error) {
