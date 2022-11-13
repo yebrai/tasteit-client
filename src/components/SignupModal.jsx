@@ -12,11 +12,11 @@ import { Button, Modal, Form, Input } from "antd";
 const { Item } = Form;
 
 function SignupModal() {
-  // navigate use configuration
+  // Context/navigate
   const { authenticateUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // Sign up states configuration
+  // Error message from backend
   const [errorMessage, setErrorMessage] = useState("");
 
   // Modal states

@@ -22,7 +22,9 @@ function Profile() {
     }
   }
 
-  isFetching && <h3>...cargando</h3>
+  if (isFetching) {
+    <p>...cargando</p>
+  }
   return (
     <div style={{textAlign:"center"}}>
     <img src={user.profileImage} alt="" />

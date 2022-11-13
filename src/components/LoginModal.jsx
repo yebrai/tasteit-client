@@ -11,11 +11,11 @@ import { Button, Modal, Form, Input } from "antd";
 const { Item } = Form;
 
 function LoginModal() {
-  // navigate use configuration
+  // Context/navigate
   const { authenticateUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // Sign up states configuration
+  // Error message from backend
   const [errorMessage, setErrorMessage] = useState("");
 
   // Modal configuration
@@ -52,7 +52,6 @@ function LoginModal() {
   // Modal functions
   const showModal = () => {
     setOpen(true);
-    setLoginForm("");
   };
 
   const handleOk = () => {
@@ -84,7 +83,7 @@ function LoginModal() {
       >
         <div>
           <Form>
-            <Item label="Email">
+            <Item label="Email" >
               <Input name="email" onChange={handleChange} />
             </Item>
             <Item label="Password">
