@@ -4,7 +4,7 @@ import React, { useContext, useState } from "react";
 import { Button } from "antd";
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { AuthContext } from "../context/auth.context";
-import { getNextKeyDef } from "@testing-library/user-event/dist/keyboard/getNextKeyDef";
+import { addShoppingCartService } from "../services/shoppingCart.services";
 
 function Counter(props) {
   // Counter for adding quantities of product to shoppingCart
@@ -25,8 +25,15 @@ function Counter(props) {
   };
 
   // Add quantity of product to the cart
-  const addToCart = () => {
-    setCartProducts([...cartProducts, product])
+  const addToCart = async () => {
+    try {
+      for (let i = 1; i <= counter; i++) {
+        await addShoppingCartService(product._id)
+      }
+      
+    } catch(error) {
+      console.log(error);
+    }
   }
 
   return (

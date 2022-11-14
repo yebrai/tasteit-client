@@ -1,5 +1,7 @@
 import { createContext, useState, useEffect } from "react"
 import { verifyService } from "../services/auth.services"
+import { getShoppingCartService } from "../services/shoppingCart.services"
+import { getUserService } from "../services/tasteit.services"
 
 const AuthContext = createContext()
 
@@ -22,10 +24,12 @@ function AuthWrapper(props) {
   const authenticateUser = async () => {
     setIsFetching(true)
     try {
-      //1 Verify token
+      // 1 Verify token
       const response = await verifyService()
+      const shoppingCartCurrentProducts = await getShoppingCartService()
+      setCartProducts(shoppingCartCurrentProducts)
       setIsLoggedIn(true)
-      //2 Update user data
+      // 2 Update user data
       setUser(response.data.user)
       setIsFetching(false)
 
