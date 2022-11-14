@@ -8,4 +8,8 @@ const addShoppingCartService = (productArr) => {
   return service.patch(`/user/cart/add`, productArr);
 };
 
-export { getShoppingCartService, addShoppingCartService };
+const deleteShoppingCartService = (productId) => {
+  return service.delete(`/user/cart/${productId}/delete`)
+}
+
+export { getShoppingCartService, addShoppingCartService, deleteShoppingCartService };
