@@ -11,7 +11,6 @@ import { addShoppingCartService } from "../services/shoppingCart.services";
 function Counter(props) {
   // Counter for adding quantities of product to shoppingCart
   const [counter, setCounter] = useState(1);
-  const {cartProducts, setCartProducts} = useContext(AuthContext)
   const {product} = props
 
   // Increment counter
