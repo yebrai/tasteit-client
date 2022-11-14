@@ -28,9 +28,11 @@ function Counter(props) {
 
   // Add quantity of product to the cart
   const addToCart = async () => {
+    
     try {
       for (let i = 1; i <= counter; i++) {
         await addShoppingCartService(product._id)
+        success()
       }
       
     } catch(error) {
@@ -38,7 +40,7 @@ function Counter(props) {
     }
   }
 
-  const succes = () => toast(`${props.name} añadido al carrito`)
+  const success = () => toast(`${props.product.name} añadido al carrito`, {icon: '✔️'})
 
   return (
     <div>
@@ -58,9 +60,10 @@ function Counter(props) {
       </div>
 
       <div>
-        <Button onClick={addToCart}style={{ margin: "0 10px 0 0" }}>Añadir al carrito</Button>
+        <Button onClick={addToCart} style={{ margin: "0 10px 0 0" }}>Añadir al carrito</Button>
         <Button style={{ margin: "0" }}>Comprar</Button>
       </div>
+      <Toaster />
     </div>
   );
 }
