@@ -13,7 +13,7 @@ import { ThemeContext } from "../context/theme.context";
 function ShoppingCart() {
   const { cartProducts, setCartProducts } = useContext(AuthContext);
 
-  const {renderCart, toggleCart} = useContext(ThemeContext)
+  const {renderCart, toggleCart, renderCartWrapper} = useContext(ThemeContext)
   const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
@@ -73,9 +73,9 @@ function ShoppingCart() {
   let totalPrice = subtotalProductsPrice + shippingCosts;
   
   return (
-    <div className="shopping-cart-wrapper">
-      <div className="shopping-cart">
-        <div style={renderCart()}>
+    <div style={renderCartWrapper()}>
+      <div style={renderCart()}>
+        <div className="shopping-card-container">
           <button
             type="button"
             className="cart-back-heading"
@@ -83,7 +83,7 @@ function ShoppingCart() {
           >
             <FaBackward />
             <span className="top-title">Tu cesta</span>
-            <span className="quantity-items">{cartProductsToShow.length} productos</span>
+            <span className="quantity-items">10 Productos</span>
           </button>
           <div style={{padding: 20, height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
             <div>

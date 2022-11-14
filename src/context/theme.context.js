@@ -8,7 +8,7 @@ function ThemeWrapper(props) {
     const [showCart, setShowCart] = useState(false);
       
       const shoppingCartOn = {
-        width: "30vw",
+        width: "35vw",
         height: "100vh",
         backgroundColor: "white",
         position: "fixed",
@@ -18,7 +18,7 @@ function ThemeWrapper(props) {
         transition: "all s ease-in-out"
       }
 
-      const shoppingCartOf = {
+      const shoppingCartOff = {
         width: "0vw",
         height: "100vh",
         backgroundColor: "white",
@@ -28,18 +28,43 @@ function ThemeWrapper(props) {
         zIndex: "100",
         transition: "all 1s ease-in-out"
       }
+
+      const cartWrapperOn = {
+        width: "100vw",
+        height: "100vh",
+        background: "rgba(0, 0, 0, 0.6)",
+        position: "fixed",
+        right: "0",
+        top: "0",
+        transition: "all 1s ease-in-out"
+      }
+
+      const cartWrapperOff = {
+        width: "0vw",
+        height: "100vh",
+        background: "rgba(0, 0, 0, 0)",
+        position: "fixed",
+        right: "0",
+        top: "0",
+        transition: "all 1s ease-in-out"
+      }
   
       const toggleCart = () => {
         setShowCart(!showCart)
       }
     
       const renderCart = () => {
-        return showCart ? shoppingCartOn : shoppingCartOf
+        return showCart ? shoppingCartOn : shoppingCartOff
+      }
+
+      const renderCartWrapper = () => {
+        return showCart ? cartWrapperOn : cartWrapperOff
       }
 
       const passedContext = {
         renderCart,
-        toggleCart
+        toggleCart,
+        renderCartWrapper
       }
   
     return (
