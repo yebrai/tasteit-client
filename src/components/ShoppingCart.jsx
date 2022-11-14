@@ -3,7 +3,11 @@ import { FaBackward } from "react-icons/fa";
 //Context
 import { AuthContext } from "../context/auth.context";
 import { useContext, useEffect, useState } from "react";
-import { getShoppingCartService } from "../services/shoppingCart.services";
+import { deleteShoppingCartService, getShoppingCartService } from "../services/shoppingCart.services";
+import { Button } from "antd";
+
+// Antd
+import { CloseCircleFilled } from '@ant-design/icons'
 
 function ShoppingCart() {
   const { setShowCart, cartProducts, setCartProducts } =
@@ -13,7 +17,7 @@ function ShoppingCart() {
 
   useEffect(() => {
     findCart();
-  }, []);
+  }, [cartProducts]);
 
   const findCart = async () => {
     try {
@@ -27,6 +31,15 @@ function ShoppingCart() {
 
   if (isFetching) {
     return <h3>loading...</h3>;
+  }
+
+  // Deletes a product from the shopping cart
+  const deleteCartProduct = async (productId) => {
+    try {
+      await deleteShoppingCartService(productId)
+    } catch(error) {
+      console.log(error)
+    }
   }
 
   // Products and quantities to render in the shopping cart
@@ -73,7 +86,10 @@ function ShoppingCart() {
                       <p style={{margin: 0}}>{eachProduct.name}</p>
                       <p style={{margin: 0, fontWeight: "bolder"}}>{eachProduct.price} €</p>
                     </div>
-                    <p style={{margin: 0}}>Cantidad: {eachProduct.quantity}</p>
+                    <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                      <p style={{margin: 0}}>Cantidad: {eachProduct.quantity}</p>
+                      <Button danger icon={<CloseCircleFilled />} onClick={() => deleteCartProduct(eachProduct._id)}></Button>
+                    </div>
                   </div>
                 </div>
               );
