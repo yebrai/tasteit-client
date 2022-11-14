@@ -15,7 +15,7 @@ function ThemeWrapper(props) {
         right: "0",
         top: "0",
         zIndex: "100",
-        transition: "all 1s ease-in-out"
+        transition: "all s ease-in-out"
       }
 
       const shoppingCartOf = {

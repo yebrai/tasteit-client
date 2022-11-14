@@ -10,25 +10,30 @@ import ShoppingCart from "../components/ShoppingCart";
 
 // React icon
 import { FaShoppingCart } from "react-icons/fa";
-import { Image } from "antd"
+import { Image } from "antd";
 
 function Home() {
   const {toggleCart} = useContext(ThemeContext)
-
   return (
     <div>
       <div className="homeBoxContainer">
         <Link to="/all/products" className="image-link-container">
-        <img width={400} src={img} /> 
-        <div className="home-image-text">
-        <p >Todas las Comidas</p>
-        </div>
+          <img width={400} src={img} />
+          <div className="home-image-text">
+            <p>Todas las Comidas</p>
+          </div>
         </Link>
-        <Link to="/drinks/products" ><Image src={img2} alt="" width={400} height={300} /></Link>
+        <Link to="/drinks/products">
+          <Image src={img2} alt="" width={400} height={300} />
+        </Link>
       </div>
       <div className="homeBoxContainer">
-        <Link to="/foods/products"><img src={img3} alt="" width={400} height={300} /></Link>
-        <Link to="/desserts/products"><img src={img4} alt="" width={400} height={300} /></Link>
+        <Link to="/foods/products">
+          <img src={img3} alt="" width={400} height={300} />
+        </Link>
+        <Link to="/desserts/products">
+          <img src={img4} alt="" width={400} height={300} />
+        </Link>
       </div>
       <button onClick={toggleCart} className="cart-button">
         <FaShoppingCart />
@@ -36,7 +41,7 @@ function Home() {
       </button>
       <ShoppingCart />
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

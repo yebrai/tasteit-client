@@ -1,7 +1,7 @@
 import service from "./config.services";
 
 const getShoppingCartService = () => {
-    return service.get(`/user/cart`)
+  return service.get(`/user/cart`)
 }
 
 const addShoppingCartService = (productArr) => {

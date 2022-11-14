@@ -33,6 +33,27 @@ function ShoppingCart() {
   }
   
 
+  // Products and quantities to render in the shopping cart
+  let cartProductsToShow = [];
+  cartProducts.forEach(eachProduct => {
+    let productToModify = cartProductsToShow.find(product => product._id === eachProduct._id)
+
+    if (productToModify) {
+
+      productToModify.quantity += 1;
+      productToModify.price += eachProduct.price;
+
+    } else {
+      cartProductsToShow.push({
+        _id: eachProduct._id,
+        image: eachProduct.image,
+        name: eachProduct.name,
+        quantity: 1,
+        price: eachProduct.price
+      })
+    }
+  })
+
   return (
     <div className="shopping-cart-wrapper">
       <div className="shopping-cart">
@@ -44,13 +65,20 @@ function ShoppingCart() {
           >
             <FaBackward />
             <span className="top-title">Tu cesta</span>
-            <span className="quantity-items">10 Productos</span>
+            <span className="quantity-items">{cartProductsToShow.length} productos</span>
           </button>
-          <div>
-            {cartProducts.map((eachProduct, index) => {
+          <div style={{padding: 20}}>
+            {cartProductsToShow.map((eachProduct) => {
               return (
-                <div>
-                  {index === cartProducts.lastIndexOf(eachProduct) ? (<p>{eachProduct.name}</p>) : null}
+                <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "100%", margin: "40px 0", fontSize: 20, border: "1px solid lightgray", padding: 5, borderRadius: 5}}>
+                  <img src={eachProduct.image} alt={eachProduct.name} style={{width: 60, height: 50, borderRadius: 2}} />
+                  <div style={{width: "100%", padding: 6, display: "flex", flexDirection: "column", margin: "0 0 0 10px"}}>
+                    <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                      <p style={{margin: 0}}>{eachProduct.name}</p>
+                      <p style={{margin: 0, fontWeight: "bolder"}}>{eachProduct.price} €</p>
+                    </div>
+                    <p style={{margin: 0}}>Cantidad: {eachProduct.quantity}</p>
+                  </div>
                 </div>
               );
             })}

@@ -25,18 +25,17 @@ function Counter(props) {
     }
   };
 
-  const productArr = []
+  let totalProducts = []
 
   // Add quantity of product to the cart
   const addToCart = async () => {
-    for (let i = 0; i < counter ; i++) {
-      productArr.push(product._id)
+    for (let i = 0; i < counter; i++) {
+      totalProducts.push(props.product._id)
     }
-    console.log(productArr);
 
     try {
-        await addShoppingCartService(productArr)
-        success()
+      await addShoppingCartService(totalProducts)
+      success()
       
     } catch(error) {
       console.log(error);
