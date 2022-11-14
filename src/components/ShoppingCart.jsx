@@ -8,10 +8,13 @@ import { Button } from "antd";
 
 // Antd
 import { CloseCircleFilled } from '@ant-design/icons'
+import { ThemeContext } from "../context/theme.context";
 
 function ShoppingCart() {
-  const { setShowCart, cartProducts, setCartProducts } =
+  const { cartProducts, setCartProducts } =
     useContext(AuthContext);
+
+  const {renderCart, toggleCart} = useContext(ThemeContext)
 
   const [isFetching, setIsFetching] = useState(true);
 
@@ -32,7 +35,7 @@ function ShoppingCart() {
   if (isFetching) {
     return <h3>loading...</h3>;
   }
-
+  
   // Deletes a product from the shopping cart
   const deleteCartProduct = async (productId) => {
     try {
@@ -41,6 +44,7 @@ function ShoppingCart() {
       console.log(error)
     }
   }
+
 
   // Products and quantities to render in the shopping cart
   let cartProductsToShow = [];
@@ -66,11 +70,11 @@ function ShoppingCart() {
   return (
     <div className="shopping-cart-wrapper">
       <div className="shopping-cart">
-        <div className="shopping-card-container">
+        <div style={renderCart()}>
           <button
             type="button"
             className="cart-back-heading"
-            onClick={() => setShowCart(false)}
+            onClick={toggleCart}
           >
             <FaBackward />
             <span className="top-title">Tu cesta</span>

@@ -1,11 +1,11 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-import img from "../assets/all.jpg";
-import img2 from "../assets/bebidas.jpg";
-import img3 from "../assets/comidas.jpg";
-import img4 from "../assets/postre.jpg";
-import { AuthContext } from "../context/auth.context";
-import IsPrivate from "../components/IsPrivate.jsx";
+import { useContext } from "react"
+import { Link } from "react-router-dom"
+import img from "../assets/all.jpg"
+import img2 from "../assets/bebidas.jpg"
+import img3 from "../assets/comidas.jpg"
+import img4 from "../assets/postre.jpg"
+
+import { ThemeContext } from "../context/theme.context";
 import ShoppingCart from "../components/ShoppingCart";
 
 // React icon
@@ -13,8 +13,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { Image } from "antd";
 
 function Home() {
-  const { showCart, setShowCart, isLoggedIn } = useContext(AuthContext);
-
+  const {toggleCart} = useContext(ThemeContext)
   return (
     <div>
       <div className="homeBoxContainer">
@@ -36,15 +35,11 @@ function Home() {
           <img src={img4} alt="" width={400} height={300} />
         </Link>
       </div>
-
-      {isLoggedIn && (
-        <button onClick={() => setShowCart(true)} className="cart-button">
-          <FaShoppingCart />
-          <span>12</span>
-        </button>
-      )}
-
-      {showCart && <ShoppingCart />}
+      <button onClick={toggleCart} className="cart-button">
+        <FaShoppingCart />
+        <span>12</span>
+      </button>
+      <ShoppingCart />
     </div>
   );
 }

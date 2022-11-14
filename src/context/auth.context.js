@@ -1,7 +1,5 @@
 import { createContext, useState, useEffect } from "react"
 import { verifyService } from "../services/auth.services"
-import { getShoppingCartService } from "../services/shoppingCart.services"
-import { getUserService } from "../services/tasteit.services"
 
 const AuthContext = createContext()
 
@@ -14,7 +12,6 @@ function AuthWrapper(props) {
 
   // Shopping cart items
   const [cartProducts, setCartProducts] = useState([])
-  const [showCart, setShowCart] = useState(false);
 
   //componentDidMount for all app
   useEffect(() => {
@@ -45,8 +42,6 @@ function AuthWrapper(props) {
     authenticateUser,
     setIsLoggedIn,
     setUser,
-    setShowCart,
-    showCart,
     cartProducts,
     setCartProducts
   }

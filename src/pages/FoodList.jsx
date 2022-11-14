@@ -1,21 +1,20 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Button, Card, Col, Row } from "antd";
-import IsOwner from "../components/IsOwner.jsx";
+import { Card, Col, Row } from "antd";
 import SearchFood from "../components/SearchFood";
 
 // React icon
 import { FaShoppingCart } from "react-icons/fa";
-import { AuthContext } from "../context/auth.context";
 import ShoppingCart from "../components/ShoppingCart";
+import { ThemeContext } from "../context/theme.context.js";
 
 
 const { Meta } = Card;
 
 function FoodList() {
 
-  const {showCart, setShowCart} = useContext(AuthContext)
+  const {renderCart, toggleCart} = useContext(ThemeContext)
 
   // Food category received from Home.jsx link
   const { type } = useParams();
@@ -63,7 +62,7 @@ function FoodList() {
       <Row style={{ width: "100%", justifyContent: "center" }}>
         {foodToShow.map((eachProduct) => {
           return (
-            <Col key={eachProduct._id}>
+            <Col key={eachProduct}>
               <Link to={`/${eachProduct._id}/details`}>
                 <Card
                   key={eachProduct._id}
@@ -102,11 +101,11 @@ function FoodList() {
           );
         })}
       </Row>
-      <button onClick={()=>setShowCart(true)} className="cart-button">
+      <button onClick={toggleCart} className="cart-button">
         <FaShoppingCart />
         <span>12</span>
       </button>
-        {showCart && <ShoppingCart />}
+        <ShoppingCart />
       
 
     </div>

@@ -7,14 +7,17 @@ import "antd/dist/antd.min.css";
 
 import { BrowserRouter } from "react-router-dom";
 import { AuthWrapper } from "./context/auth.context";
+import { ThemeWrapper } from "./context/theme.context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <AuthWrapper>
+    <ThemeWrapper>
       <React.StrictMode>
         <App />
       </React.StrictMode>
+      </ThemeWrapper>
     </AuthWrapper>
   </BrowserRouter>
 );

@@ -41,8 +41,8 @@ function Counter(props) {
       console.log(error);
     }
   }
-
-  const success = () => toast(`${props.product.name} añadido al carrito`, {icon: '✔️'})
+  //toast Message
+  const success = () => toast(`${product.name} añadido al carrito`, {icon: '✔️'})
 
   return (
     <div>
