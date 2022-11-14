@@ -4,8 +4,8 @@ import img from "../assets/all.jpg"
 import img2 from "../assets/bebidas.jpg"
 import img3 from "../assets/comidas.jpg"
 import img4 from "../assets/postre.jpg"
-import { AuthContext } from "../context/auth.context"
 
+import { ThemeContext } from "../context/theme.context";
 import ShoppingCart from "../components/ShoppingCart";
 
 // React icon
@@ -13,7 +13,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { Image } from "antd"
 
 function Home() {
-  const {showCart, setShowCart} = useContext(AuthContext)
+  const {toggleCart} = useContext(ThemeContext)
 
   return (
     <div>
@@ -30,11 +30,11 @@ function Home() {
         <Link to="/foods/products"><img src={img3} alt="" width={400} height={300} /></Link>
         <Link to="/desserts/products"><img src={img4} alt="" width={400} height={300} /></Link>
       </div>
-      <button onClick={()=>setShowCart(true)} className="cart-button">
+      <button onClick={toggleCart} className="cart-button">
         <FaShoppingCart />
         <span>12</span>
       </button>
-        {showCart && <ShoppingCart />}
+      <ShoppingCart />
     </div>
   )
 }

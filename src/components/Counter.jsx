@@ -25,25 +25,25 @@ function Counter(props) {
     }
   };
 
-  const totalProducts = []
+  const productArr = []
 
   // Add quantity of product to the cart
   const addToCart = async () => {
-    for (let i = 1; i < counter; i++) {
-      totalProducts.push(props.product._id)
+    for (let i = 0; i < counter ; i++) {
+      productArr.push(product._id)
     }
-    console.log(totalProducts);
+    console.log(productArr);
 
     try {
-        await addShoppingCartService(totalProducts)
+        await addShoppingCartService(productArr)
         success()
       
     } catch(error) {
       console.log(error);
     }
   }
-
-  const success = () => toast(`${props.product.name} añadido al carrito`, {icon: '✔️'})
+  //toast Message
+  const success = () => toast(`${product.name} añadido al carrito`, {icon: '✔️'})
 
   return (
     <div>
