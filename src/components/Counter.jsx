@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 
+import toast, { Toaster } from 'react-hot-toast';
+
 // Antd
 import { Button } from "antd";
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
@@ -29,6 +31,8 @@ function Counter(props) {
     setCartProducts([...cartProducts, product])
   }
 
+  const succes = () => toast(`${props.name} añadido al carrito`)
+
   return (
     <div>
       <div
@@ -47,7 +51,7 @@ function Counter(props) {
       </div>
 
       <div>
-        <Button onClick={addToCart} style={{ margin: "0 10px 0 0" }}>Añadir al carrito</Button>
+        <Button onClick={addToCart}style={{ margin: "0 10px 0 0" }}>Añadir al carrito</Button>
         <Button style={{ margin: "0" }}>Comprar</Button>
       </div>
     </div>

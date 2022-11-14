@@ -1,3 +1,8 @@
+body {
+  background-image: url('./assets/background.jpg');
+  background-size: cover;
+}
+
 .homeBoxContainer {
   display: flex;
   justify-content: center;
@@ -33,7 +38,6 @@
   z-index: 100;
   transition: all 1s ease-in-out;
 }
-
 
 .cart-back-heading {
   display: flex;
@@ -75,15 +79,14 @@
 
 .home-image-text {
   position: absolute;
-  color: white;
+  color: black;
   font-size: 1.2rem;
   font-weight: 600;
-  visibility: visible;
-
+  opacity: 0;
+  padding: 20%;
 }
 
 .home-image-text:hover {
-  visibility: hidden;
-  background-color: black;
-  opacity: 0.5;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 1;
 }
