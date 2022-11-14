@@ -17,7 +17,6 @@ function ShoppingCart() {
           type="button"
           className="cart-back-heading"
           onClick={()=>setShowCart(false)}
-          
         >
           <FaBackward />
           <span className="top-title">Tu cesta</span>

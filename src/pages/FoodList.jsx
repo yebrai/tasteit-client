@@ -2,15 +2,20 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Button, Card, Col, Row } from "antd";
-import { AuthContext } from "../context/auth.context";
 import IsOwner from "../components/IsOwner.jsx";
 import SearchFood from "../components/SearchFood";
+
+// React icon
+import { FaShoppingCart } from "react-icons/fa";
+import { AuthContext } from "../context/auth.context";
+import ShoppingCart from "../components/ShoppingCart";
 
 
 const { Meta } = Card;
 
 function FoodList() {
 
+  const {showCart, setShowCart} = useContext(AuthContext)
 
   // Food category received from Home.jsx link
   const { type } = useParams();
@@ -97,6 +102,11 @@ function FoodList() {
           );
         })}
       </Row>
+      <button onClick={()=>setShowCart(true)} className="cart-button">
+        <FaShoppingCart />
+        <span>12</span>
+      </button>
+        {showCart && <ShoppingCart />}
       
 
     </div>

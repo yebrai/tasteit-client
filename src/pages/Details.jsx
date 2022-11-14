@@ -117,7 +117,7 @@ function Details() {
           </p>
         </div>
       </div>
-      <button onClick={()=>setShowCart(true)}>
+      <button onClick={()=>setShowCart(true)} className="cart-button">
         <FaShoppingCart />
         <span>12</span>
       </button>
