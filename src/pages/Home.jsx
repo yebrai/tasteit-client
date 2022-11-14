@@ -21,7 +21,7 @@ function Home() {
         <Link to="/all/products" className="image-link-container">
         <img width={400} src={img} /> 
         <div className="home-image-text">
-        <p >Todas las Comidas</p>
+        <p>Todas las Comidas</p>
         </div></Link>
         <Link to="/drinks/products" ><Image src={img2} alt="" width={400} height={300} /></Link>
       </div>

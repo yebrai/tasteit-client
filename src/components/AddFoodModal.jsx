@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { addProductService } from '../services/tasteit.services';
 
@@ -8,12 +8,15 @@ import { IoIosAddCircle } from "react-icons/io";
 
 //Antd
 import { Button, Modal, Form, Input, Select } from "antd";
+import { AuthContext } from "../context/auth.context";
 const { Item } = Form;
 const { Option } = Select
 
 function AddFoodModal() {
+
   // Navigate
   const navigate = useNavigate();
+  const { authenticateUser } = useContext(AuthContext);
 
   // Error message from backend
   const [errorMessage, setErrorMessage] = useState("");
@@ -50,6 +53,7 @@ function AddFoodModal() {
       setTimeout(() => {
         setOpen(false);
         setConfirmLoading(false);
+        authenticateUser()
       }, 1000);
     } catch (error) {
       if (error.response && error.response.status === 400) {
