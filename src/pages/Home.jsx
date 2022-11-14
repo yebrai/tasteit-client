@@ -1,8 +1,10 @@
+import { useContext } from "react"
 import { Link } from "react-router-dom"
 import img from "../assets/all.jpg"
 import img2 from "../assets/bebidas.jpg"
 import img3 from "../assets/comidas.jpg"
 import img4 from "../assets/postre.jpg"
+import { AuthContext } from "../context/auth.context"
 
 import ShoppingCart from "../components/ShoppingCart";
 
@@ -15,9 +17,6 @@ import { Image } from "antd"
 function Home() {
   const {showCart, setShowCart} = useContext(AuthContext)
 
-
-  const test = 800
-  
   return (
     <div>
       <div className="homeBoxContainer">

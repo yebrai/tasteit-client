@@ -6,15 +6,21 @@ import { Button } from "antd";
 import IsOwner from "../components/IsOwner";
 import ProductDeletionModal from "../components/ProductDeletionModal";
 import AddComment from "../components/AddComment";
-
+import Counter from "../components/Counter";
 
 // React icon
 import { FaShoppingCart } from "react-icons/fa";
 import { AuthContext } from "../context/auth.context";
 import ShoppingCart from "../components/ShoppingCart";
+import { MinusOutlined, PlusOutlined } from '@ant-design/icons'
+
 
 function Details() {
+
+  // Selected product
   const { productId } = useParams();
+
+  // Shopping cart item
   const {showCart, setShowCart} = useContext(AuthContext)
 
   const [productDetails, setProductDetails] = useState("");
@@ -104,7 +110,7 @@ function Details() {
             </span>
           </p>
           <p>{productDetails.description}</p>
-          <p style={{ fontWeight: "bolder", fontSize: 40, color: "#229e6b" }}>
+          <p style={{ fontWeight: "bolder", fontSize: 40, color: "#229e6b", margin: 0}}>
             {productDetails.price}€
           </p>
           <p>
@@ -115,9 +121,14 @@ function Details() {
             <span style={{ fontWeight: "bold" }}>Comercializado por:</span>
             {productDetails.owner.name}
           </p>
+          
+          <Counter product={productDetails}/>
+
         </div>
+        
       </div>
-      <button onClick={()=>setShowCart(true)} className="cart-button">
+
+      <button onClick={()=>setShowCart(true)}>
         <FaShoppingCart />
         <span>12</span>
       </button>
