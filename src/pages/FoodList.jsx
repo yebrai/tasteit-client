@@ -63,7 +63,7 @@ function FoodList() {
       <Row style={{ width: "100%", justifyContent: "center" }}>
         {foodToShow.map((eachProduct) => {
           return (
-            <Col>
+            <Col key={eachProduct._id}>
               <Link to={`/${eachProduct._id}/details`}>
                 <Card
                   key={eachProduct._id}

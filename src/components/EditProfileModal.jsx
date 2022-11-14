@@ -78,6 +78,7 @@ function EditProfileModal() {
     setEditProfileForm({ ...editProfileForm, [name]: value });
   };
 
+
   return (
     <>
       <Button type="primary" onClick={showModal}>
