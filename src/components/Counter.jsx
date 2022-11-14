@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 // Antd
 import { Button } from "antd";
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
+import { AuthContext } from "../context/auth.context";
+import { getNextKeyDef } from "@testing-library/user-event/dist/keyboard/getNextKeyDef";
 
-function Counter() {
+function Counter(props) {
   // Counter for adding quantities of product to shoppingCart
   const [counter, setCounter] = useState(1);
+  const {cartProducts, setCartProducts} = useContext(AuthContext)
+  const {product} = props
 
   // Increment counter
   const increaseCounter = () => {
@@ -20,20 +24,32 @@ function Counter() {
     }
   };
 
+  // Add quantity of product to the cart
+  const addToCart = () => {
+    setCartProducts([...cartProducts, product])
+  }
+
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-around",
-        alignItems: "center",
-        width: 200,
-      }}
-    >
-      <p>Cantidad:</p>
-      <Button icon={<MinusOutlined />} onClick={reduceCounter}></Button>
-      <span>{counter}</span>
-      <Button icon={<PlusOutlined />} onClick={increaseCounter}></Button>
+    <div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
+          alignItems: "center",
+          width: 200,
+        }}
+      >
+        <p>Cantidad:</p>
+        <Button icon={<MinusOutlined />} onClick={reduceCounter}></Button>
+        <span>{counter}</span>
+        <Button icon={<PlusOutlined />} onClick={increaseCounter}></Button>
+      </div>
+
+      <div>
+        <Button onClick={addToCart} style={{ margin: "0 10px 0 0" }}>Añadir al carrito</Button>
+        <Button style={{ margin: "0" }}>Comprar</Button>
+      </div>
     </div>
   );
 }

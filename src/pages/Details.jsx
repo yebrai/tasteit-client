@@ -15,7 +15,6 @@ import ShoppingCart from "../components/ShoppingCart";
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons'
 
 
-
 function Details() {
 
   // Selected product
@@ -123,12 +122,8 @@ function Details() {
             {productDetails.owner.name}
           </p>
           
-          <Counter />
+          <Counter product={productDetails}/>
 
-          <div>
-            <Button style={{margin: "0 10px 0 0"}}>Añadir al carrito</Button>
-            <Button style={{margin: "0"}}>Comprar</Button>
-          </div>
         </div>
         
       </div>

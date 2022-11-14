@@ -1,10 +1,14 @@
+import { useContext } from "react"
 import { Link } from "react-router-dom"
 import img from "../assets/all.jpg"
 import img2 from "../assets/bebidas.jpg"
 import img3 from "../assets/comidas.jpg"
 import img4 from "../assets/postre.jpg"
+import { AuthContext } from "../context/auth.context"
 
 function Home() {
+
+  const {cartProducts} = useContext(AuthContext)
   
   return (
     <div >
