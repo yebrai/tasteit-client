@@ -4,7 +4,7 @@ import { FaBackward } from "react-icons/fa";
 import { AuthContext } from "../context/auth.context";
 import { useContext, useEffect, useState } from "react";
 import { deleteShoppingCartService, getShoppingCartService } from "../services/shoppingCart.services";
-import { Button } from "antd";
+import { Button, Divider } from "antd";
 
 // Antd
 import { CloseCircleFilled } from '@ant-design/icons'
@@ -47,7 +47,8 @@ function ShoppingCart() {
   // Products and quantities to render in the shopping cart
   let cartProductsToShow = [];
   let subtotalProductsPrice = 0;
-
+  let shippingCosts = 4.50;
+  
   cartProducts.forEach(eachProduct => {
     let productToModify = cartProductsToShow.find(product => product._id === eachProduct._id)
 
@@ -68,6 +69,9 @@ function ShoppingCart() {
     subtotalProductsPrice += eachProduct.price;
   })
 
+  // Total price
+  let totalPrice = subtotalProductsPrice + shippingCosts;
+  
   return (
     <div style={renderCartWrapper()}>
       <div style={renderCart()}>
@@ -101,9 +105,22 @@ function ShoppingCart() {
                 );
               })}
             </div>
-            <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-              <h2>Subtotal:</h2>
-              <h2>{subtotalProductsPrice}€</h2>
+            <div style={{display: "flex", flexDirection: "column"}}>
+              <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                <h3>Subtotal:</h3>
+                <h3>{subtotalProductsPrice}€</h3>
+              </div>
+              <Divider style={{margin: 0}}></Divider>
+              <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                <h3>Gastos de envío:</h3>
+                <h3>{shippingCosts}€</h3>
+              </div>
+              <Divider style={{margin: 0}}></Divider>
+              <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                <h2>Total:</h2>
+                <h2>{totalPrice}€</h2>
+              </div>
+              <Button type="primary" danger>PAGAR</Button>
             </div>
           </div>
         </div>
