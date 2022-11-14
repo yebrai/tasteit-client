@@ -1,44 +1,51 @@
 import { useContext } from "react"
 import { Link } from "react-router-dom"
-import img from "../assets/all.jpg"
-import img2 from "../assets/bebidas.jpg"
-import img3 from "../assets/comidas.jpg"
-import img4 from "../assets/postre.jpg"
 
 import { ThemeContext } from "../context/theme.context";
+import { AuthContext } from "../context/auth.context"
 import ShoppingCart from "../components/ShoppingCart";
 
 // React icon
 import { FaShoppingCart } from "react-icons/fa";
-import { Image } from "antd";
 
 function Home() {
   const {toggleCart} = useContext(ThemeContext)
+  const {isLoggedIn} = useContext(AuthContext)
   return (
-    <div>
+    <div className="home-main-container">
       <div className="homeBoxContainer">
-        <Link to="/all/products" className="image-link-container">
-          <img width={400} src={img} />
-          <div className="home-image-text">
-            <p>Todas las Comidas</p>
+        <Link to="/all/products" className="container-home all-foods">
+          <img/>
+          <div className="overlay-home">
+            <span>Todas las Comidas</span>
           </div>
         </Link>
-        <Link to="/drinks/products">
-          <Image src={img2} alt="" width={400} height={300} />
+        <Link to="/all/products" className="container-home drinks">
+          <img/>
+          <div className="overlay-home">
+            <span>Bebidas</span>
+          </div>
         </Link>
       </div>
       <div className="homeBoxContainer">
-        <Link to="/foods/products">
-          <img src={img3} alt="" width={400} height={300} />
+      <Link to="/all/products" className="container-home food">
+          <img/>
+          <div className="overlay-home">
+            <span>Almuerzos</span>
+          </div>
         </Link>
-        <Link to="/desserts/products">
-          <img src={img4} alt="" width={400} height={300} />
+        <Link to="/all/products" className="container-home desserts" >
+          <img/>
+          <div className="overlay-home">
+            <span>Postres</span>
+          </div>
         </Link>
       </div>
-      <button onClick={toggleCart} className="cart-button">
+      {isLoggedIn && <button onClick={toggleCart} className="cart-button">
         <FaShoppingCart />
         <span>12</span>
-      </button>
+      </button>}
+      
       <ShoppingCart />
     </div>
   );
