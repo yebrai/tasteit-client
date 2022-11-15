@@ -29,7 +29,7 @@ function Details() {
 
   useEffect(() => {
     getDetails();
-  }, []);
+  }, [productId]);
 
   const getDetails = async () => {
     try {
@@ -47,10 +47,6 @@ function Details() {
   // Guard clause
   if (isFetching) {
     return <h3>Cargando...</h3>;
-  }
-
-  const handleClick = () => {
-    window.location.reload()
   }
 
   return (
@@ -153,7 +149,7 @@ function Details() {
                 return (
                   <div key={eachProduct._id}>
                     <Link to={`/${eachProduct._id}/details`} >
-                      <img className="carousel-images" src={eachProduct.image} alt={eachProduct.name} onClick={handleClick}/>
+                      <img className="carousel-images" src={eachProduct.image} alt={eachProduct.name}/>
                     </Link>
                     <p id="carousel-name" className="carousel-items">{eachProduct.name}</p>
                     <p id="carousel-price" className="carousel-items">{eachProduct.price}€</p>

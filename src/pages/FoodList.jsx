@@ -91,7 +91,8 @@ function FoodList() {
                   />
                   <p style={{margin: 0}}><span style={{fontWeight: "bolder"}}>Precio:</span> {eachProduct.price}€</p>
                   <p style={{margin: "0 auto 2px"}}><span style={{fontWeight: "bolder"}}>Localidad:</span> {eachProduct.location}</p>
-                  <div style={{ display: "flex", flexDirection: "row" }}>
+                  <div>
+                    
                   </div>
                 </Card>
               </Link>
@@ -107,8 +108,6 @@ function FoodList() {
         </div>
       </button>}
         <ShoppingCart />
-      
-
     </div>
   );
 }

@@ -60,7 +60,7 @@ function AddComment(props) {
 
   useEffect(() => {
     handleComments();
-  }, []);
+  }, [product._id]);
  
   const handleComments = async () => {
     try {

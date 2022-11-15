@@ -152,7 +152,7 @@ body {
   height: 5vh;
   width: 100vw;
   background: rgb(106,92,92);
-background: linear-gradient(180deg, rgba(106,92,92,1) 25%, rgba(0,0,0,1) 96%);
+  background: linear-gradient(180deg, rgba(106,92,92,1) 25%, rgba(0,0,0,1) 96%);
   box-shadow: 0 1px 6px 3px #888888;
 }
 
@@ -163,16 +163,11 @@ background: linear-gradient(180deg, rgba(106,92,92,1) 25%, rgba(0,0,0,1) 96%);
  flex-direction: row;
  height: 5vh;
  margin: 0 40px;
-
 }
 
 .home-icon {
   color: white;
   font-size: 1.5rem;
-}
-
-.ant-btn:hover, .ant-btn-text:hover, .ant-btn-icon-only:hover {
- font-size: 1.5rem;
 }
 
 .loged-icons-container {
