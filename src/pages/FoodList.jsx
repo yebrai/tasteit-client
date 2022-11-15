@@ -8,6 +8,7 @@ import SearchFood from "../components/SearchFood";
 import { FaShoppingCart } from "react-icons/fa";
 import ShoppingCart from "../components/ShoppingCart";
 import { ThemeContext } from "../context/theme.context.js";
+import { getProductTypeService } from "../services/tasteit.services";
 
 
 const { Meta } = Card;
@@ -34,7 +35,7 @@ function FoodList() {
 
 
   // To show / hide buttons according to the current user
-  //const [isOwner, setIsOwner] = useState(false)
+  // const [isOwner, setIsOwner] = useState(false)
 
   useEffect(() => {
     handleFood(type);
@@ -42,7 +43,7 @@ function FoodList() {
 
   const handleFood = async (type) => {
   try {
-      const response = await axios.get(`http://localhost:5005/api/product/${type}`);
+      const response = await getProductTypeService(type)
       setList(response.data);
       setFoodToShow(response.data)
       setIsFetching(false);
@@ -78,7 +79,7 @@ function FoodList() {
                     <img
                       alt="example"
                       src={eachProduct.image}
-                      style={{ width: "100%", height: 130, margin: 0}}
+                      style={{ width: "100%", height: 170, margin: 0}}
                     />
                   }
                 >

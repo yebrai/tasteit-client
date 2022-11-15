@@ -4,6 +4,14 @@ const getUserService = () => {
   return service.get(`/user/details`)
 }
 
+const getProductsService = () => {
+  return service.get(`/product`)
+}
+
+const getProductTypeService = (type) => {
+  return service.get(`/product/${type}`)
+}
+
 const addProductService = (newProduct) => {
     return service.post("/product/add", newProduct)
   }
@@ -33,6 +41,8 @@ const getCommentService = (productId) => {
 }
 
   export {
+    getProductsService,
+    getProductTypeService,
     addProductService,
     getUserService,
     editUserService,

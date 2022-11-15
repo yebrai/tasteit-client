@@ -119,6 +119,7 @@ function AddComment(props) {
 
   return (
     <>
+      <h2 id="comments-title">Reseñas de los usuarios en TasteIt</h2>
       <Comment
         avatar={
           <Avatar src={user.profileImage} alt={user.name} />
@@ -131,6 +132,8 @@ function AddComment(props) {
             value={value}
           />
         }
+        
+        id="comment-box"
       />
 
       {/* If comments list contains at least a comment, show it */}
