@@ -305,6 +305,42 @@ body {
   color: #fff;
 }
 
+.modal-purchase-main {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-purchase-main th{
+  height: 50px;
+}
+
+.modal-purchase-footer tr{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.modal-purchase-main thead{
+  background: bisque;
+}
+
+.modal-purchase-main tr {
+  border: 1px solid;
+}
+
+.modal-footer-text {
+  font-weight: 700;
+  background-color: bisque;
+  width: 100px;
+
+}
+
+.modal-footer-cost {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+}
 
 
 

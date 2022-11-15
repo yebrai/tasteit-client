@@ -56,43 +56,47 @@ function PurchaseModal({ purchase }) {
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
         destroyOnClose
+        footer={null}
       >
-        <div>
-          <table>
+        <div className="modal-purchase-main">
+          <table >
             <thead>
               <tr>
                 <th>Nombre</th>
+                <th>Producto</th>
+                <th>Unidades</th>
                 <th>Precio</th>
               </tr>
             </thead>
-
             <tbody>
-              {uniqueProduct.map((eachProduct) => {
+              {uniqueProduct.map((eachProduct, index) => {
                 return (
                   <tr>
                     <td>
-                      <strong>{eachProduct.name}</strong>
+                      <h3>{`${index + 1}º ${eachProduct.name}`}</h3>
                     </td>
-                    <td>{eachProduct.price}</td>
+                    <td><img src={eachProduct.image} alt="" width={80}/></td>
+                    <td>{eachProduct.quantity}</td>
+                    <td>{eachProduct.price}€</td>
                   </tr>
                 );
               })}
             </tbody>
 
-            <tfoot>
+            <tfoot className="modal-purchase-footer">
               <tr>
-                <td>Subtotal</td>
-                <td>{subtotalProductsPrice}€</td>
+                <td className="modal-footer-text">Subtotal</td>
+                <td className="modal-footer-cost">{subtotalProductsPrice}€</td>
               </tr>
 
               <tr>
-                <td>Gastos de envio</td>
-                <td>{shippingCosts}€</td>
+                <td className="modal-footer-text">Costes</td>
+                <td className="modal-footer-cost">{shippingCosts}€</td>
               </tr>
 
               <tr>
-                <td>total</td>
-                <td>{totalPrice}€€€</td>
+                <td className="modal-footer-text" >Total</td>
+                <td className="modal-footer-cost">{totalPrice}€</td>
               </tr>
             </tfoot>
           </table>
