@@ -10,10 +10,11 @@ import Counter from "../components/Counter";
 
 // React icon
 import { FaShoppingCart } from "react-icons/fa";
-import { AuthContext } from "../context/auth.context";
 import ShoppingCart from "../components/ShoppingCart";
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons'
 
+import { AuthContext } from "../context/auth.context";
+import { ThemeContext} from "../context/theme.context.js"
 
 function Details() {
 
@@ -21,7 +22,8 @@ function Details() {
   const { productId } = useParams();
 
   // Shopping cart item
-  const {showCart, setShowCart} = useContext(AuthContext)
+  const {isLoggedIn, cartProducts} = useContext(AuthContext)
+  const {toggleCart} = useContext(ThemeContext)
 
   const [productDetails, setProductDetails] = useState("");
   const [isFetching, setIsFetching] = useState(true);
@@ -128,14 +130,17 @@ function Details() {
         
       </div>
 
-      <button onClick={()=>setShowCart(true)}>
-        <FaShoppingCart />
-        <span>12</span>
-      </button>
+      {isLoggedIn && 
+      <button onClick={toggleCart} className="cart-button">
+        <FaShoppingCart size="2em"/>
+        <div className="cart-button-quantity">
+        <span>{cartProducts.length}</span>
+        </div>
+      </button>}
       
           
       <AddComment product={productDetails} style={{margin: 0}}/>
-      {showCart && <ShoppingCart />}
+      <ShoppingCart />
     </div>
   );
 }

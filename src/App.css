@@ -1,3 +1,7 @@
+html {
+  font-family: 'Raleway', sans-serif;
+}
+
 body {
   background-image: url('./assets/background.jpg');
   background-size: cover;
@@ -36,15 +40,68 @@ body {
   font-size: 20px;
 }
 
+
 .cart-button {
-  border: none;
-  border-radius: 50%;
-  padding: 10px;
   position: fixed;
+  border: 1px solid;
+  border-radius: 10%;
   right: 20px;
-  top: 20%;
+  top: 10%;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+
+}
+.cart-button-quantity {
+  position: absolute;
+  border-radius: 50%;
+  margin: 0 0 6px 5px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  top: 1;
+  right: 1;
+  color: rgb(255, 77, 77);
+
 }
 
+
+/* Navbar */
+
+.navbar-container-main {
+  height: 5vh;
+  width: 100vw;
+  background-color: grey;
+}
+
+.navbar-container {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ flex-direction: row;
+ height: 5vh;
+ margin: 0 40px;
+
+}
+
+.home-icon {
+  color: black;
+  font-size: 1.5rem;
+}
+
+.loged-icons-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 95%;
+}
+
+.home-button-off {
+ font-size: 2rem;
+}
+
+/* Home */
 .home-main-container {
   display: flex;
   flex-direction: column;
@@ -83,7 +140,6 @@ body {
   transition: all .5s ease 0s;
 }
 
-
 .overlay-home span{
   position: absolute;
   top: 50%;
@@ -94,7 +150,6 @@ body {
   color: #fff;
   font-family: Sans-serif;
 }
-
 
 .all-foods{
   background-image: url('./assets/all.jpg');
@@ -117,11 +172,11 @@ body {
   height: 40vh;
   width: 30vw;
   border-radius: 3%;
-  box-shadow: 0 3px 3px 3px #888888;
+  box-shadow: 0 0px 0 1px #888888;
   
 }
 .desserts:hover, .drinks:hover, .food:hover, .all-foods:hover {
   transition: all .5s ease 0s;
-  box-shadow: 2px 3px 3px 6px #888888;
 
+  box-shadow: 0 3px 3px 3px #888888;
 }

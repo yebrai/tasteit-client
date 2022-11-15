@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { addProductService } from '../services/tasteit.services';
 
 //icon
-import { IoIosAddCircle } from "react-icons/io";
+import { IoAddCircleOutline } from "react-icons/io5";
 
 
 //Antd
@@ -85,7 +85,7 @@ function AddFoodModal() {
   // Render
   return (
     <>
-      <Button  icon={<IoIosAddCircle />} onClick={showModal}>
+      <Button type="text" className="button-test" icon={<IoAddCircleOutline size="1.5rem" />} onClick={showModal}>
       </Button>
       <Modal
         title="Añadir Producto"

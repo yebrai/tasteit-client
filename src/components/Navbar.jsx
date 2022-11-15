@@ -6,11 +6,11 @@ import SignupModal from "./SignupModal";
 
 // Antd
 import { Button } from "antd";
-import { PoweroffOutlined } from '@ant-design/icons';
+import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 
 // React icon
-import { AiFillHome } from "react-icons/ai";
-import { FaUserCircle } from "react-icons/fa";
+import { AiOutlinePoweroff } from "react-icons/ai";
+
 import AddFoodModal from "./AddFoodModal";
 
 
@@ -31,38 +31,30 @@ function Navbar() {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "flex-center",
-        justifyContent: "space-between",
-        margin: "0px 0px",
-        backgroundColor:"grey"
-      }}
-    >
-      <Link to="/">
-        <AiFillHome style={{ color: "black", fontSize: "1.5rem", margin:"0 80px" }} />
+    <div className="navbar-container-main">
+    <div  className="navbar-container" >
+      <Link className="home-icon" to="/">
+      <HomeOutlined/>
       </Link>
 
       {isLoggedIn ? (
-        <div>
+        <div className="loged-icons-container">
           {/* Add product */}
-          <AddFoodModal/>
-            
-          <Link to="/profile">
-            <FaUserCircle style={{ color: "black", fontSize: "1.5rem", margin:"0 60px" }} />
+          <Link className="home-icon" to="/profile">
+            <UserOutlined/>
           </Link>
-          
+          <AddFoodModal/>
           {/* Log Out */}
-          <Button icon={<PoweroffOutlined />} onClick={handleLogout} style={{margin: "0 60px"}}></Button>
+          <Button type="text" icon={<AiOutlinePoweroff size="1.5rem"/>} onClick={handleLogout}></Button>
         </div>
       ) : (
-        <div style={{display: "flex", gap:"25px", margin:"0 80px"}}>
+        <div>
           <LoginModal />
           <SignupModal />
         </div>
       )}
       
+    </div>
     </div>
   );
 }

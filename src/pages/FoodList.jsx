@@ -8,13 +8,15 @@ import SearchFood from "../components/SearchFood";
 import { FaShoppingCart } from "react-icons/fa";
 import ShoppingCart from "../components/ShoppingCart";
 import { ThemeContext } from "../context/theme.context.js";
+import { AuthContext } from "../context/auth.context";
 
 
 const { Meta } = Card;
 
 function FoodList() {
 
-  const {renderCart, toggleCart} = useContext(ThemeContext)
+  const {toggleCart} = useContext(ThemeContext)
+  const {isLoggedIn, cartProducts} = useContext(AuthContext)
 
   // Food category received from Home.jsx link
   const { type } = useParams();
@@ -101,10 +103,13 @@ function FoodList() {
           );
         })}
       </Row>
+      {isLoggedIn && 
       <button onClick={toggleCart} className="cart-button">
-        <FaShoppingCart />
-        <span>12</span>
-      </button>
+        <FaShoppingCart size="2em"/>
+        <div className="cart-button-quantity">
+        <span>{cartProducts.length}</span>
+        </div>
+      </button>}
         <ShoppingCart />
       
 

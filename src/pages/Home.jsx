@@ -10,7 +10,7 @@ import { FaShoppingCart } from "react-icons/fa";
 
 function Home() {
   const {toggleCart} = useContext(ThemeContext)
-  const {isLoggedIn} = useContext(AuthContext)
+  const {isLoggedIn, cartProducts} = useContext(AuthContext)
   return (
     <div className="home-main-container">
       <div className="homeBoxContainer">
@@ -41,10 +41,15 @@ function Home() {
           </div>
         </Link>
       </div>
-      {isLoggedIn && <button onClick={toggleCart} className="cart-button">
-        <FaShoppingCart />
-        <span>12</span>
+      <div className="cart-button-container">
+      {isLoggedIn && 
+      <button onClick={toggleCart} className="cart-button">
+        <FaShoppingCart size="2em"/>
+        <div className="cart-button-quantity">
+        <span>{cartProducts.length}</span>
+        </div>
       </button>}
+      </div>
       
       <ShoppingCart />
     </div>
