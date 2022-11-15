@@ -9,6 +9,9 @@ import { AuthContext } from "../context/auth.context";
 import { addShoppingCartService } from "../services/shoppingCart.services";
 
 function Counter(props) {
+  // To update cart products when "añadir al carrito" button is pressed
+  const {findCart} = useContext(AuthContext)
+
   // Counter for adding quantities of product to shoppingCart
   const [counter, setCounter] = useState(1);
   const {product} = props
@@ -35,8 +38,10 @@ function Counter(props) {
 
     try {
       await addShoppingCartService(totalProducts)
+      setCounter(1)
+      findCart()
       success()
-      
+
     } catch(error) {
       console.log(error);
     }

@@ -74,8 +74,6 @@ function ThemeWrapper(props) {
     )
   }
 
-
-  
   export {
     ThemeWrapper, 
     ThemeContext
