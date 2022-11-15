@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import Error from "./pages/Error";
 import Home from "./pages/Home";
 import IsPrivate from "./components/IsPrivate.jsx";
+import Purchases from "./pages/Purchases";
 
 
 function App() {
@@ -20,9 +21,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/:productId/details" element={<IsPrivate><Details /></IsPrivate>} />
-        {/* Modal de edit product en details */}
         <Route path="/:type/products" element={<FoodList />} />
         <Route path="/profile" element={<IsPrivate><Profile /></IsPrivate>} />
+        <Route path="/purchases" element={<IsPrivate><Purchases /></IsPrivate>} />
         <Route path="/error" element={<Error />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

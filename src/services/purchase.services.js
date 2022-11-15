@@ -5,7 +5,7 @@ const addPurchaseService = (productArr) => {
   }
 
   const getPurchaseService = () => {
-    return service.post(`/purchase`)
+    return service.get(`/purchase`)
   }
 
 export {
