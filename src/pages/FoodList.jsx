@@ -35,10 +35,6 @@ function FoodList() {
     setFoodToShow(filteredFood);
   };
 
-
-  // To show / hide buttons according to the current user
-  // const [isOwner, setIsOwner] = useState(false)
-
   useEffect(() => {
     handleFood(type);
   }, []);
@@ -65,10 +61,9 @@ function FoodList() {
       <Row style={{ width: "100%", justifyContent: "center" }}>
         {foodToShow.map((eachProduct) => {
           return (
-            <Col key={eachProduct}>
+            <Col key={eachProduct._id}>
               <Link to={`/${eachProduct._id}/details`}>
                 <Card
-                  key={eachProduct._id}
                   hoverable
                   style={{ width: 200, height: 290, margin: 20 }}
                   bodyStyle={{

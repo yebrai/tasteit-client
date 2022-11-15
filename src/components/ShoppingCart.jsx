@@ -7,38 +7,24 @@ import { deleteShoppingCartService, getShoppingCartService } from "../services/s
 import { Button, Divider } from "antd";
 
 // Antd
-import { CloseCircleFilled } from '@ant-design/icons'
+import { CloseCircleFilled, ShoppingOutlined } from '@ant-design/icons'
 import { ThemeContext } from "../context/theme.context";
 
 function ShoppingCart() {
-  const { cartProducts, setCartProducts } = useContext(AuthContext);
-
-  const {renderCart, toggleCart, renderCartWrapper} = useContext(ThemeContext)
-  const [isFetching, setIsFetching] = useState(true);
+  // Context
+  const { cartProducts, findCart } = useContext(AuthContext);
+  const { renderCart, toggleCart, renderCartWrapper } = useContext(ThemeContext)
 
   useEffect(() => {
     findCart();
   }, []);
 
-  const findCart = async () => {
-    try {
-      const shoppingCartCurrentProducts = await getShoppingCartService();
-      setCartProducts(shoppingCartCurrentProducts.data);
-      setIsFetching(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  if (isFetching) {
-    return <h3>loading...</h3>;
-  }
-  
   // Deletes a product from the shopping cart
   const deleteCartProduct = async (productId) => {
     try {
       await deleteShoppingCartService(productId)
       findCart()
+      
     } catch(error) {
       console.log(error)
     }
@@ -83,13 +69,23 @@ function ShoppingCart() {
           >
             <FaBackward />
             <span className="top-title">Tu cesta</span>
-            <span className="quantity-items">10 Productos</span>
+            <span className="quantity-items">{cartProducts.length} productos</span>
           </button>
-          <div style={{padding: 20, height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
+          {cartProducts.length === 0
+          ?
+          (
+            <div>
+              <h1>Carrito vacío</h1>
+              <h2>No tiene artículos en su cesta de la compra</h2>
+              <Button type="primary" icon={<ShoppingOutlined />} onClick={toggleCart}>Seguir comprando</Button>
+            </div>
+          )
+          :
+          (<div style={{padding: 20, height: "90%", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
             <div>
               {cartProductsToShow.map((eachProduct) => {
                 return (
-                  <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "100%", margin: "40px 0", fontSize: 20, border: "1px solid lightgray", padding: 5, borderRadius: 5}}>
+                  <div key={eachProduct._id} style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "100%", margin: "40px 0", fontSize: 20, border: "1px solid lightgray", padding: 5, borderRadius: 5}}>
                     <img src={eachProduct.image} alt={eachProduct.name} style={{width: 60, height: 50, borderRadius: 2}} />
                     <div style={{width: "100%", padding: 6, display: "flex", flexDirection: "column", margin: "0 0 0 10px"}}>
                       <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
@@ -122,7 +118,7 @@ function ShoppingCart() {
               </div>
               <Button type="primary" danger>PAGAR</Button>
             </div>
-          </div>
+          </div>)}
         </div>
       </div>
     </div>

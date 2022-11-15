@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react"
 import { verifyService } from "../services/auth.services"
+import { getShoppingCartService } from "../services/shoppingCart.services"
 
 const AuthContext = createContext()
 
@@ -36,6 +37,17 @@ function AuthWrapper(props) {
     }
   }
 
+  // To update shopping cart items from any component
+  const findCart = async () => {
+    try {
+      const shoppingCartCurrentProducts = await getShoppingCartService();
+      setCartProducts(shoppingCartCurrentProducts.data);
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const passedContext = {
     isLoggedIn,
     user,
@@ -43,7 +55,8 @@ function AuthWrapper(props) {
     setIsLoggedIn,
     setUser,
     cartProducts,
-    setCartProducts
+    setCartProducts,
+    findCart
   }
 
   if (isFetching === true) {

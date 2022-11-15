@@ -11,7 +11,7 @@ body {
 /* Details page*/
 .products-container {
   margin: 0;
-  width: 100%;
+  width: 80%;
 }
 
 .products-container h2 {
@@ -56,7 +56,7 @@ body {
   gap: 30px;
   will-change: transform;
   white-space: nowrap;
-  animation: scroll-area 12s linear infinite;
+  animation: scroll-area 25s linear infinite;
 }
 
 .wrapper:hover {

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ProductEditModal from "../components/ProductEditModal";
 import { getProductDetailsService, getProductsService } from "../services/tasteit.services";
 import IsOwner from "../components/IsOwner";
@@ -37,7 +37,7 @@ function Details() {
       setProductDetails(response.data);
       const allResponse = await getProductsService();
       setAllProducts(allResponse.data);
-      
+
       setIsFetching(false);
     } catch (error) {
       console.log(error);
@@ -47,6 +47,10 @@ function Details() {
   // Guard clause
   if (isFetching) {
     return <h3>Cargando...</h3>;
+  }
+
+  const handleClick = () => {
+    window.location.reload()
   }
 
   return (
@@ -148,7 +152,9 @@ function Details() {
               {allProducts.map(eachProduct => {
                 return (
                   <div key={eachProduct._id}>
-                    <img className="carousel-images" src={eachProduct.image} alt={eachProduct.name}/>
+                    <Link to={`/${eachProduct._id}/details`} >
+                      <img className="carousel-images" src={eachProduct.image} alt={eachProduct.name} onClick={handleClick}/>
+                    </Link>
                     <p id="carousel-name" className="carousel-items">{eachProduct.name}</p>
                     <p id="carousel-price" className="carousel-items">{eachProduct.price}€</p>
                   </div>
