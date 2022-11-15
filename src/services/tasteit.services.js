@@ -4,6 +4,18 @@ const getUserService = () => {
   return service.get(`/user/details`)
 }
 
+const getFavouritesService = () => {
+  return service.get(`/user/favourites`)
+}
+
+const addFavouritesService = (product) => {
+  return service.post("/user/favourite/add", product)
+}
+
+const deleteFavouriteService = (productId) => {
+  return service.delete(`/user/${productId}/delete`)
+}
+
 const getProductsService = () => {
   return service.get(`/product`)
 }
@@ -45,6 +57,9 @@ const getCommentService = (productId) => {
     getProductTypeService,
     addProductService,
     getUserService,
+    getFavouritesService,
+    addFavouritesService,
+    deleteFavouriteService,
     editUserService,
     getProductDetailsService,
     editProductService,
