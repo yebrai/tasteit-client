@@ -9,6 +9,7 @@ import Error from "./pages/Error";
 import Home from "./pages/Home";
 import IsPrivate from "./components/IsPrivate.jsx";
 
+
 function App() {
   return (
     <div className="App">

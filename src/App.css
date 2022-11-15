@@ -56,7 +56,7 @@ body {
   gap: 30px;
   will-change: transform;
   white-space: nowrap;
-  animation: scroll-area 25s linear infinite;
+  animation: scroll-area 16s linear infinite;
 }
 
 .wrapper:hover {

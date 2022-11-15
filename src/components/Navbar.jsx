@@ -34,7 +34,7 @@ function Navbar() {
     <div className="navbar-container-main">
     <div  className="navbar-container" >
       <Link className="home-icon" to="/">
-      <HomeOutlined/>
+        <HomeOutlined/>
       </Link>
 
       {isLoggedIn ? (
