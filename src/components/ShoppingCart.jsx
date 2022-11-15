@@ -4,6 +4,7 @@ import { FaBackward } from "react-icons/fa";
 import { AuthContext } from "../context/auth.context";
 import { useContext, useEffect, useState } from "react";
 import { deleteShoppingCartService, getShoppingCartService } from "../services/shoppingCart.services";
+import { addPurchaseService } from "../services/purchase.services";
 import { Button, Divider } from "antd";
 
 // Antd
@@ -26,6 +27,15 @@ function ShoppingCart() {
       findCart()
       
     } catch(error) {
+      console.log(error)
+    }
+  }
+
+  const requestPurchase = async() => {
+    try {
+      await addPurchaseService(cartProducts)
+      
+    } catch (error) {
       console.log(error)
     }
   }
@@ -116,7 +126,7 @@ function ShoppingCart() {
                 <h2>Total:</h2>
                 <h2>{totalPrice}€</h2>
               </div>
-              <Button type="primary" danger>PAGAR</Button>
+              <Button type="primary" onClick={requestPurchase} danger>PAGAR</Button>
             </div>
           </div>)}
         </div>
