@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductEditModal from "../components/ProductEditModal";
-import { getProductDetailsService } from "../services/tasteit.services";
-import { Button } from "antd";
+import { getProductDetailsService, getProductsService } from "../services/tasteit.services";
 import IsOwner from "../components/IsOwner";
 import ProductDeletionModal from "../components/ProductDeletionModal";
 import AddComment from "../components/AddComment";
@@ -11,7 +10,6 @@ import Counter from "../components/Counter";
 // React icon
 import { FaShoppingCart } from "react-icons/fa";
 import ShoppingCart from "../components/ShoppingCart";
-import { MinusOutlined, PlusOutlined } from '@ant-design/icons'
 
 import { AuthContext } from "../context/auth.context";
 import { ThemeContext} from "../context/theme.context.js"
@@ -26,6 +24,7 @@ function Details() {
   const {toggleCart} = useContext(ThemeContext)
 
   const [productDetails, setProductDetails] = useState("");
+  const [allProducts, setAllProducts] = useState("");
   const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
@@ -36,6 +35,9 @@ function Details() {
     try {
       const response = await getProductDetailsService(productId);
       setProductDetails(response.data);
+      const allResponse = await getProductsService();
+      setAllProducts(allResponse.data);
+      
       setIsFetching(false);
     } catch (error) {
       console.log(error);
@@ -138,6 +140,23 @@ function Details() {
         </div>
       </button>}
       
+      {/* Marquee to show other products  */}
+      <div className="products-container">
+        <h2>Quizá también te guste:</h2>
+          <div className="scroll-area">
+            <div className="wrapper">
+              {allProducts.map(eachProduct => {
+                return (
+                  <div key={eachProduct._id}>
+                    <img className="carousel-images" src={eachProduct.image} alt={eachProduct.name}/>
+                    <p id="carousel-name" className="carousel-items">{eachProduct.name}</p>
+                    <p id="carousel-price" className="carousel-items">{eachProduct.price}€</p>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+      </div>
           
       <AddComment product={productDetails} style={{margin: 0}}/>
       <ShoppingCart />

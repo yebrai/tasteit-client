@@ -8,14 +8,96 @@ body {
 }
 
 
+/* Details page*/
+.products-container {
+  margin: 0;
+  width: 100%;
+}
+
+.products-container h2 {
+  text-align: center;
+  font-size: 30px;
+}
+
+.scroll-area {
+  height: 320px;
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.carousel-images {
+  width: 220px;
+  height: 195px;
+  border-radius: 10px;
+}
+
+#carousel-name {
+  font-size: 21px;
+  font-weight: 500;
+  color: rgb(17, 49, 2)
+}
+
+#carousel-price {
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.carousel-items {
+  margin: 0
+}
+
+.wrapper {
+  margin: 20px;
+  width: 180%;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  gap: 30px;
+  will-change: transform;
+  white-space: nowrap;
+  animation: scroll-area 12s linear infinite;
+}
+
+.wrapper:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-area {
+  from {
+    transform: translateX(0)
+  }
+  to {
+    transform: translateX(-60%);
+  }
+}
+
 /* Product comments component */
-.ant-comment {
-  width: 500px;
+#comments-title {
+  margin: 20px 0 0 0;
+  font-size: 30px;
+}
+
+#comment-box {
+  width: 50%;
+  height: 130px;
+  background-color: rgb(253, 253, 253, .85);
+}
+
+.ant-spin-nested-loading {
+  background-color: rgb(253, 253, 253, .85);
+  margin: 0 0 20px 0;
+}
+
+.ant-comment-inner {
+  width: 100%;
+  margin: 0;
 }
 
 .ant-list {
-  width: 500px;
+  width: 55%;
 }
+/* ends */
 
 .cart-back-heading {
   display: flex;
