@@ -1,3 +1,4 @@
+
 html {
   font-family: 'Raleway', sans-serif;
 }
@@ -6,7 +7,6 @@ body {
   background-image: url('./assets/background.jpg');
   background-size: cover;
 }
-
 
 /* Details page*/
 .products-container {
@@ -134,7 +134,6 @@ body {
   align-items: center;
   justify-content: center;
   background-color: white;
-
 }
 .cart-button-quantity {
   position: absolute;
@@ -145,16 +144,16 @@ body {
   top: 1;
   right: 1;
   color: rgb(255, 77, 77);
-
 }
-
 
 /* Navbar */
 
 .navbar-container-main {
   height: 5vh;
   width: 100vw;
-  background-color: grey;
+  background: rgb(106,92,92);
+background: linear-gradient(180deg, rgba(106,92,92,1) 25%, rgba(0,0,0,1) 96%);
+  box-shadow: 0 1px 6px 3px #888888;
 }
 
 .navbar-container {
@@ -168,8 +167,12 @@ body {
 }
 
 .home-icon {
-  color: black;
+  color: white;
   font-size: 1.5rem;
+}
+
+.ant-btn:hover, .ant-btn-text:hover, .ant-btn-icon-only:hover {
+ font-size: 1.5rem;
 }
 
 .loged-icons-container {
@@ -186,21 +189,20 @@ body {
 /* Home */
 .home-main-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .homeBoxContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70%;
-  display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
 }
 .container-home{
   height: 300px;
-  margin: 30px auto;
+  margin: 7vh auto;
   position: relative;
   overflow: hidden;
 }
@@ -209,7 +211,6 @@ body {
   opacity: 1;
   transform: scale(1.5);
   transition: all .5s ease 0s;
-
 }
 
 .overlay-home{
@@ -251,14 +252,35 @@ body {
 
 .desserts, .drinks, .food, .all-foods {
   background-size: cover;
-  height: 40vh;
-  width: 30vw;
+  width: 20vw;
   border-radius: 3%;
   box-shadow: 0 0px 0 1px #888888;
-  
 }
+
 .desserts:hover, .drinks:hover, .food:hover, .all-foods:hover {
   transition: all .5s ease 0s;
 
   box-shadow: 0 3px 3px 3px #888888;
+}
+
+@media (max-width: 600px) {
+  .home-main-container {
+    flex-direction: column;
+  }
+
+ .desserts, .drinks, .food, .all-foods {
+    width: 50vw; 
+  }
+
+}
+@media (min-width: 600px) {
+  .homeBoxContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 36vw;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
 }

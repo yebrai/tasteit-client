@@ -39,13 +39,11 @@ function Navbar() {
 
       {isLoggedIn ? (
         <div className="loged-icons-container">
-          {/* Add product */}
           <Link className="home-icon" to="/profile">
             <UserOutlined/>
           </Link>
           <AddFoodModal/>
-          {/* Log Out */}
-          <Button type="text" icon={<AiOutlinePoweroff size="1.5rem"/>} onClick={handleLogout}></Button>
+          <Button type="text" icon={<AiOutlinePoweroff size="1.5rem" color="white"/>} onClick={handleLogout}></Button>
         </div>
       ) : (
         <div>

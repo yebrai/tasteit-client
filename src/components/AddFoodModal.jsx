@@ -85,7 +85,7 @@ function AddFoodModal() {
   // Render
   return (
     <>
-      <Button type="text" className="button-test" icon={<IoAddCircleOutline size="1.5rem" />} onClick={showModal}>
+      <Button type="text" icon={<IoAddCircleOutline size="1.5rem" color="white" />} onClick={showModal}>
       </Button>
       <Modal
         title="Añadir Producto"
