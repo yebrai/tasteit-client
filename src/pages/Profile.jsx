@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getUserService } from '../services/tasteit.services'
 import EditProfileModal from '../components/EditProfileModal';
+import { Link } from 'react-router-dom';
 
 function Profile() {
 
@@ -14,9 +15,8 @@ function Profile() {
 
     try {
       const response = await getUserService()
- 
       setUser(response.data)
-      setIsFetching(true)
+      setIsFetching(false)
     } catch (error) {
       console.log(error)
     }
@@ -33,6 +33,7 @@ function Profile() {
     <p>Edad: {user.age}</p>
     <p>Tipo: {user.role}</p>
     <EditProfileModal />
+    <Link to="/purchases">Historial de compras</Link>
     </div>
   )
 }
