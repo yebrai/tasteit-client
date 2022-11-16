@@ -448,6 +448,27 @@ body {
   color: black;
 }
 
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  margin: 100px auto;
+}
+
+.spinner-title {
+  font-size: 2rem;
+  color: #6a5353;
+}
+
+.spinner {
+  position: absolute;
+  top: 10%;
+  width: 600px;
+  
+}
+
 
 @media (max-width: 600px) {
   .home-main-container {
@@ -483,5 +504,6 @@ body {
   }
 
 }
+
 
 

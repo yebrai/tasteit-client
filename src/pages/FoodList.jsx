@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import { Button, Card, Col, Row } from "antd";
 import SearchFood from "../components/SearchFood";
 
+import gifFood from "../assets/spinners/food-spinner.gif"
+
 // React icon
 import { FaShoppingCart, FaHeart, FaRegHeart } from "react-icons/fa";
 import ShoppingCart from "../components/ShoppingCart";
@@ -54,7 +56,12 @@ function FoodList() {
   
   // Guard clause
   if (isFetching === true) {
-    return <h3>loading...</h3>;
+    return (
+      <div className="spinner-container">
+    <h2 className="spinner-title">Taste It.</h2>
+    <img className="spinner" src={gifFood} alt="" />
+    </div>
+    );
   }
 
   // Adds a new favourite product to the current online user
@@ -98,22 +105,26 @@ function FoodList() {
         {foodToShow.map((eachProduct) => {
           return (
             <Col key={eachProduct._id}>
-              <Card hoverable>
+                <Card hoverable>
                 <Link to={`/${eachProduct._id}/details`} className="card-link">
                   <Meta />
-                  <img alt={eachProduct.name} src={eachProduct.image} />
+                  <img
+                    alt="example"
+                    src={eachProduct.image}
+                    style={{ width: "100%", height: "155px", margin: 0}}
+                  />
                   <h2>{eachProduct.name}</h2>
-                  <p><span>Precio:</span> {eachProduct.price}€</p>
-                  <p><span>Localidad:</span> {eachProduct.location}</p>
+                  <p style={{margin: 0}}><span style={{fontWeight: "bolder"}}>Precio:</span> {eachProduct.price}€</p>
+                  <p style={{margin: "0 auto 2px"}}><span style={{fontWeight: "bolder"}}>Localidad:</span> {eachProduct.location}</p>
                 </Link>
                   
-                  <div id="favourites-btn-container">
+                  <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-end", width: "80%"}}>
                     {favourites.includes(eachProduct._id)
                     ? <Button className="icons-like" type="text" icon={<FaHeart style={{color: "red"}}/>} onClick={() => deleteFavourite(eachProduct._id)}></Button>
                     : <Button className="icons-like" type="text" icon={<FaRegHeart style={{color: "red"}}/>} onClick={() => addFavouriteToUser(eachProduct)}></Button>}
                   </div>
                   
-              </Card>
+                </Card>
             </Col>
           );
         })}
