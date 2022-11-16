@@ -43,7 +43,7 @@ function Favourites() {
 
   return (
     <div id="favourites-wrapper">
-      <h2>Mis favoritos</h2>
+      <h2 id="favourites-wrapper-title">Mis favoritos</h2>
       <Row style={{ width: "100%", justifyContent: "center" }}>
         {list.map((eachProduct) => {
           return (
@@ -51,20 +51,10 @@ function Favourites() {
               <Card hoverable>
                 <Link to={`/${eachProduct._id}/details`} className="card-link">
                   <Meta/>
-                  <img
-                    alt="example"
-                    src={eachProduct.image}
-                    style={{ width: "100%", height: "155px", margin: 0 }}
-                  />
+                  <img alt={eachProduct.name} src={eachProduct.image} />
                   <h2>{eachProduct.name}</h2>
-                  <p style={{ margin: 0 }}>
-                    <span style={{ fontWeight: "bolder" }}>Precio:</span>{" "}
-                    {eachProduct.price}€
-                  </p>
-                  <p style={{ margin: "0 auto 2px" }}>
-                    <span tyle={{ fontWeight: "bolder" }}>Localidad:</span>{" "}
-                    {eachProduct.location}
-                  </p>
+                  <p><span>Precio:</span> {eachProduct.price}€</p>
+                  <p><span>Localidad:</span> {eachProduct.location}</p>
                 </Link>
               </Card>
             </Col>

@@ -98,26 +98,22 @@ function FoodList() {
         {foodToShow.map((eachProduct) => {
           return (
             <Col key={eachProduct._id}>
-                <Card hoverable>
+              <Card hoverable>
                 <Link to={`/${eachProduct._id}/details`} className="card-link">
                   <Meta />
-                  <img
-                    alt="example"
-                    src={eachProduct.image}
-                    style={{ width: "100%", height: "155px", margin: 0}}
-                  />
+                  <img alt={eachProduct.name} src={eachProduct.image} />
                   <h2>{eachProduct.name}</h2>
-                  <p style={{margin: 0}}><span style={{fontWeight: "bolder"}}>Precio:</span> {eachProduct.price}€</p>
-                  <p style={{margin: "0 auto 2px"}}><span style={{fontWeight: "bolder"}}>Localidad:</span> {eachProduct.location}</p>
+                  <p><span>Precio:</span> {eachProduct.price}€</p>
+                  <p><span>Localidad:</span> {eachProduct.location}</p>
                 </Link>
                   
-                  <div style={{display: "flex", flexDirection: "row", justifyContent: "flex-end", width: "80%"}}>
+                  <div id="favourites-btn-container">
                     {favourites.includes(eachProduct._id)
                     ? <Button className="icons-like" type="text" icon={<FaHeart style={{color: "red"}}/>} onClick={() => deleteFavourite(eachProduct._id)}></Button>
                     : <Button className="icons-like" type="text" icon={<FaRegHeart style={{color: "red"}}/>} onClick={() => addFavouriteToUser(eachProduct)}></Button>}
                   </div>
                   
-                </Card>
+              </Card>
             </Col>
           );
         })}
