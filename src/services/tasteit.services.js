@@ -57,7 +57,7 @@ const getCommentService = (productId) => {
 }
 
 const addRatingService = (productId, newRate) => {
-  return service.post(`/product/${productId}/rate`, newRate)
+  return service.patch(`/product/${productId}/rate`, newRate)
 }
 
   export {
