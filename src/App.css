@@ -9,7 +9,7 @@ html {
 
 
 body {
-  background-image: url('./assets/background.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('./assets/background.jpg');
   background-size: cover;
 }
 
@@ -376,6 +376,35 @@ body {
 }
 
 /* add food */
+
+.ant-card {
+  margin: 30px!important;
+  width: 250px;
+  height: 400px;
+  background: linear-gradient(rgba(247, 243, 243, 0.9), rgba(231, 227, 227, 0.8))!important;
+  border: none!important;
+  box-shadow: 0 0 4px 0;
+} 
+
+.card-link {
+  padding-bottom: 280px!important
+}
+
+.cards-list-main {
+  margin: 0 auto;
+}
+
+.cards-list-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0 150px;
+
+
+}
+
 .ant-card:hover {
   transform: scale(1.2);
   transition: all .5s ease 0s;
@@ -399,37 +428,21 @@ body {
   width: 90%;
 }
 
+.list-fav-icons {
+  display: flex;
+  justify-content: end;
+  align-items: flex-end;
+}
+
 .icons-like:hover {
   transform: scale(1.8);
   transition: all .5s ease 0s;
   background-color: transparent!important;
 }
 .icons-like {
-  background-color: transparent!important
+  background-color: transparent!important;
 }
 
-
-.ant-card {
-  height: 100%;
-  margin: 20px!important;
-}
-
-
-.ant-card h2 {
-  font-size: 1.3rem;
-  margin: 0 0 7px 0;
-  font-weight: 700;
-}
-
-.ant-card p {
-  font-size: 16px;
-}
-
-.ant-card-body {
-  padding: 0 !important;
-  width: 200px;
-  text-align: center;
-}
 
 .card-link {
   color: black;
