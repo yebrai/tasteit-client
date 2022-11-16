@@ -98,26 +98,9 @@ function FoodList() {
         {foodToShow.map((eachProduct) => {
           return (
             <Col key={eachProduct._id}>
-                <Card
-                  hoverable
-                  style={{ width: 200, height: 290, margin: 20 }}
-                  bodyStyle={{
-                    padding: 0,
-                    display: "flex",
-                    alignItems: "center",
-                    flexDirection: "column",
-                  }}
-                >
-                <Link to={`/${eachProduct._id}/details`} style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-                  <Meta
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      margin: "0px auto",
-                      padding: "0px"
-                    }}
-                  />
+                <Card hoverable>
+                <Link to={`/${eachProduct._id}/details`} className="card-link">
+                  <Meta />
                   <img
                     alt="example"
                     src={eachProduct.image}
