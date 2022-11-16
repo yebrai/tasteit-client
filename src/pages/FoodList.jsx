@@ -109,8 +109,8 @@ function FoodList() {
                   
                   <div id="favourites-btn-container">
                     {favourites.includes(eachProduct._id)
-                    ? <Button type="text" icon={<FaHeart style={{color: "red"}}/>} onClick={() => deleteFavourite(eachProduct._id)}></Button>
-                    : <Button type="text" icon={<FaRegHeart style={{color: "red"}}/>} onClick={() => addFavouriteToUser(eachProduct)}></Button>}
+                    ? <Button className="icons-like" type="text" icon={<FaHeart style={{color: "red"}}/>} onClick={() => deleteFavourite(eachProduct._id)}></Button>
+                    : <Button className="icons-like" type="text" icon={<FaRegHeart style={{color: "red"}}/>} onClick={() => addFavouriteToUser(eachProduct)}></Button>}
                   </div>
                   
               </Card>
