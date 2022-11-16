@@ -29,7 +29,6 @@ function FoodList() {
   // Function to manage search in SearchFood.jsx
   const filterFood = (filterQuery) => {
     const filteredFood = list.filter((eachFood) => eachFood.name.includes(filterQuery));
-
     // Updates current displayed list
     setFoodToShow(filteredFood);
   };
@@ -92,10 +91,9 @@ function FoodList() {
   }
 
   return (
-    <div>
+    <div >
       <SearchFood type={type} filterFood={filterFood} />
-      
-      <Row style={{ width: "100%", justifyContent: "center" }}>
+      <Row style={{ width: "100%", justifyContent: "center"}}>
         {foodToShow.map((eachProduct) => {
           return (
             <Col key={eachProduct._id}>

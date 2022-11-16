@@ -33,17 +33,17 @@ function Navbar() {
   return (
     <div className="navbar-container-main">
     <div  className="navbar-container" >
-      <Link className="home-icon" to="/">
-        <HomeOutlined/>
+      <Link className="home-icon icons" to="/">
+      <HomeOutlined/>
       </Link>
 
       {isLoggedIn ? (
         <div className="loged-icons-container">
-          <Link className="home-icon" to="/profile">
+          <Link className="home-icon icons" to="/profile">
             <UserOutlined/>
           </Link>
           <AddFoodModal/>
-          <Button type="text" icon={<AiOutlinePoweroff size="1.5rem" color="white"/>} onClick={handleLogout}></Button>
+          <Button className="icons" type="text" icon={<AiOutlinePoweroff size="1.5rem" color="white"/>} onClick={handleLogout}></Button>
         </div>
       ) : (
         <div>
