@@ -41,6 +41,7 @@ function FoodList() {
   try {
       const response = await getProductTypeService(type)
       const userFavourites = await getFavouritesService();
+      console.log(userFavourites)
       setList(response.data);
       setFoodToShow(response.data)
       setFavourites(userFavourites.data.favourites)
