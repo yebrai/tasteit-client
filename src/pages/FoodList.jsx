@@ -85,14 +85,13 @@ function FoodList() {
     }
   }
 
-
   return (
     <div >
       <SearchFood type={type} filterFood={filterFood} />
       <Row style={{ width: "100%", justifyContent: "center"}}>
         {foodToShow.map((eachProduct) => {
           return (
-            <Col key={eachProduct._id}>
+            <Col className="test" key={eachProduct._id}>
                 <Card
                   hoverable
                   style={{ width: 200, height: 290, margin: 20 }}

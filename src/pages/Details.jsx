@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import ProductEditModal from "../components/ProductEditModal";
 import { getProductDetailsService, getProductsService } from "../services/tasteit.services";
 import IsOwner from "../components/IsOwner";
@@ -13,8 +13,11 @@ import ShoppingCart from "../components/ShoppingCart";
 
 import { AuthContext } from "../context/auth.context";
 import { ThemeContext} from "../context/theme.context.js"
+import { IoArrowBackCircleSharp } from "react-icons/io5";
 
 function Details() {
+
+  const { actualRoute } = useLocation()
 
   // Selected product
   const { productId } = useParams();
@@ -37,7 +40,6 @@ function Details() {
       setProductDetails(response.data);
       const allResponse = await getProductsService();
       setAllProducts(allResponse.data);
-
       setIsFetching(false);
     } catch (error) {
       console.log(error);
@@ -51,6 +53,9 @@ function Details() {
 
   return (
     <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+    <Link className="back-details-icon" to="/" state={{ previousPath: actualRoute }}>
+      <IoArrowBackCircleSharp />
+    </Link>
       <p
         style={{
           textAlign: "center",
