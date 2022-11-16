@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { Button, Card, Col, Row } from "antd";
 import SearchFood from "../components/SearchFood";
 
-import gifFood from "../assets/spinners/food-spinner2.gif"
+import gifFood from "../assets/spinners/food-spinner.gif"
 
 // React icon
 import { FaShoppingCart, FaHeart, FaRegHeart } from "react-icons/fa";
