@@ -12,7 +12,6 @@ function Profile() {
   },[])
 
   const getUser = async() => {
-
     try {
       const response = await getUserService()
       setUser(response.data)
@@ -23,17 +22,19 @@ function Profile() {
   }
 
   if (isFetching) {
-    <p>...cargando</p>
+    return <p>...cargando</p>
   }
+
   return (
     <div style={{textAlign:"center"}}>
-    <img src={user.profileImage} alt="" />
-    <h3>Name: {user.name}</h3>
-    <h5>Email: {user.email}</h5>
-    <p>Edad: {user.age}</p>
-    <p>Tipo: {user.role}</p>
-    <EditProfileModal />
-    <Link to="/purchases">Historial de compras</Link>
+      <img src={user.profileImage} alt="" />
+      <h3>Name: {user.name}</h3>
+      <h5>Email: {user.email}</h5>
+      <p>Edad: {user.age}</p>
+      <p>Tipo: {user.role}</p>
+      <EditProfileModal />
+      <Link to="/purchases">Historial de compras</Link>
+      <Link to="/my-favourites">Mis favoritos</Link>
     </div>
   )
 }

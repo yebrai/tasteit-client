@@ -10,10 +10,6 @@ import { ThemeContext } from "../context/theme.context.js";
 import { AuthContext } from "../context/auth.context";
 import { addFavouritesService, deleteFavouriteService, getFavouritesService, getProductTypeService } from "../services/tasteit.services";
 
-// Toast
-import toast, { Toaster } from 'react-hot-toast';
-
-
 const { Meta } = Card;
 
 function FoodList() {
@@ -94,9 +90,6 @@ function FoodList() {
       console.log(error);
     }
   }
-
-  
-
 
   return (
     <div>

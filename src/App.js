@@ -9,7 +9,7 @@ import Error from "./pages/Error";
 import Home from "./pages/Home";
 import IsPrivate from "./components/IsPrivate.jsx";
 import Purchases from "./pages/Purchases";
-
+import Favourites from "./pages/Favourites";
 
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
         <Route path="/:type/products" element={<FoodList />} />
         <Route path="/profile" element={<IsPrivate><Profile /></IsPrivate>} />
         <Route path="/purchases" element={<IsPrivate><Purchases /></IsPrivate>} />
+        <Route path="/my-favourites" element={<IsPrivate><Favourites /></IsPrivate>} />
         <Route path="/error" element={<Error />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
