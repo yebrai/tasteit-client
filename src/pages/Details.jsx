@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import ProductEditModal from "../components/ProductEditModal";
 import { getProductDetailsService, getProductsService } from "../services/tasteit.services";
 import IsOwner from "../components/IsOwner";
@@ -19,14 +19,13 @@ function Details() {
 
   const navigation = useNavigate()
 
-  const { actualRoute } = useLocation()
 
   // Selected product
   const { productId } = useParams();
 
   // Shopping cart item
   const {isLoggedIn, cartProducts} = useContext(AuthContext)
-  const {toggleCart} = useContext(ThemeContext)
+  const {toggleCart, loadingSpinner} = useContext(ThemeContext)
 
   const [productDetails, setProductDetails] = useState("");
   const [allProducts, setAllProducts] = useState("");
@@ -50,7 +49,7 @@ function Details() {
 
   // Guard clause
   if (isFetching) {
-    return <h3>Cargando...</h3>;
+    return loadingSpinner();
   }
 
   return (

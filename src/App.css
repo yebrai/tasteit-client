@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
+
 :root {
  --brown-tasteit: rgb(106,92,92)
 }
@@ -10,6 +12,8 @@ body {
   background-image: url('./assets/background.jpg');
   background-size: cover;
 }
+
+
 
 /* Details page*/
 
@@ -454,20 +458,43 @@ body {
   align-items: center;
   text-align: center;
   flex-direction: column;
-  margin: 100px auto;
+  margin: 150px auto;
+
 }
 
 .spinner-title {
-  font-size: 2rem;
-  color: #6a5353;
+  font-size: 1.8rem;
+  color: var(--brown-tasteit);
+  font-family: 'Carter One', cursive;
 }
 
 .spinner {
   position: absolute;
-  top: 10%;
-  width: 600px;
+  top: 16%;
+  width: 500px;
   
 }
+
+.blinking {
+
+  animation: opacity 2s ease-in-out infinite;
+  opacity: 1;
+}
+
+@keyframes opacity {
+0% {
+  opacity: 1;
+}
+
+50% {
+  opacity: 0
+}
+
+100% {
+  opacity: 1;
+}
+}
+
 
 
 @media (max-width: 600px) {

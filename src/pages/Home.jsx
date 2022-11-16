@@ -11,6 +11,8 @@ import { FaShoppingCart } from "react-icons/fa";
 function Home() {
   const {toggleCart} = useContext(ThemeContext)
   const {isLoggedIn, cartProducts} = useContext(AuthContext)
+
+
   return (
     <div id="home-card" className="home-main-container">
       <div className="homeBoxContainer">
