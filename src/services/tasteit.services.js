@@ -56,6 +56,10 @@ const getCommentService = (productId) => {
   return service.get(`/comment/${productId}`)
 }
 
+const addRatingService = (productId, newRate) => {
+  return service.patch(`/${productId}/rate`, newRate)
+}
+
   export {
     getProductsService,
     getProductTypeService,
@@ -70,5 +74,6 @@ const getCommentService = (productId) => {
     editProductService,
     deleteProductService,
     addCommentService,
-    getCommentService
+    getCommentService,
+    addRatingService
   }

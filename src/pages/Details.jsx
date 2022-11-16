@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ProductEditModal from "../components/ProductEditModal";
-import { getProductDetailsService, getProductsService } from "../services/tasteit.services";
+import { addRatingService, getProductDetailsService, getProductsService } from "../services/tasteit.services";
 import IsOwner from "../components/IsOwner";
 import ProductDeletionModal from "../components/ProductDeletionModal";
 import AddComment from "../components/AddComment";
@@ -50,17 +50,34 @@ function Details() {
     }
   };
 
-  const handleRate = (value) => {
-    setCurrentRate(value)
-  }
-
+  
   // Guard clause
   if (isFetching) {
     return loadingSpinner();
   }
-
   
+  // Initialize default current rate to show when page renders to 0
+  let averageRate = 0;
+  productDetails.ratings.forEach(eachRating => {
+    averageRate += eachRating;
+  })
 
+  // Average to show
+  let averageRateToShow = averageRate / productDetails.ratings.length;
+  
+  const handleRate = async (value) => {
+
+    let newAverage = (averageRate + value) / (productDetails.ratings.length + 1)
+
+    try {
+      await addRatingService(value)
+      setCurrentRate(newAverage)
+      
+    } catch(error) {
+      console.log(error)
+    }
+  }
+  
   return (
     <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
     <button onClick={()=> navigation(-1)} className="back-details-icon" to="/" >
@@ -126,10 +143,9 @@ function Details() {
 
           {/* Rating buttons */}
           <div>
-            <Rate allowHalf className="ant-rate-text" style={{fontSize: "30px", backgroundColor: "grey"}} value={currentRate} defaultValue={0} onChange={(value) => handleRate(value)}/>
+            <Rate allowHalf className="ant-rate-text" style={{fontSize: "30px", backgroundColor: "grey"}} value={currentRate} defaultValue={averageRateToShow} onChange={(value) => handleRate(value)}/>
           </div>
           
-
           <p>
             <span style={{ fontWeight: "bolder", fontSize: 22 }}>
               Detalles:
