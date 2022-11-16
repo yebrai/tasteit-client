@@ -12,8 +12,12 @@ const deleteShoppingCartService = (productId) => {
   return service.delete(`/user/cart/${productId}/delete`)
 }
 
+const deleteAllShoppingCartService = () => {
+  return service.delete(`/user/cart/delete`)
+}
+
 const sendStripePaymentService = (information) => {
   return service.post("/stripe", information)
 }
 
-export { getShoppingCartService, addShoppingCartService, deleteShoppingCartService, sendStripePaymentService };
+export { getShoppingCartService, addShoppingCartService, deleteShoppingCartService, deleteAllShoppingCartService, sendStripePaymentService };
