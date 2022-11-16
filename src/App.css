@@ -13,7 +13,7 @@ body {
 
 /* Details page*/
 
-.aant-btn-primary {
+.ant-btn-primary {
   background: var(--brown-tasteit);
   background: linear-gradient(0deg, rgba(106,92,92,1) 25%, rgba(0,0,0,1) 96%);;
 }
@@ -52,6 +52,12 @@ body {
   width: 220px;
   height: 195px;
   border-radius: 10px;
+}
+
+.carousel-images:hover {
+  transform: scale(1.05);
+  transition: all .5s ease 0s;
+  box-shadow: 0 6px 3px #888888;
 }
 
 #carousel-name {
