@@ -21,11 +21,11 @@ root.render(
   <BrowserRouter>
     <AuthWrapper>
     <ThemeWrapper>
-      <React.StrictMode>
-      <Elements stripe={stripePromise}>
-        <App />
+      {/* <React.StrictMode> */}
+        <Elements stripe={stripePromise}>
+          <App />
         </Elements>
-      </React.StrictMode>
+      {/*</React.StrictMode> */}
       </ThemeWrapper>
     </AuthWrapper>
   </BrowserRouter>

@@ -14,6 +14,8 @@ import ShoppingCart from "../components/ShoppingCart";
 import { AuthContext } from "../context/auth.context";
 import { ThemeContext} from "../context/theme.context.js"
 import { IoArrowBackCircleSharp } from "react-icons/io5";
+import { Button, Rate } from "antd";
+import { AiOutlineStar } from "react-icons/ai";
 
 function Details() {
 
@@ -29,6 +31,7 @@ function Details() {
 
   const [productDetails, setProductDetails] = useState("");
   const [allProducts, setAllProducts] = useState("");
+  const [currentRate, setCurrentRate] = useState(0);
   const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
@@ -47,10 +50,16 @@ function Details() {
     }
   };
 
+  const handleRate = (value) => {
+    setCurrentRate(value)
+  }
+
   // Guard clause
   if (isFetching) {
     return loadingSpinner();
   }
+
+  
 
   return (
     <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
@@ -114,6 +123,13 @@ function Details() {
           <h2 style={{ fontSize: 50, color: "#324d67" }}>
             {productDetails.name}
           </h2>
+
+          {/* Rating buttons */}
+          <div>
+            <Rate allowHalf className="ant-rate-text" style={{fontSize: "30px", backgroundColor: "grey"}} value={currentRate} defaultValue={0} onChange={(value) => handleRate(value)}/>
+          </div>
+          
+
           <p>
             <span style={{ fontWeight: "bolder", fontSize: 22 }}>
               Detalles:
