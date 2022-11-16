@@ -9,7 +9,7 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 
-import { sendStripePaymentService } from "../services/shoppingCart.services.js";
+import { deleteAllShoppingCartService, sendStripePaymentService } from "../services/shoppingCart.services.js";
 
 function CheckoutModal({ requestPurchase }) {
 
@@ -35,13 +35,14 @@ function CheckoutModal({ requestPurchase }) {
     if (!error) {
       const { id } = paymentMethod;
 
-
       try {
         // Response from backend
         await sendStripePaymentService({
           id,
           amount: 100000,
         });
+        await deleteAllShoppingCartService() // Remove the entire shoppingCart
+
         elements.getElement(CardElement).clear();
         requestPurchase()
         navigate("/purchases");

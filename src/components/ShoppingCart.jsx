@@ -18,8 +18,7 @@ import CheckoutModal from "./CheckoutModal";
 function ShoppingCart() {
   // Context
   const { cartProducts, findCart } = useContext(AuthContext);
-  const { renderCart, toggleCart, renderCartWrapper } =
-    useContext(ThemeContext);
+  const { renderCart, toggleCart, renderCartWrapper } = useContext(ThemeContext);
 
   useEffect(() => {
     findCart();
