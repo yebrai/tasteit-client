@@ -79,9 +79,9 @@ function Details() {
   
   return (
     <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-    <button onClick={()=> navigation(-1)} className="back-details-icon" to="/" >
+    <Link onClick={()=> navigation(-1)} className="back-details-icon" to="/" >
       <IoArrowBackCircleSharp />
-    </button>
+    </Link>
       <p
         style={{
           textAlign: "center",

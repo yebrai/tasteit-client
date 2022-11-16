@@ -4,7 +4,7 @@ import { AuthContext } from "../context/auth.context";
 import { editProductService } from "../services/tasteit.services";
 
 // Antd
-import { Button, Modal, Form, Input, Select } from "antd";
+import { Modal, Form, Input, Select } from "antd";
 const { Option } = Select;
 const { Item } = Form;
 
@@ -93,9 +93,9 @@ function ProductEditModal(props) {
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
+      <button className="main-buttons edit-button" onClick={showModal}>
         Editar producto
-      </Button>
+      </button>
       <Modal
         title="Editar Producto"
         open={open}

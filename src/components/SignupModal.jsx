@@ -74,9 +74,9 @@ function SignupModal() {
   // Render
   return (
     <>
-      <Button type="primary" onClick={showModal}>
+      <button className="main-buttons" onClick={showModal}>
         Registrarse
-      </Button>
+      </button>
       <Modal
         title="Registrarse"
         open={open}
