@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import ProductEditModal from "../components/ProductEditModal";
 import { getProductDetailsService, getProductsService } from "../services/tasteit.services";
 import IsOwner from "../components/IsOwner";
@@ -16,6 +16,8 @@ import { ThemeContext} from "../context/theme.context.js"
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 
 function Details() {
+
+  const navigation = useNavigate()
 
   const { actualRoute } = useLocation()
 
@@ -53,9 +55,9 @@ function Details() {
 
   return (
     <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-    <Link className="back-details-icon" to="/" state={{ previousPath: actualRoute }}>
+    <button onClick={()=> navigation(-1)} className="back-details-icon" to="/" >
       <IoArrowBackCircleSharp />
-    </Link>
+    </button>
       <p
         style={{
           textAlign: "center",
