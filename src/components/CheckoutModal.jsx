@@ -2,34 +2,57 @@ import React, { useState } from "react";
 import { Button, Modal, Form } from "antd";
 import { useNavigate } from "react-router-dom";
 
+// stripe
+import {
+  CardElement,
+  useStripe,
+  useElements,
+} from "@stripe/react-stripe-js";
 
-function CheckoutModal({requestPurchase}) {
-  
+import { sendStripePaymentService } from "../services/shoppingCart.services.js";
+
+function CheckoutModal({ requestPurchase }) {
+
+  const stripe = useStripe(); // Stripe Hook which returns connection to stripe
+  const elements = useElements(); // Stripe Hook which allows to access and manipulate stripe elements like <CardElement />
+
   //Navigate
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // Modal configuration
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
 
-
-
-  
-  const handleSubmit = () => {
+  const handleSubmit = async() => {
     setConfirmLoading(true);
-    
-    // todo esto va despues de la llamada post
-    //setConfirmLoading(true); 
-    // requestPurchase() 
-    
-    setTimeout(() => {
-      navigate("/purchases")
-      
-    },3000)
-    
+
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card: elements.getElement(CardElement), // getElement gets CardElement input (the number)
+    });
+
+    // If there is not error when payment is created, send it to BE
+    if (!error) {
+      const { id } = paymentMethod;
+
+
+      try {
+        // Response from backend
+        await sendStripePaymentService({
+          id,
+          amount: 100000,
+        });
+        elements.getElement(CardElement).clear();
+        requestPurchase()
+        navigate("/purchases");
+        setConfirmLoading(true);
+        
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
- 
   const showModal = () => {
     setOpen(true);
   };
@@ -38,10 +61,8 @@ function CheckoutModal({requestPurchase}) {
     setOpen(false);
   };
 
-
   return (
     <>
-
       <Button type="primary" danger onClick={showModal}>
         Pagar
       </Button>
@@ -53,12 +74,10 @@ function CheckoutModal({requestPurchase}) {
         onCancel={handleCancel}
         destroyOnClose
       >
-        <div>
-          <Form>
-          <label htmlFor="">Hola!</label>
-            {/* <CardElement /> */}
-          </Form>
-        </div>
+        <Form>
+          <label htmlFor=""></label>
+          <CardElement />
+        </Form>
       </Modal>
     </>
   );

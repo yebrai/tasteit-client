@@ -9,13 +9,22 @@ import { BrowserRouter } from "react-router-dom";
 import { AuthWrapper } from "./context/auth.context";
 import { ThemeWrapper } from "./context/theme.context";
 
+//Stripe
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+const stripePromise = loadStripe(
+  "pk_test_51M4iOyDWTWgnTbmkj5Hhor6FHtJArSGv2sflLNAiy3LdcN5rsDTbfZuReNtGHWNIKPEUqtYtPTFhDu9jugKNs9cR00CSVbDU54"
+);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <AuthWrapper>
     <ThemeWrapper>
       <React.StrictMode>
+      <Elements stripe={stripePromise}>
         <App />
+        </Elements>
       </React.StrictMode>
       </ThemeWrapper>
     </AuthWrapper>
