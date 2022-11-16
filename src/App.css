@@ -380,6 +380,7 @@ body {
   text-align: center;
 }
 
+/* add food */
 .ant-card:hover {
   transform: scale(1.2);
   transition: all .5s ease 0s;
@@ -394,6 +395,15 @@ body {
 
 #favourites-wrapper h2 {
   font-size: 30px;
+}
+
+.icons-like:hover {
+  transform: scale(1.8);
+  transition: all .5s ease 0s;
+  background-color: transparent!important;
+}
+.icons-like {
+  background-color: transparent!important
 }
 
 

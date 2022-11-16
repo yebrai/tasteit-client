@@ -49,6 +49,7 @@ function PurchaseModal({ purchase }) {
       <Button
         icon={<TiDocumentText size="1.5rem" />}
         onClick={showModal}
+        className="icons"
       ></Button>
       <Modal
         title={`Detalles de pedido: ${purchase._id.slice(0, 5)}`}
