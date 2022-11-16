@@ -8,6 +8,10 @@ const getFavouritesService = () => {
   return service.get(`/user/favourites`)
 }
 
+const getMyFavouritesService = () => {
+  return service.get(`/user/my-favourites`)
+}
+
 const addFavouritesService = (product) => {
   return service.post("/user/favourite/add", product)
 }
@@ -58,6 +62,7 @@ const getCommentService = (productId) => {
     addProductService,
     getUserService,
     getFavouritesService,
+    getMyFavouritesService,
     addFavouritesService,
     deleteFavouriteService,
     editUserService,

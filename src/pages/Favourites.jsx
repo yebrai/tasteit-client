@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import { ThemeContext } from "../context/theme.context";
 import { Link } from "react-router-dom";
-import { Button, Card, Col, Row } from "antd";
+import { Card, Col, Row } from "antd";
 
 // Shopping Cart
 import { FaShoppingCart } from "react-icons/fa";
 import ShoppingCart from "../components/ShoppingCart";
-import { getFavouritesService } from "../services/tasteit.services";
+import { getMyFavouritesService } from "../services/tasteit.services";
 
 const { Meta } = Card;
 
@@ -25,10 +25,11 @@ function Favourites() {
     handleMyFavourites();
   }, []);
 
-  const handleMyFavourites = async (type) => {
+  const handleMyFavourites = async () => {
     try {
-      const response = await getFavouritesService();
+      const response = await getMyFavouritesService();
       setList(response.data.favourites);
+      console.log(response.data.favourites)
       setIsFetching(false);
     } catch (error) {
       console.log(error);
@@ -41,13 +42,21 @@ function Favourites() {
   }
 
   return (
-    <div>
+    <div id="favourites-wrapper">
       <h2>Mis favoritos</h2>
       <Row style={{ width: "100%", justifyContent: "center" }}>
         {list.map((eachProduct) => {
           return (
             <Col key={eachProduct._id}>
-              <Card hoverable>
+              <Card 
+              hoverable
+              style={{ width: 200, height: 290, margin: 20 }}
+                  bodyStyle={{
+                    padding: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    flexDirection: "column",
+                  }}>
                 <Link to={`/${eachProduct._id}/details`} style={{ display: "flex", flexDirection: "column", alignItems: "center"}}>
                   <Meta style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "0px auto", padding: "0px" }} />
                   <img
@@ -61,7 +70,7 @@ function Favourites() {
                     {eachProduct.price}€
                   </p>
                   <p style={{ margin: "0 auto 2px" }}>
-                    <span style={{ fontWeight: "bolder" }}>Localidad:</span>{" "}
+                    <span tyle={{ fontWeight: "bolder" }}>Localidad:</span>{" "}
                     {eachProduct.location}
                   </p>
                 </Link>
