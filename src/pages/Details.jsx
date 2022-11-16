@@ -14,8 +14,9 @@ import ShoppingCart from "../components/ShoppingCart";
 import { AuthContext } from "../context/auth.context";
 import { ThemeContext} from "../context/theme.context.js"
 import { IoArrowBackCircleSharp } from "react-icons/io5";
+import toast from 'react-hot-toast';
 import { Button, Rate } from "antd";
-import { AiOutlineStar } from "react-icons/ai";
+
 
 function Details() {
 
@@ -79,8 +80,16 @@ function Details() {
     let newAverage = (averageRate + value) / (productDetails.ratings.length + 1)
     
     try {
-      await addRatingService(productDetails._id, Number(value))
+      const response = await addRatingService(productDetails._id, Number(value))
+      
+      if (response.data === "Valoración previamente añadida") {
+        toast(`Tan solo es posible añadir una valoración`, {icon: 'ℹ️'})
+      } else if (response.data === "Valoración añadida") {
+        toast(`Valoración añadida`, {icon: '✔️'})
+      }
+      
       setCurrentRate(newAverage)
+      
       
     } catch(error) {
       console.log(error)
@@ -88,18 +97,11 @@ function Details() {
   }
   
   return (
-    <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-    <button onClick={()=> navigation(-1)} className="back-details-icon" to="/" >
-      <IoArrowBackCircleSharp />
-    </button>
-      <p
-        style={{
-          textAlign: "center",
-          margin: "30px 0",
-          fontWeight: "bold",
-          color: "darkgray",
-        }}
-      >
+    <div className="main-details-container">
+      <button onClick={()=> navigation(-1)} className="back-details-icon" to="/" >
+        <IoArrowBackCircleSharp />
+      </button>
+      <h2 className="main-details-title">
         {productDetails.category === "foods"
           ? "Comidas"
           : productDetails.category === "desserts"
@@ -107,7 +109,7 @@ function Details() {
           : productDetails.category === "drinks"
           ? "Bebidas"
           : null}
-      </p>
+      </h2>
 
       {/* Checks if product owner is the same as current online user */}
       <IsOwner owner={productDetails.owner._id}>
@@ -117,35 +119,9 @@ function Details() {
         </div>
       </IsOwner>
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-          flexWrap: "wrap",
-          margin: "50px 80px",
-          width: "100%",
-        }}
-      >
-        <img
-          src={productDetails.image}
-          alt={productDetails.name}
-          style={{
-            width: 360,
-            height: 360,
-            borderRadius: "20px",
-            boxShadow: "0 0 5px 5px #229e6b",
-            margin: "0 5% 0 0"
-          }}
-        />
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "start",
-            margin: "0 0 0 5%"
-          }}
-        >
+      <div className="product-details-container">
+        <img src={productDetails.image} alt={productDetails.name} />
+        <div className="product-details-wrapper" >
           <h2 style={{ fontSize: 50, color: "#324d67" }}>
             {productDetails.name}
           </h2>

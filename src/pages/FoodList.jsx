@@ -47,7 +47,7 @@ function FoodList() {
     try {
       const response = await getProductTypeService(type);
       const userFavourites = await getFavouritesService();
-      console.log(userFavourites);
+      
       setList(response.data);
       setFoodToShow(response.data);
       setFavourites(userFavourites.data.favourites);
@@ -97,7 +97,7 @@ function FoodList() {
   return (
     <div className="cards-list-main">
       <SearchFood type={type} filterFood={filterFood} />
-                  <div className="cards-list-container">
+        <div className="cards-list-container">
       <Row justify={"center"}>
         {foodToShow.map((eachProduct) => {
           return (
@@ -116,9 +116,7 @@ function FoodList() {
                   </p>
                 </Link>
 
-                <div className="list-fav-icons"
-        
-                >
+                <div className="list-fav-icons">
                   {favourites.includes(eachProduct._id) ? (
                     <Button
                       className="icons-like"

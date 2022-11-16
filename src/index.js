@@ -10,11 +10,12 @@ import { AuthWrapper } from "./context/auth.context";
 import { ThemeWrapper } from "./context/theme.context";
 
 //Stripe
-import { Elements } from "@stripe/react-stripe-js";
+import { Elements} from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 const stripePromise = loadStripe(
   "pk_test_51M4iOyDWTWgnTbmkj5Hhor6FHtJArSGv2sflLNAiy3LdcN5rsDTbfZuReNtGHWNIKPEUqtYtPTFhDu9jugKNs9cR00CSVbDU54"
 );
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
