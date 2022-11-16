@@ -254,7 +254,10 @@ body {
   top: 0;
   opacity: 0;
   transition: all .5s ease 0s;
+
 }
+
+
 
 .overlay-home span{
   position: absolute;
@@ -288,6 +291,7 @@ body {
   width: 20vw;
   border-radius: 3%;
   box-shadow: 0 0px 0 1px #888888;
+  background-position: center;
 }
 
 .desserts:hover, .drinks:hover, .food:hover, .all-foods:hover {
@@ -397,7 +401,6 @@ body {
   font-size: 30px;
 }
 
-<<<<<<< HEAD
 .icons-like:hover {
   transform: scale(1.8);
   transition: all .5s ease 0s;
@@ -407,14 +410,12 @@ body {
   background-color: transparent!important
 }
 
-=======
 .ant-col {
   width: 200px;
   height: 290px;
   margin: 20px;
   text-align: center;
 }
->>>>>>> e66dd84b970375b44dff93b4174b94ac4a06d281
 
 .ant-card {
   width: 100%;
@@ -436,13 +437,26 @@ body {
 @media (max-width: 600px) {
   .home-main-container {
     flex-direction: column;
+    width: 100vw;
   }
 
  .desserts, .drinks, .food, .all-foods {
-    width: 50vw; 
+    width: 60vw!important; 
+    height: 20vh;
+    background-position: center;
   }
 
 }
+
+@media (max-width: 1200px) {
+  .desserts, .drinks, .food, .all-foods { 
+    height: 30vh;
+    width: 30vw;
+  }
+
+
+}
+
 @media (min-width: 600px) {
   .homeBoxContainer {
     display: flex;
