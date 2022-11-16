@@ -36,38 +36,48 @@ function Details() {
 
   useEffect(() => {
     getDetails();
-  }, [productId]);
+  }, [productId, currentRate]);
 
+  // Initialize default current rate to show when page renders to 0
+  let averageRate = 0;
+  let averageRateToShow = 0;
+  
   const getDetails = async () => {
     try {
       const response = await getProductDetailsService(productId);
       setProductDetails(response.data);
+
+      // Rating configuration
+      response.data.ratings.forEach(eachRating => {
+        averageRate += eachRating;
+      })
+      // Average to show when page reloads
+      averageRateToShow = averageRate / response.data.ratings.length;
+  
       const allResponse = await getProductsService();
+
+      setCurrentRate(averageRateToShow)
       setAllProducts(allResponse.data);
       setIsFetching(false);
+
     } catch (error) {
       console.log(error);
     }
   };
 
-  
   // Guard clause
   if (isFetching) {
     return loadingSpinner();
   }
   
-  // Initialize default current rate to show when page renders to 0
-  let averageRate = 0;
-  productDetails.ratings.forEach(eachRating => {
-    averageRate += eachRating;
-  })
-
-  // Average to show
-  let averageRateToShow = averageRate / productDetails.ratings.length;
-  
+  // Function to execute when a new user gives a rate to the product
   const handleRate = async (value) => {
+    let averageRate = 0;
+    productDetails.ratings.forEach(eachRating => {
+      averageRate += eachRating;
+    })
     let newAverage = (averageRate + value) / (productDetails.ratings.length + 1)
-    console.log(value);
+    
     try {
       await addRatingService(productDetails._id, Number(value))
       setCurrentRate(newAverage)
@@ -142,7 +152,8 @@ function Details() {
 
           {/* Rating buttons */}
           <div>
-            <Rate className="ant-rate-text" style={{fontSize: "30px", backgroundColor: "grey"}} value={currentRate} defaultValue={averageRateToShow} onChange={(value) => handleRate(value)} allowClear/>
+            <Rate allowHalf className="ant-rate-text" style={{fontSize: "30px", backgroundColor: "grey"}} value={currentRate} onChange={(value) => handleRate(value)} allowClear/>
+            <p>({productDetails.ratings.length} valoraciones de usuarios)</p>
           </div>
           
           <p>
