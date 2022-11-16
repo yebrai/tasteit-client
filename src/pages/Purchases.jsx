@@ -2,10 +2,14 @@ import { useEffect, useState } from "react";
 import PurchaseModal from "../components/PurchaseModal";
 import { getPurchaseService } from "../services/purchase.services";
 
+import toast, { Toaster } from 'react-hot-toast';
+import { AuthContext } from "../context/auth.context";
+
 function Purchases() {
   const [historyPurchases, setHistoryPurchases] = useState();
   const [isFetching, setIsFetching] = useState(true);
 
+  
 
   useEffect(() => {
     purchaseHistory();

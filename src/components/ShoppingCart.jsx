@@ -10,6 +10,7 @@ import { Button, Divider } from "antd";
 // Antd
 import { CloseCircleFilled, ShoppingOutlined } from '@ant-design/icons'
 import { ThemeContext } from "../context/theme.context";
+import CheckoutModal from "./CheckoutModal";
 
 function ShoppingCart() {
   // Context
@@ -126,7 +127,7 @@ function ShoppingCart() {
                 <h2>Total:</h2>
                 <h2>{totalPrice}€</h2>
               </div>
-              <Button type="primary" onClick={requestPurchase} danger>PAGAR</Button>
+              <CheckoutModal requestPurchase={requestPurchase}/>
             </div>
           </div>)}
         </div>
