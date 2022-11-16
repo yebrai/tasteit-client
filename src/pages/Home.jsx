@@ -20,7 +20,7 @@ function Home() {
             <span>Todas las Comidas</span>
           </div>
         </Link>
-        <Link to="/all/products" className="container-home drinks">
+        <Link to="/drinks/products" className="container-home drinks">
           <img/>
           <div className="overlay-home">
             <span>Bebidas</span>
@@ -28,13 +28,13 @@ function Home() {
         </Link>
       </div>
       <div className="homeBoxContainer">
-      <Link to="/all/products" className="container-home food">
+      <Link to="/foods/products" className="container-home food">
           <img/>
           <div className="overlay-home">
             <span>Almuerzos</span>
           </div>
         </Link>
-        <Link to="/all/products" className="container-home desserts" >
+        <Link to="/desserts/products" className="container-home desserts" >
           <img/>
           <div className="overlay-home">
             <span>Postres</span>

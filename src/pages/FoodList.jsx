@@ -13,7 +13,7 @@ import { addFavouritesService, deleteFavouriteService, getFavouritesService, get
 const { Meta } = Card;
 
 function FoodList() {
-
+  
   const {toggleCart} = useContext(ThemeContext)
   const {isLoggedIn, cartProducts} = useContext(AuthContext)
 
@@ -32,7 +32,7 @@ function FoodList() {
     // Updates current displayed list
     setFoodToShow(filteredFood);
   };
-
+  
   useEffect(() => {
     handleFood(type);
   }, []);
@@ -45,6 +45,7 @@ function FoodList() {
       setFoodToShow(response.data)
       setFavourites(userFavourites.data.favourites)
       setIsFetching(false);
+      
     } catch (error) {
       console.log(error);
     }
@@ -60,8 +61,10 @@ function FoodList() {
     try {
       const addedProduct = await addFavouritesService(product)
       setFavourites([...favourites, addedProduct.data])
-      handleFood(type)
-
+      setTimeout( () => {
+        handleFood(type)
+      }, 300)
+      
     } catch(error) {
       console.log(error);
     }
@@ -78,7 +81,9 @@ function FoodList() {
         }
       })
       setFavourites(newArr)
-      handleFood(type)
+      setTimeout( () => {
+        handleFood(type)
+      }, 300)
 
     } catch(error) {
       console.log(error);
