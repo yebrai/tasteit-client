@@ -408,40 +408,27 @@ body {
   background-color: transparent!important
 }
 
-.ant-col {
-  width: 200px;
-  height: 300px;
-  margin: 20px;
-  text-align: center;
-}
 
 .ant-card {
-  width: 100%;
   height: 100%;
+  margin: 20px!important;
 }
 
-.ant-card span {
-  font-weight: bolder;
-}
 
 .ant-card h2 {
-  font-size: 26px;
+  font-size: 1.3rem;
   margin: 0 0 7px 0;
-}
-
-.ant-card img {
-  width: 100%;
-  height: 155px;
-  margin: 0
+  font-weight: 700;
 }
 
 .ant-card p {
   font-size: 16px;
-  margin: 0 auto 5px;
 }
 
 .ant-card-body {
   padding: 0 !important;
+  width: 200px;
+  text-align: center;
 }
 
 .card-link {
