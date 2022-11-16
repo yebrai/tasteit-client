@@ -107,19 +107,7 @@ body {
   background-color: rgb(253, 253, 253, .85);
 }
 
-.ant-spin-nested-loading {
-  background-color: rgb(253, 253, 253, .85);
-  margin: 0 0 20px 0;
-}
 
-.ant-comment-inner {
-  width: 100%;
-  margin: 0;
-}
-
-.ant-list {
-  width: 55%;
-}
 /* ends */
 
 .cart-back-heading {
@@ -306,10 +294,10 @@ body {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  height: 80vh;
   border: 1px;
   text-align: center;
   gap: 50px;
+  margin: 30px 0;
 }
 
 .table-container tr, td{

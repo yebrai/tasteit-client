@@ -7,8 +7,12 @@ import { Button } from "antd";
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { AuthContext } from "../context/auth.context";
 import { addShoppingCartService } from "../services/shoppingCart.services";
+import { ThemeContext } from "../context/theme.context";
+
 
 function Counter(props) {
+  const {toggleCart} = useContext(ThemeContext)
+
   // To update cart products when "añadir al carrito" button is pressed
   const {findCart} = useContext(AuthContext)
 
@@ -46,6 +50,11 @@ function Counter(props) {
       console.log(error);
     }
   }
+
+  const quickPurchase = () => {
+    addToCart()
+    toggleCart()
+  }
   //toast Message
   const success = () => toast(`${product.name} añadido al carrito`, {icon: '✔️'})
 
@@ -68,7 +77,7 @@ function Counter(props) {
 
       <div>
         <Button onClick={addToCart} style={{ margin: "0 10px 0 0" }}>Añadir al carrito</Button>
-        <Button style={{ margin: "0" }}>Comprar</Button>
+        <Button style={{ margin: "0" }} onClick={quickPurchase}>Comprar</Button>
       </div>
       <Toaster />
     </div>
