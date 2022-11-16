@@ -3,8 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import { Button, Card, Col, Row } from "antd";
 import SearchFood from "../components/SearchFood";
 
-import gifFood from "../assets/spinners/food-spinner.gif"
-
 // React icon
 import { FaShoppingCart, FaHeart, FaRegHeart } from "react-icons/fa";
 import ShoppingCart from "../components/ShoppingCart";
@@ -16,7 +14,7 @@ const { Meta } = Card;
 
 function FoodList() {
   
-  const {toggleCart} = useContext(ThemeContext)
+  const {toggleCart, loadingSpinner} = useContext(ThemeContext)
   const {isLoggedIn, cartProducts} = useContext(AuthContext)
 
   // Food category received from Home.jsx link
@@ -54,16 +52,7 @@ function FoodList() {
     }
   };
   
-  // Guard clause
-  if (isFetching === true) {
-    return (
-      <div className="spinner-container">
-    <h2 className="spinner-title">Taste It.</h2>
-    <img className="spinner" src={gifFood} alt="" />
-    </div>
-    );
-  }
-
+  
   // Adds a new favourite product to the current online user
   const addFavouriteToUser = async (product) => {
     try {
@@ -77,7 +66,7 @@ function FoodList() {
       console.log(error);
     }
   }
-
+  
   // Deletes a favourite product from the current online user
   const deleteFavourite = async (productId) => {
     try {
@@ -92,14 +81,19 @@ function FoodList() {
       setTimeout( () => {
         handleFood(type)
       }, 300)
-
+      
     } catch(error) {
       console.log(error);
     }
   }
+  
+  // Guard clause
+  if (isFetching) {
+      return loadingSpinner()
+  }
 
   return (
-    <div >
+    <div style={{backgroundColor: "linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8))!importante"}} >
       <SearchFood type={type} filterFood={filterFood} />
       <Row style={{ width: "100%", justifyContent: "center"}}>
         {foodToShow.map((eachProduct) => {

@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PurchaseModal from "../components/PurchaseModal";
 import { getPurchaseService } from "../services/purchase.services";
 
 import toast, { Toaster } from 'react-hot-toast';
 import { AuthContext } from "../context/auth.context";
 
+import { ThemeContext } from "../context/theme.context.js";
+
 function Purchases() {
   const [historyPurchases, setHistoryPurchases] = useState();
   const [isFetching, setIsFetching] = useState(true);
 
-  
+  const {loadingSpinner} = useContext(ThemeContext)
 
   useEffect(() => {
     purchaseHistory();
@@ -28,7 +30,9 @@ function Purchases() {
   };
 
   if (isFetching) {
-    return <p>...cargando</p>
+    if (isFetching) {
+      return loadingSpinner()
+  }
   }
 
   return (

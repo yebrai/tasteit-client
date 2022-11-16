@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { getUserService } from '../services/tasteit.services'
 import EditProfileModal from '../components/EditProfileModal';
 import { Link } from 'react-router-dom';
+import { ThemeContext } from '../context/theme.context';
 
 function Profile() {
+
+  const {loadingSpinner} = useContext(ThemeContext)
 
   const [user, setUser] = useState("")
   const [isFetching, setIsFetching] = useState(true)
@@ -22,7 +25,7 @@ function Profile() {
   }
 
   if (isFetching) {
-    return <p>...cargando</p>
+    return loadingSpinner()
   }
 
   return (

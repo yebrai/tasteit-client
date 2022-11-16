@@ -13,12 +13,13 @@ const { Meta } = Card;
 
 function Favourites() {
   // Context
-  const { toggleCart } = useContext(ThemeContext);
+  const { toggleCart, loadingSpinner } = useContext(ThemeContext);
   const { isLoggedIn, cartProducts } = useContext(AuthContext);
 
   // To manage list of favourite products
   const [list, setList] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
+  
 
   // When page is rendered
   useEffect(() => {
@@ -38,7 +39,7 @@ function Favourites() {
 
   // Guard clause
   if (isFetching === true) {
-    return <h3>loading...</h3>;
+    return loadingSpinner()
   }
 
   return (
