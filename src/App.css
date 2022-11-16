@@ -351,7 +351,6 @@ body {
   justify-content: space-between;
 }
 
-
 .modal-purchase-main thead{
   background: bisque;
 }
@@ -386,13 +385,20 @@ body {
   margin: 10px 0 0 0;
 }
 
-#favourites-wrapper h2 {
+#favourites-wrapper-title {
   font-size: 30px;
+}
+
+#favourites-btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 90%;
 }
 
 .ant-col {
   width: 200px;
-  height: 290px;
+  height: 300px;
   margin: 20px;
   text-align: center;
 }
@@ -400,6 +406,26 @@ body {
 .ant-card {
   width: 100%;
   height: 100%;
+}
+
+.ant-card span {
+  font-weight: bolder;
+}
+
+.ant-card h2 {
+  font-size: 26px;
+  margin: 0 0 7px 0;
+}
+
+.ant-card img {
+  width: 100%;
+  height: 155px;
+  margin: 0
+}
+
+.ant-card p {
+  font-size: 16px;
+  margin: 0 auto 5px;
 }
 
 .ant-card-body {
@@ -413,6 +439,7 @@ body {
 .card-link:hover {
   color: black;
 }
+
 
 @media (max-width: 600px) {
   .home-main-container {
