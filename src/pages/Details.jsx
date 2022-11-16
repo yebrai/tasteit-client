@@ -67,11 +67,10 @@ function Details() {
   let averageRateToShow = averageRate / productDetails.ratings.length;
   
   const handleRate = async (value) => {
-
     let newAverage = (averageRate + value) / (productDetails.ratings.length + 1)
-
+    console.log(value);
     try {
-      await addRatingService(value)
+      await addRatingService(productDetails._id, Number(value))
       setCurrentRate(newAverage)
       
     } catch(error) {
@@ -144,7 +143,7 @@ function Details() {
 
           {/* Rating buttons */}
           <div>
-            <Rate allowHalf className="ant-rate-text" style={{fontSize: "30px", backgroundColor: "grey"}} value={currentRate} defaultValue={averageRateToShow} onChange={(value) => handleRate(value)}/>
+            <Rate className="ant-rate-text" style={{fontSize: "30px", backgroundColor: "grey"}} value={currentRate} defaultValue={averageRateToShow} onChange={(value) => handleRate(value)} allowClear/>
           </div>
           
           <p>
