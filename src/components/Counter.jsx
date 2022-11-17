@@ -59,19 +59,10 @@ function Counter(props) {
   const success = () => toast(`${product.name} añadido al carrito`, {icon: '✔️'})
 
   return (
-    <div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-          alignItems: "center",
-          width: 200,
-        }}
-      >
-        <p>Cantidad:</p>
+    <div className="counter-quantity-container">
+      <div className="counter-quantity-buttons">
         <Button icon={<MinusOutlined />} onClick={reduceCounter}></Button>
-        <span>{counter}</span>
+        <p className="counter">{counter}</p>
         <Button icon={<PlusOutlined />} onClick={increaseCounter}></Button>
       </div>
 

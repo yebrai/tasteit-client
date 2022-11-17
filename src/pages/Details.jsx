@@ -97,7 +97,7 @@ function Details() {
   }
   
   return (
-    <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+    <div className="main-details-container">
     <Link onClick={()=> navigation(-1)} className="back-details-icon" to="/" >
       <IoArrowBackCircleSharp />
     </Link>
@@ -128,28 +128,16 @@ function Details() {
 
           {/* Rating buttons */}
           <div className="rate-star-container">
-            <Rate allowHalf className="ant-rate-text" style={{fontSize: "25px", margin: "2px 0 0 0"}} value={currentRate} onChange={(value) => handleRate(value)} allowClear/>
-            <p>({productDetails.ratings.length} valoraciones de usuarios)</p>
+            <Rate allowHalf className="ant-rate-text" style={{fontSize: "25px", margin: 0}} value={currentRate} onChange={(value) => handleRate(value)} allowClear/>
+            <p>({productDetails.ratings.length} valoraciones)</p>
           </div>
           
-          <p>
-            <span style={{ fontWeight: "bolder", fontSize: 22 }}>
-              Detalles:
-            </span>
-          </p>
-          <p>{productDetails.description}</p>
-          <p style={{ fontWeight: "bolder", fontSize: 40, color: "#229e6b", margin: 0}}>
-            {productDetails.price}€
-          </p>
-          <p>
-            <span style={{ fontWeight: "bolder" }}>Vendido en:</span>
-            {productDetails.location}
-          </p>
-          <p>
-            <span style={{ fontWeight: "bold" }}>Comercializado por:</span>
-            {productDetails.owner.name}
-          </p>
-          
+          <p className="details-secondary"><span className="details-sub-span">Localidad: </span>{productDetails.location}</p>
+          <p className="details-secondary"><span className="details-sub-span">Comercializado por: </span>{productDetails.owner.name}</p>
+          <p className="details-span">Detalles:</p>
+          <p className="details-description">{productDetails.description}</p>
+          <p className="details-price">{productDetails.price}€</p>
+
           <Counter product={productDetails}/>
 
         </div>
