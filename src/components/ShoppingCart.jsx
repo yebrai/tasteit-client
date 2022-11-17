@@ -5,6 +5,7 @@ import { AuthContext } from "../context/auth.context";
 import { useContext, useEffect } from "react";
 import {
   deleteShoppingCartService,
+  getShoppingCartService,
 } from "../services/shoppingCart.services";
 import { addPurchaseService } from "../services/purchase.services";
 import { Button, Divider } from "antd";
@@ -90,11 +91,7 @@ function ShoppingCart() {
             <div>
               <h1>Carrito vacío</h1>
               <h2>No tiene artículos en su cesta de la compra</h2>
-              <Button
-                type="primary"
-                icon={<ShoppingOutlined />}
-                onClick={toggleCart}
-              >
+              <Button icon={<ShoppingOutlined />} onClick={toggleCart}>
                 Seguir comprando
               </Button>
             </div>
@@ -140,10 +137,10 @@ function ShoppingCart() {
                   <h2>Total:</h2>
                   <h2>{totalPrice}€</h2>
                 </div>
-                  <CheckoutModal
-                    requestPurchase={requestPurchase}
-                    totalPrice={totalPrice}
-                  />
+                <CheckoutModal
+                  requestPurchase={requestPurchase}
+                  totalPrice={totalPrice}
+                />
               </div>
             </div>
           )}

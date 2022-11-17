@@ -13,8 +13,8 @@ const { Meta } = Card;
 
 function Favourites() {
   // Context
-  const { toggleCart, loadingSpinner } = useContext(ThemeContext);
-  const { isLoggedIn, cartProducts } = useContext(AuthContext);
+  const { toggleCart} = useContext(ThemeContext);
+  const { isLoggedIn, cartProducts, loadingSpinner  } = useContext(AuthContext);
 
   // To manage list of favourite products
   const [list, setList] = useState([]);

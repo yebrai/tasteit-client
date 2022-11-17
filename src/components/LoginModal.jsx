@@ -86,7 +86,7 @@ function LoginModal() {
       >
         <div>
           <Form>
-            <Item label="Email" >
+            <Item label="Email">
               <Input name="email" onChange={handleChange} />
             </Item>
             <Item label="Password">

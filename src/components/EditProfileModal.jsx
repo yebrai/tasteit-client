@@ -25,7 +25,7 @@ function EditProfileModal() {
     name: "",
     email: "",
     age: "",
-    password: ""
+    password: "",
   });
 
   //Form submit function
@@ -78,7 +78,6 @@ function EditProfileModal() {
     setEditProfileForm({ ...editProfileForm, [name]: value });
   };
 
-
   return (
     <>
       <button className="main-buttons edit-button" onClick={showModal}>
@@ -109,7 +108,7 @@ function EditProfileModal() {
             <Item label="Foto de perfil">
               <Input
                 type="file"
-                onChange={(event)=> setImage(event.target.files[0])}
+                onChange={(event) => setImage(event.target.files[0])}
               />
             </Item>
             {errorMessage !== "" && <p>{errorMessage}</p>}

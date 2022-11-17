@@ -1,13 +1,12 @@
 import { Modal } from "antd";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { deleteProductService } from "../services/tasteit.services";
 
 const { confirm } = Modal;
 
 function ProductDeletionModal(props) {
-
   // Redirect hook
   const navigate = useNavigate();
 
@@ -17,26 +16,26 @@ function ProductDeletionModal(props) {
   // To execute when "Sí" button in Modal is pressed
   const handleDeletion = async () => {
     try {
-      await deleteProductService(product._id)
+      await deleteProductService(product._id);
       setTimeout(() => {
-        navigate("/")
-      }, 1000)
-    } catch(error) {
+        navigate("/");
+      }, 1000);
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   // Confirmation Modal
   const showDeleteConfirm = () => {
     confirm({
-      title: 'Eliminar producto',
+      title: "Eliminar producto",
       icon: <ExclamationCircleOutlined />,
-      content: '¿Estás seguro/a de que deseas eliminar este producto?',
-      okText: 'Sí',
-      okType: 'danger',
-      cancelText: 'No',
+      content: "¿Estás seguro/a de que deseas eliminar este producto?",
+      okText: "Sí",
+      okType: "danger",
+      cancelText: "No",
       onOk() {
-        handleDeletion() // Function which deletes the current product id
+        handleDeletion(); // Function which deletes the current product id
       },
       onCancel() {},
     });
@@ -44,11 +43,14 @@ function ProductDeletionModal(props) {
 
   return (
     <>
-      <button className="main-buttons edit-button button-delete" onClick={showDeleteConfirm}>Eliminar producto</button>
+      <button
+        className="main-buttons edit-button button-delete"
+        onClick={showDeleteConfirm}
+      >
+        Eliminar producto
+      </button>
     </>
   );
 }
-
-
 
 export default ProductDeletionModal;

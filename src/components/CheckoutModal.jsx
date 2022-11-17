@@ -1,18 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Modal, Form } from "antd";
 import { useNavigate } from "react-router-dom";
 
-// stripe
-import {
-  CardElement,
-  useStripe,
-  useElements
-} from "@stripe/react-stripe-js";
+import creditImg from "../assets/credit-card.png";
 
-import { deleteAllShoppingCartService, sendStripePaymentService } from "../services/shoppingCart.services.js";
+import { AuthContext } from "../context/auth.context.js";
+
+// stripe
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+
+import {
+  deleteAllShoppingCartService,
+  sendStripePaymentService,
+} from "../services/shoppingCart.services.js";
 
 function CheckoutModal({ requestPurchase, totalPrice }) {
-  
+  const { user } = useContext(AuthContext);
 
   const stripe = useStripe(); // Stripe Hook which returns connection to stripe
   const elements = useElements(); // Stripe Hook which allows to access and manipulate stripe elements like <CardElement />
@@ -24,11 +27,10 @@ function CheckoutModal({ requestPurchase, totalPrice }) {
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
 
-  const handleSubmit = async(e) => {
-    e.prevent.default()
+  const handleSubmit = async (e) => {
+    console.log("wtf");
     setConfirmLoading(true);
 
-    
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement), // getElement gets CardElement input (the number)
@@ -44,13 +46,12 @@ function CheckoutModal({ requestPurchase, totalPrice }) {
           id,
           amount: totalPrice,
         });
-        await deleteAllShoppingCartService() // Remove the entire shoppingCart
+        await deleteAllShoppingCartService(); // Remove the entire shoppingCart
 
         elements.getElement(CardElement).clear();
-        requestPurchase()
+        requestPurchase();
         navigate("/purchases");
         setConfirmLoading(true);
-        
       } catch (error) {
         console.log(error);
       }
@@ -67,20 +68,43 @@ function CheckoutModal({ requestPurchase, totalPrice }) {
 
   return (
     <>
-      <Button type="primary" danger onClick={showModal}>
+      <button onClick={showModal}>
         Pagar
-      </Button>
+      </button>
       <Modal
         title="Realizar pago"
         open={open}
         onOk={handleSubmit}
+        okText="Realizar pago"
         confirmLoading={confirmLoading}
         onCancel={handleCancel}
         destroyOnClose
       >
-        <Form className="payForm" id="payment-form">
-          <label htmlFor=""></label>
-          <CardElement />
+        <Form>
+          <div className="payment-container">
+            <div className="payment-header">
+              <img src={creditImg} alt="" />
+              <div>
+                <h2>
+                  <b></b> Cargo de: <span>{totalPrice}€</span>
+                </h2>
+                <h3>
+                  <b>Solicitante:</b> <p>{user.name}</p>
+                </h3>
+              </div>
+            </div>
+            <div>
+              <p>Introduzca los datos de su tarjeta de credito:</p>
+              <div className="card-element">
+                <CardElement />
+              </div>
+              <select>
+                <option>Visa</option>
+                <option>Master Card</option>
+                <option>American Express</option>
+              </select>
+            </div>
+          </div>
         </Form>
       </Modal>
     </>
