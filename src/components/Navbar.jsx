@@ -31,7 +31,7 @@ function Navbar() {
   return (
     <div className="navbar-container-main">
       <div className="navbar-container">
-        <Link className="home-icon icons" to="/">
+        <Link className="home-icon icons" to="/home">
           <HomeOutlined />
         </Link>
 

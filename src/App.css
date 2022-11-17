@@ -243,15 +243,52 @@ body {
 }
 
 /* Product comments component */
+.comments-container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 1px 6px 3px #888888;
+  border: 1px solid rgba(107, 45, 9, 0.3);
+  margin: 0 auto 10px;
+  background-color: rgba(255,255,255, .8);
+}
+
 #comments-title {
   margin: 20px 0 0 0;
   font-size: 30px;
 }
 
-#comment-box {
-  width: 50%;
+.comment-box {
+  width: 80%;
   height: 130px;
-  background-color: rgb(253, 253, 253, .85);
+}
+
+.comment-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  padding: 20px;
+}
+
+.comment-btn-container {
+  width: 60vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.comment-btn-container button {
+  height: 25px;
+}
+
+.comment-user {
+  width: 85%;
+  border-radius: 5px;
+  padding: 2px;
+  border: 1px solid rgba(0, 0, 0, .3)
 }
 
 

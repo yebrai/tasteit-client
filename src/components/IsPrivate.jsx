@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import {Navigate} from "react-router-dom"
+import {Navigate} from "react-router-dom";
 
 function IsPrivate(props) {
   const { isLoggedIn } = useContext(AuthContext);
@@ -11,7 +11,7 @@ function IsPrivate(props) {
     
   } else {
     // Navigate instead of navigate, because IsPrivate component always must return a JSX component
-    return <Navigate to="/"/>
+    return <Navigate to="/home"/>
   }
 }
 

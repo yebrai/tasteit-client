@@ -1,18 +1,34 @@
 import { Avatar, Button, Comment, Form, Input, List } from "antd";
-import moment from "moment";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import { addCommentService, getCommentService } from "../services/tasteit.services";
+
+// Antd
+import IsOwner from "./IsOwner";
+import CommentDeletionModal from "./CommentDeletionModal";
 
 const { TextArea } = Input;
 
 // Comments list: ({ comments }) is props.comments
 const CommentList = ({ comments }) => (
+
   <List
+    className="comment-list"
     dataSource={comments}
     header={`${comments.length} ${comments.length > 1 ? "reseñas" : "reseña"}`}
     itemLayout="horizontal"
-    renderItem={(props) => <Comment {...props} />}
+    renderItem={(props) => {
+    return (
+      <div className="comment-btn-container">
+        <Comment {...props} className="comment-user"/>
+        
+        {/* Checks if product owner is the same as current online user */}
+        <IsOwner owner={props.user}>
+          <CommentDeletionModal comment={props}/>
+        </IsOwner>
+      </div>
+      )
+    }}
   />
 );
 
@@ -60,7 +76,7 @@ function AddComment(props) {
 
   useEffect(() => {
     handleComments();
-  }, [product._id]);
+  }, [product._id, comments]);
  
   const handleComments = async () => {
     try {
@@ -69,7 +85,9 @@ function AddComment(props) {
       let modifiedCommentsList = [];
       // Array copy from commentsList with fields adapted to the required Ant design comment format (author, avatar, content, datetime)
       commentsList.data.forEach(eachComment => {
-        modifiedCommentsList.push({
+        modifiedCommentsList.unshift({
+          _id: eachComment._id,
+          user: eachComment.user._id,
           author: eachComment.user.name,
           avatar: eachComment.user.profileImage,
           content: eachComment.message,
@@ -79,7 +97,7 @@ function AddComment(props) {
           }).format(new Date(eachComment.createdAt))
         })
       })
-
+      
       setComments(modifiedCommentsList)
       setIsFetching(false);
 
@@ -118,7 +136,7 @@ function AddComment(props) {
   };
 
   return (
-    <>
+    <div className="comments-container">
       <h2 id="comments-title">Reseñas de los usuarios en TasteIt</h2>
       <Comment
         avatar={
@@ -132,13 +150,12 @@ function AddComment(props) {
             value={value}
           />
         }
-        
-        id="comment-box"
+        className="comment-box"
       />
 
       {/* If comments list contains at least a comment, show it */}
       {comments.length > 0 && <CommentList comments={comments} />}
-    </>
+    </div>
   );
 }
 

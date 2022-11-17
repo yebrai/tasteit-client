@@ -15,6 +15,7 @@ import {
   getProductTypeService,
 } from "../services/tasteit.services";
 
+
 const { Meta } = Card;
 
 function FoodList() {
@@ -46,11 +47,13 @@ function FoodList() {
   const handleFood = async (type) => {
     try {
       const response = await getProductTypeService(type);
-      const userFavourites = await getFavouritesService();
-      
       setList(response.data);
       setFoodToShow(response.data);
-      setFavourites(userFavourites.data.favourites);
+
+      if (isLoggedIn) {
+        const userFavourites = await getFavouritesService();
+        setFavourites(userFavourites.data.favourites);
+      }
       setIsFetching(false);
     } catch (error) {
       console.log(error);
@@ -88,7 +91,7 @@ function FoodList() {
       console.log(error);
     }
   };
-
+  
   // Guard clause
   if (isFetching) {
     return loadingSpinner();
@@ -97,37 +100,42 @@ function FoodList() {
   return (
     <div className="cards-list-main">
       <SearchFood type={type} filterFood={filterFood} />
-        <div className="cards-list-container">
+        <div className="cards-list-container" >
       <Row justify={"center"}>
         {foodToShow.map((eachProduct) => {
           return (
             <Col key={eachProduct._id}>
               <Card hoverable>
-                <Link to={`/${eachProduct._id}/details`} className="card-link">
-                  <Meta />
-                  <img alt={eachProduct.name} src={eachProduct.image} className="card-images" />
-                  <h2>{eachProduct.name}</h2>
-                  <p><span>Precio:</span> {eachProduct.price}€</p>
-                  <p ><span >Localidad:</span>{eachProduct.location}</p>
-                </Link>
-
-                <div className="list-fav-icons">
-                  {favourites.includes(eachProduct._id) ? (
-                    <Button
-                      className="icons-like"
-                      type="text"
-                      icon={<FaHeart style={{ color: "red" }} size="20px"/>}
-                      onClick={() => deleteFavourite(eachProduct._id)}
-                    ></Button>
-                  ) : (
-                    <Button
-                      className="icons-like"
-                      type="text"
-                      icon={<FaRegHeart style={{ color: "red" }} size="20px" />}
-                      onClick={() => addFavouriteToUser(eachProduct)}
-                    ></Button>
-                  )}
-                </div>
+                
+                  <Link to={isLoggedIn ? `/${eachProduct._id}/details` : `/${type}/products`} className="card-link">
+                    <Meta />
+                    <img alt={eachProduct.name} src={eachProduct.image} className="card-images" />
+                    <h2>{eachProduct.name}</h2>
+                    <p><span>Precio:</span> {eachProduct.price}€</p>
+                    <p ><span >Localidad:</span>{eachProduct.location}</p>
+                  </Link>
+                  
+                  
+                  {isLoggedIn 
+                  ? <div className="list-fav-icons">
+                    {favourites.includes(eachProduct._id) ? (
+                      <Button
+                        className="icons-like"
+                        type="text"
+                        icon={<FaHeart style={{ color: "red" }} size="20px"/>}
+                        onClick={() => deleteFavourite(eachProduct._id)}
+                      ></Button>
+                    ) : (
+                      <Button
+                        className="icons-like"
+                        type="text"
+                        icon={<FaRegHeart style={{ color: "red" }} size="20px" />}
+                        onClick={() => addFavouriteToUser(eachProduct)}
+                      ></Button>
+                    )}
+                  </div>
+                  : null}
+                  
               </Card>
             </Col>
           );
