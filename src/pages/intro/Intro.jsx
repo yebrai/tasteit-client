@@ -6,15 +6,17 @@ import step3 from "./step-3.png";
 import step4 from "./step-4.png";
 import emmaImg from "./emma.png";
 import jhonImg from "./john.png";
-import juliaImg from "./julia.png";
+import silviaImg from "./silvia.png";
 import valoracion from "./estrella.png";
+import linkedin from "./in.png";
+import github from "./git.png";
 
 function Intro() {
   return (
-    <div>
+    <div className="intro">
       <section className="section-main">
         <section className="intro-start-container intro-section-container one">
-          <div>
+          <div className="main-head">
             <h1>Taste It!</h1>
             <p>
               Con esta app podras tanto pedir como vender tus propios platos!
@@ -46,13 +48,13 @@ function Intro() {
         </section>
         <section className="intro-footer-container intro-section-container three">
           <section className="users-valoration">
-            <div>
+            <div className="top-footer-title">
               <h1>Valoraciones de nuestros usuarios</h1>
             </div>
             <div className="valoration-container">
               <div>
                 <img className="userImg" src={emmaImg} alt="" />
-                <h3>Emma</h3>
+                <h2>Emma</h2>
                 <div className="valoration">
                   <img src={valoracion} alt="" />
                   <img src={valoracion} alt="" />
@@ -64,7 +66,7 @@ function Intro() {
               </div>
               <div>
                 <img className="userImg" src={jhonImg} alt="" />
-                <h3>John Doe</h3>
+                <h2>John Doe</h2>
                 <div className="valoration">
                   <img src={valoracion} alt="" />
                   <img src={valoracion} alt="" />
@@ -75,8 +77,8 @@ function Intro() {
                 </div>
               </div>
               <div>
-                <img className="userImg" src={juliaImg} alt="" />
-                <h3>Julia</h3>
+                <img className="userImg" src={silviaImg} alt="" />
+                <h2>Silvia</h2>
                 <div className="valoration">
                   <img src={valoracion} alt="" />
                   <img src={valoracion} alt="" />
@@ -90,28 +92,31 @@ function Intro() {
           </section>
           <footer>
             <div className="developers-container">
-            <h2>Desarrolladores</h2>
-            <div>
-              <img src="" alt="" />
-              <a href="">Ivan Garcia Yebra</a>
-              <img src="" alt="" />
+              <h4 className="header-footer">Desarrolladores</h4>
+              <div>
+                <img src={linkedin} alt="" />
+                <p>Ivan Garcia Yebra</p>
+                <img src={github} alt="" />
+              </div>
+              <div>
+                <img src={linkedin} alt="" />
+                <p>Borja Cabello Luna</p>
+                <img src={github} alt="" />
+              </div>
             </div>
             <div>
-              <img src="" alt="" />
-              <a href="">Borja Cabello Luna</a>
-            </div>
-            </div>
-            <div>
-              <h3>Contactanos</h3>
+              <h4 className="header-footer">Contactanos</h4>
               <div>
                 <img src="" alt="" />
-                <p></p>
-                <img src="" alt="" />
+                <p>support@tasteit.com</p>
               </div>
-              <div></div>
+              <div>
+                <img src="" alt="" />
+                <p>+34 611 11 11 11</p>
+              </div>
             </div>
-            <p>© Copyright Taste it 2022</p>
           </footer>
+            <p>© Copyright Taste it 2022</p>
         </section>
       </section>
     </div>
