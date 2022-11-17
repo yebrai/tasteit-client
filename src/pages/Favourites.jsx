@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import { ThemeContext } from "../context/theme.context";
 import { Link } from "react-router-dom";
-import { Card, Col, Row } from "antd";
+import { Button, Card, Col, Row } from "antd";
 
 // Shopping Cart
-import { FaShoppingCart } from "react-icons/fa";
+import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import ShoppingCart from "../components/ShoppingCart";
-import { getMyFavouritesService } from "../services/tasteit.services";
+import { deleteFavouriteService, getMyFavouritesService } from "../services/tasteit.services";
 
 const { Meta } = Card;
 
@@ -30,8 +30,27 @@ function Favourites() {
     try {
       const response = await getMyFavouritesService();
       setList(response.data.favourites);
-      console.log(response.data.favourites)
       setIsFetching(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Deletes a favourite product from the current online user
+  const deleteFavourite = async (productId) => {
+    try {
+      await deleteFavouriteService(productId);
+      const newArr = [];
+      list.forEach((eachProduct) => {
+        if (eachProduct._id !== productId) {
+          newArr.push(eachProduct);
+        }
+      });
+      setList(newArr);
+      setTimeout(() => {
+        handleMyFavourites();
+      }, 300);
+
     } catch (error) {
       console.log(error);
     }
@@ -57,6 +76,14 @@ function Favourites() {
                   <p><span>Precio:</span> {eachProduct.price}€</p>
                   <p><span>Localidad:</span> {eachProduct.location}</p>
                 </Link>
+                <div className="icon-heart-btn-container">
+                  <Button
+                    className="icons-like"
+                    type="text"
+                    icon={<FaHeart style={{ color: "red"}} size="20px"/>}
+                    onClick={() => deleteFavourite(eachProduct._id)}
+                  ></Button>
+                </div>
               </Card>
             </Col>
           );

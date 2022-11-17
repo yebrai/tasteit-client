@@ -22,7 +22,6 @@ function Details() {
 
   const navigation = useNavigate()
 
-
   // Selected product
   const { productId } = useParams();
 
@@ -90,7 +89,6 @@ function Details() {
       
       setCurrentRate(newAverage)
       
-      
     } catch(error) {
       console.log(error)
     }
@@ -98,12 +96,11 @@ function Details() {
   
   return (
     <div className="main-details-container">
-    <Link onClick={()=> navigation(-1)} className="back-details-icon" to="/" >
-      <IoArrowBackCircleSharp />
-    </Link>
-      <Divider className="details-divider"
-        
-      >
+      <Link onClick={()=> navigation(-1)} className="back-details-icon" to="/" >
+        <IoArrowBackCircleSharp />
+      </Link>
+
+      <Divider className="details-divider">
         {productDetails.category === "foods"
           ? "Comidas"
           : productDetails.category === "desserts"
@@ -136,12 +133,13 @@ function Details() {
           <p className="details-secondary"><span className="details-sub-span">Comercializado por: </span>{productDetails.owner.name}</p>
           <p className="details-span">Detalles:</p>
           <p className="details-description">{productDetails.description}</p>
-          <p className="details-price">{productDetails.price}€</p>
 
-          <Counter product={productDetails}/>
+          <div className="counter-price-wrapper">
+            <p className="details-price">{productDetails.price}€</p>
+            <Counter product={productDetails}/>
+          </div>
 
         </div>
-        
       </div>
 
       {isLoggedIn && 
