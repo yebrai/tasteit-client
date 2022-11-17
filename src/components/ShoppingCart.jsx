@@ -71,8 +71,8 @@ function ShoppingCart() {
   let totalPrice = subtotalProductsPrice + shippingCosts;
 
   return (
-    <div style={renderCartWrapper()}>
-      <div style={renderCart()}>
+    <div style={renderCartWrapper()} >
+      <div style={renderCart()} className="shopping-container-main">
         <div className="shopping-card-container">
           <button
             type="button"
@@ -98,67 +98,29 @@ function ShoppingCart() {
               </Button>
             </div>
           ) : (
-            <div
-              style={{
-                padding: 20,
-                height: "90%",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-              }}
-            >
+            <div className="cart-main-container">
               <div>
                 {cartProductsToShow.map((eachProduct) => {
                   return (
-                    <div
+                    <div className="cart-container"
                       key={eachProduct._id}
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        width: "100%",
-                        margin: "40px 0",
-                        fontSize: 20,
-                        border: "1px solid lightgray",
-                        padding: 5,
-                        borderRadius: 5,
-                      }}
                     >
                       <img
                         src={eachProduct.image}
                         alt={eachProduct.name}
-                        style={{ width: 60, height: 50, borderRadius: 2 }}
                       />
-                      <div
-                        style={{
-                          width: "100%",
-                          padding: 6,
-                          display: "flex",
-                          flexDirection: "column",
-                          margin: "0 0 0 10px",
-                        }}
+                      <div className="product-cart-container"
                       >
-                        <div
-                          style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            justifyContent: "space-between",
-                          }}
+                        <div className="product-cart-details"
                         >
-                          <p style={{ margin: 0 }}>{eachProduct.name}</p>
-                          <p style={{ margin: 0, fontWeight: "bolder" }}>
+                          <p >{eachProduct.name}</p>
+                          <p>
                             {eachProduct.price} €
                           </p>
                         </div>
-                        <div
-                          style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            justifyContent: "space-between",
-                          }}
+                        <div className="product-cart-details"
                         >
-                          <p style={{ margin: 0 }}>
+                          <p className="quantity-cart-text">
                             Cantidad: {eachProduct.quantity}
                           </p>
                           <Button
@@ -172,35 +134,19 @@ function ShoppingCart() {
                   );
                 })}
               </div>
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                  }}
-                >
+              <div className="price-cart-container">
+                <div className="product-cart-details">
                   <h3>Subtotal:</h3>
                   <h3>{subtotalProductsPrice}€</h3>
                 </div>
-                <Divider style={{ margin: 0 }}></Divider>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                  }}
+                <Divider className="divider-cart"></Divider>
+                <div className="product-cart-details"
                 >
                   <h3>Gastos de envío:</h3>
                   <h3>{shippingCosts}€</h3>
                 </div>
-                <Divider style={{ margin: 0 }}></Divider>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                  }}
+                <Divider className="divider-cart"></Divider>
+                <div className="product-cart-details"
                 >
                   <h2>Total:</h2>
                   <h2>{totalPrice}€</h2>
