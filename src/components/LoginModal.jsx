@@ -34,12 +34,14 @@ function LoginModal() {
       const response = await loginService(loginForm);
       // Store Token in browser local storage
       localStorage.setItem("authToken", response.data.authToken);
+
       setConfirmLoading(true);
       setTimeout(() => {
         setOpen(false);
         setConfirmLoading(false);
         authenticateUser();
       }, 1000);
+      
     } catch (error) {
       if (error.response && error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);
@@ -60,6 +62,7 @@ function LoginModal() {
 
   const handleCancel = () => {
     setOpen(false);
+    setErrorMessage("")
   };
 
   const handleChange = (event) => {

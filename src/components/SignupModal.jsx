@@ -64,6 +64,7 @@ function SignupModal() {
 
   const handleCancel = () => {
     setOpen(false);
+    setErrorMessage("")
   };
 
   const handleChange = (event) => {

@@ -2,15 +2,12 @@ import { FaBackward } from "react-icons/fa";
 
 //Context
 import { AuthContext } from "../context/auth.context";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import {
   deleteShoppingCartService,
 } from "../services/shoppingCart.services";
 import { addPurchaseService } from "../services/purchase.services";
 import { Button, Divider } from "antd";
-
-// Stripe
-import { Elements } from "@stripe/react-stripe-js";
 
 // Antd
 import { CloseCircleFilled, ShoppingOutlined } from "@ant-design/icons";
@@ -70,16 +67,6 @@ function ShoppingCart() {
 
     subtotalProductsPrice += eachProduct.price;
   });
-
-  // Stripe 
-  const appearance = {
-    theme: "stripe",
-  };
-
-  const options = {
-    appearance,
-  };
-
 
   // Total price
   let totalPrice = subtotalProductsPrice + shippingCosts;
@@ -153,12 +140,10 @@ function ShoppingCart() {
                   <h2>Total:</h2>
                   <h2>{totalPrice}€</h2>
                 </div>
-                <Elements options={options}>
                   <CheckoutModal
                     requestPurchase={requestPurchase}
                     totalPrice={totalPrice}
                   />
-                </Elements>
               </div>
             </div>
           )}
