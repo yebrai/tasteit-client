@@ -1,0 +1,31 @@
+
+
+.intro-section-container {
+    width: 80%;
+    height: 91vh;
+    background-color: grey;
+    font-size: 4rem;
+}
+.intro-section-container2 {
+    width: 80%;
+    height: 91vh;;
+    background-color: burlywood;
+}
+.intro-section-container3 {
+    width: 80%;
+    height: 91vh;
+    background-color: grey;
+}
+.intro-section-container4 {
+    width: 80%;
+    height: 91vh;
+    background-color: burlywood;
+}
+
+.section-main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 40px auto;
+
+}
