@@ -10,8 +10,9 @@ import CommentDeletionModal from "./CommentDeletionModal";
 const { TextArea } = Input;
 
 // Comments list: ({ comments }) is props.comments
-const CommentList = ({ comments }) => (
+const CommentList = ({ comments, setIsDeleted }) => {
 
+  return (
   <List
     className="comment-list"
     dataSource={comments}
@@ -24,13 +25,13 @@ const CommentList = ({ comments }) => (
         
         {/* Checks if product owner is the same as current online user */}
         <IsOwner owner={props.user}>
-          <CommentDeletionModal comment={props}/>
+          <CommentDeletionModal comment={props} setIsDeleted={setIsDeleted}/>
         </IsOwner>
       </div>
       )
     }}
   />
-);
+)}
 
 // Comment editor: { onChange, onSubmit, submitting, value } are the destructured props from below in the page
 const Editor = ({ onChange, onSubmit, submitting, value }) => (
@@ -50,6 +51,7 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
   </>
 );
 
+
 // Main function
 function AddComment(props) {
 
@@ -62,6 +64,9 @@ function AddComment(props) {
   // Comments list
   const [comments, setComments] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
+
+  // To check if a comment has been deleted or not
+  const [isDeleted, setIsDeleted] = useState(false)
 
   // Submitting state
   const [submitting, setSubmitting] = useState(false);
@@ -76,8 +81,8 @@ function AddComment(props) {
 
   useEffect(() => {
     handleComments();
-  }, [product._id, comments]);
- 
+  }, [product._id, isDeleted]);
+
   const handleComments = async () => {
     try {
       let commentsList = await getCommentService(product._id)
@@ -100,6 +105,7 @@ function AddComment(props) {
       
       setComments(modifiedCommentsList)
       setIsFetching(false);
+      setIsDeleted(false)
 
     } catch (error) {
       console.log(error);
@@ -154,7 +160,7 @@ function AddComment(props) {
       />
 
       {/* If comments list contains at least a comment, show it */}
-      {comments.length > 0 && <CommentList comments={comments} />}
+      {comments.length > 0 && <CommentList comments={comments} setIsDeleted={setIsDeleted}/>}
     </div>
   );
 }

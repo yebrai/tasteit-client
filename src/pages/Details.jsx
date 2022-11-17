@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import ProductEditModal from "../components/ProductEditModal";
 import {
   addRatingService,
+  getAllCommentsService,
   getProductDetailsService,
   getProductsService,
 } from "../services/tasteit.services";
@@ -20,6 +21,7 @@ import { ThemeContext } from "../context/theme.context.js";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 import toast from "react-hot-toast";
 import { Divider, Rate } from "antd";
+import LoginModal from "../components/LoginModal";
 
 function Details() {
   const navigation = useNavigate();
@@ -60,6 +62,7 @@ function Details() {
 
       setCurrentRate(averageRateToShow);
       setAllProducts(allResponse.data);
+
       setIsFetching(false);
     } catch (error) {
       console.log(error);
