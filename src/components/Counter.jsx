@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-
+import React, { useContext, useEffect, useState } from "react";
 import toast, { Toaster } from 'react-hot-toast';
 
 // Antd
@@ -20,6 +19,11 @@ function Counter(props) {
   const [counter, setCounter] = useState(1);
   const {product} = props
 
+  // Set counter to 1 every time a new product details page is rendered
+  useEffect(() => {
+    setCounter(1)
+  }, [product._id])
+
   // Increment counter
   const increaseCounter = () => {
     setCounter(counter + 1);
@@ -32,6 +36,7 @@ function Counter(props) {
     }
   };
 
+  // Products to add to the cart
   let totalProducts = []
 
   // Add quantity of product to the cart
@@ -51,11 +56,13 @@ function Counter(props) {
     }
   }
 
+  // Add selected product quantity to the cart and opens the cart
   const quickPurchase = () => {
     addToCart()
     toggleCart()
   }
-  //toast Message
+
+  // Toast Message
   const success = () => toast(`${product.name} añadido al carrito`, {icon: '✔️'})
 
   return (

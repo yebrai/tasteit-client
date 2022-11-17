@@ -105,15 +105,10 @@ function FoodList() {
               <Card hoverable>
                 <Link to={`/${eachProduct._id}/details`} className="card-link">
                   <Meta />
-                  <img alt="example" src={eachProduct.image} className="card-images" />
+                  <img alt={eachProduct.name} src={eachProduct.image} className="card-images" />
                   <h2>{eachProduct.name}</h2>
-                  <p>
-                    <span>Precio:</span> {eachProduct.price}€
-                  </p>
-                  <p >
-                    <span >Localidad:</span>{" "}
-                    {eachProduct.location}
-                  </p>
+                  <p><span>Precio:</span> {eachProduct.price}€</p>
+                  <p ><span >Localidad:</span>{eachProduct.location}</p>
                 </Link>
 
                 <div className="list-fav-icons">
@@ -121,14 +116,14 @@ function FoodList() {
                     <Button
                       className="icons-like"
                       type="text"
-                      icon={<FaHeart style={{ color: "red" }} />}
+                      icon={<FaHeart style={{ color: "red" }} size="20px"/>}
                       onClick={() => deleteFavourite(eachProduct._id)}
                     ></Button>
                   ) : (
                     <Button
                       className="icons-like"
                       type="text"
-                      icon={<FaRegHeart style={{ color: "red" }} />}
+                      icon={<FaRegHeart style={{ color: "red" }} size="20px" />}
                       onClick={() => addFavouriteToUser(eachProduct)}
                     ></Button>
                   )}
@@ -138,7 +133,7 @@ function FoodList() {
           );
         })}
       </Row>
-                  </div>
+      </div>
       {isLoggedIn && (
         <button onClick={toggleCart} className="cart-button">
           <FaShoppingCart size="2em" />

@@ -5,7 +5,6 @@ import { AuthContext } from "../context/auth.context";
 import { useContext, useEffect, useState } from "react";
 import {
   deleteShoppingCartService,
-  getShoppingCartService,
 } from "../services/shoppingCart.services";
 import { addPurchaseService } from "../services/purchase.services";
 import { Button, Divider } from "antd";
@@ -206,7 +205,7 @@ function ShoppingCart() {
                   <h2>Total:</h2>
                   <h2>{totalPrice}€</h2>
                 </div>
-                  <CheckoutModal requestPurchase={requestPurchase} />
+                <CheckoutModal requestPurchase={requestPurchase} />
               </div>
             </div>
           )}
