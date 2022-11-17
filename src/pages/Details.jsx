@@ -15,7 +15,7 @@ import { AuthContext } from "../context/auth.context";
 import { ThemeContext} from "../context/theme.context.js"
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 import toast from 'react-hot-toast';
-import { Button, Rate } from "antd";
+import { Button, Divider, Rate } from "antd";
 
 
 function Details() {
@@ -97,11 +97,13 @@ function Details() {
   }
   
   return (
-    <div className="main-details-container">
-      <Link onClick={()=> navigation(-1)} className="back-details-icon" to="/" >
-        <IoArrowBackCircleSharp />
-      </Link>
-      <h2 className="main-details-title">
+    <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+    <Link onClick={()=> navigation(-1)} className="back-details-icon" to="/" >
+      <IoArrowBackCircleSharp />
+    </Link>
+      <Divider className="details-divider"
+        
+      >
         {productDetails.category === "foods"
           ? "Comidas"
           : productDetails.category === "desserts"
@@ -109,7 +111,7 @@ function Details() {
           : productDetails.category === "drinks"
           ? "Bebidas"
           : null}
-      </h2>
+      </Divider>
 
       {/* Checks if product owner is the same as current online user */}
       <IsOwner owner={productDetails.owner._id}>

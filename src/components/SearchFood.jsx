@@ -22,7 +22,7 @@ function SearchFood(props) {
       <label htmlFor='query'></label>
       <Input prefix={<SearchOutlined />} placeholder="Buscar" value={search} type="text" name="query" onChange={handleSearch} style={{width: "60%", borderRadius: "10px"}}/>
 
-      <Divider>
+      <Divider className="divider">
         {type === "foods"
         ? "Comidas"
         : type === "desserts"
