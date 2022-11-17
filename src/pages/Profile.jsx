@@ -36,8 +36,8 @@ function Profile() {
       <p>Edad: {user.age}</p>
       <p>Tipo: {user.role}</p>
       <EditProfileModal />
-      <Link to="/purchases">Historial de compras</Link>
-      <Link to="/my-favourites">Mis favoritos</Link>
+      <Link className='link-profile' to="/purchases">Historial de compras</Link>
+      <Link className='link-profile' to="/my-favourites">Mis favoritos</Link>
     </div>
   )
 }

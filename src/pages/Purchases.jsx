@@ -21,7 +21,11 @@ function Purchases() {
     
     try {
       const response = await getPurchaseService();
-      setHistoryPurchases(response.data);
+      const copyResponse = [...response.data]
+      copyResponse.sort((b, a) => {
+        return a - b
+      })
+      setHistoryPurchases(copyResponse);
       console.log()
       setIsFetching(false)
     } catch (error) {

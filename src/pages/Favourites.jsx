@@ -52,7 +52,7 @@ function Favourites() {
               <Card hoverable>
                 <Link to={`/${eachProduct._id}/details`} className="card-link">
                   <Meta/>
-                  <img alt={eachProduct.name} src={eachProduct.image} />
+                  <img className="card-images" alt={eachProduct.name} src={eachProduct.image} />
                   <h2>{eachProduct.name}</h2>
                   <p><span>Precio:</span> {eachProduct.price}€</p>
                   <p><span>Localidad:</span> {eachProduct.location}</p>

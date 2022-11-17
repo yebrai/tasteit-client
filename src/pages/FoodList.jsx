@@ -105,7 +105,7 @@ function FoodList() {
               <Card hoverable>
                 <Link to={`/${eachProduct._id}/details`} className="card-link">
                   <Meta />
-                  <img alt="example" src={eachProduct.image} style={{width: "200px", height:"180px"}} />
+                  <img alt="example" src={eachProduct.image} className="card-images" />
                   <h2>{eachProduct.name}</h2>
                   <p>
                     <span>Precio:</span> {eachProduct.price}€

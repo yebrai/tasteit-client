@@ -1,4 +1,4 @@
-import { Button, Modal } from "antd";
+import { Modal } from "antd";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ExclamationCircleOutlined } from '@ant-design/icons';
@@ -44,7 +44,7 @@ function ProductDeletionModal(props) {
 
   return (
     <>
-      <Button onClick={showDeleteConfirm}>Eliminar producto</Button>
+      <button className="main-buttons edit-button button-delete" onClick={showDeleteConfirm}>Eliminar producto</button>
     </>
   );
 }

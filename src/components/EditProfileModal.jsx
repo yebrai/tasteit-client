@@ -81,9 +81,9 @@ function EditProfileModal() {
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
+      <button className="main-buttons edit-button" onClick={showModal}>
         Editar Perfil
-      </Button>
+      </button>
       <Modal
         title="Editar perfil"
         open={open}

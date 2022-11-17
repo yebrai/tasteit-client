@@ -70,9 +70,9 @@ function LoginModal() {
   // Render
   return (
     <>
-      <Button type="primary" onClick={showModal}>
+      <button className="main-buttons" onClick={showModal}>
         Iniciar Sesión
-      </Button>
+      </button>
       <Modal
         title="Iniciar Sesión"
         open={open}
