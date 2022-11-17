@@ -99,7 +99,9 @@ function FoodList() {
 
   return (
     <div className="cards-list-main">
+    <div className="searcher-list">
       <SearchFood type={type} filterFood={filterFood} />
+      </div>
         <div className="cards-list-container" >
       <Row justify={"center"}>
         {foodToShow.map((eachProduct) => {
