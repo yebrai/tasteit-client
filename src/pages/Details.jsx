@@ -1,12 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ProductEditModal from "../components/ProductEditModal";
-import {
-  addRatingService,
-  getAllCommentsService,
-  getProductDetailsService,
-  getProductsService,
-} from "../services/tasteit.services";
+import { addRatingService, getProductDetailsService, getProductsService } from "../services/tasteit.services";
 import IsOwner from "../components/IsOwner";
 import ProductDeletionModal from "../components/ProductDeletionModal";
 import AddComment from "../components/AddComment";
@@ -21,10 +16,10 @@ import { ThemeContext } from "../context/theme.context.js";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 import toast from "react-hot-toast";
 import { Divider, Rate } from "antd";
-import LoginModal from "../components/LoginModal";
 
 function Details() {
   const navigation = useNavigate();
+  const navigate = useNavigate();
 
   // Selected product
   const { productId } = useParams();
@@ -65,7 +60,7 @@ function Details() {
 
       setIsFetching(false);
     } catch (error) {
-      console.log(error);
+      navigate("/error")
     }
   };
 
@@ -97,7 +92,7 @@ function Details() {
 
       setCurrentRate(newAverage);
     } catch (error) {
-      console.log(error);
+      navigate("/error")
     }
   };
 

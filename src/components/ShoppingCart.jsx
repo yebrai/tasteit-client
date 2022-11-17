@@ -3,10 +3,8 @@ import { FaBackward } from "react-icons/fa";
 //Context
 import { AuthContext } from "../context/auth.context";
 import { useContext, useEffect } from "react";
-import {
-  deleteShoppingCartService,
-  getShoppingCartService,
-} from "../services/shoppingCart.services";
+import { useNavigate } from "react-router-dom";
+import { deleteShoppingCartService } from "../services/shoppingCart.services";
 import { addPurchaseService } from "../services/purchase.services";
 import { Button, Divider } from "antd";
 
@@ -18,8 +16,8 @@ import CheckoutModal from "./CheckoutModal";
 function ShoppingCart() {
   // Context
   const { cartProducts, findCart } = useContext(AuthContext);
-  const { renderCart, toggleCart, renderCartWrapper } =
-    useContext(ThemeContext);
+  const { renderCart, toggleCart, renderCartWrapper } = useContext(ThemeContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     findCart();
@@ -31,7 +29,7 @@ function ShoppingCart() {
       await deleteShoppingCartService(productId);
       findCart();
     } catch (error) {
-      console.log(error);
+      navigate("/error")
     }
   };
 
@@ -39,7 +37,7 @@ function ShoppingCart() {
     try {
       await addPurchaseService(cartProducts);
     } catch (error) {
-      console.log(error);
+      navigate("/error")
     }
   };
 

@@ -56,10 +56,6 @@ const getCommentService = (productId) => {
   return service.get(`/comment/${productId}`)
 }
 
-const getAllCommentsService = () => {
-  return service.get(`/comment`)
-}
-
 const deleteCommentService = (commentId) => {
   return service.delete(`/comment/${commentId}`)
 }
@@ -81,7 +77,6 @@ const addRatingService = (productId, newRate) => {
     getProductDetailsService,
     editProductService,
     deleteProductService,
-    getAllCommentsService,
     addCommentService,
     getCommentService,
     deleteCommentService,

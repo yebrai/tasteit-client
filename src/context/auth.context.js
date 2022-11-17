@@ -17,7 +17,7 @@ function AuthWrapper(props) {
   // Shopping cart items
   const [cartProducts, setCartProducts] = useState([])
 
-  //componentDidMount for all app
+  // ComponentDidMount for all app
   useEffect(() => {
     authenticateUser()
   }, []) 
@@ -25,10 +25,8 @@ function AuthWrapper(props) {
   const authenticateUser = async () => {
     setIsFetching(true)
     try {
-      // 1 Verify token
       const response = await verifyService()
       setIsLoggedIn(true)
-      // 2 Update user data
       setUser(response.data.user)
       setIsFetching(false)
 
@@ -86,5 +84,4 @@ function AuthWrapper(props) {
 export {
   AuthContext,
   AuthWrapper,
-  
 }

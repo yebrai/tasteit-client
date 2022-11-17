@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Button, Modal, Form } from "antd";
+import { Modal, Form } from "antd";
 import { useNavigate } from "react-router-dom";
 
 import creditImg from "../assets/credit-card.png";
@@ -28,7 +28,6 @@ function CheckoutModal({ requestPurchase, totalPrice }) {
   const [confirmLoading, setConfirmLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-    console.log("wtf");
     setConfirmLoading(true);
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -53,7 +52,7 @@ function CheckoutModal({ requestPurchase, totalPrice }) {
         navigate("/purchases");
         setConfirmLoading(true);
       } catch (error) {
-        console.log(error);
+        navigate("/error")
       }
     }
   };

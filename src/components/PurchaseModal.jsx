@@ -10,7 +10,6 @@ function PurchaseModal({ purchase }) {
 
   const showModal = () => {
     setOpen(true);
-    console.log(purchase.items);
   };
 
   const handleCancel = () => {

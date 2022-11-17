@@ -1,15 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { editUserService } from "../services/tasteit.services.js";
 
 //Antd
-import { Button, Modal, Form, Input } from "antd";
+import { Modal, Form, Input } from "antd";
 const { Item } = Form;
 
 function EditProfileModal() {
-  const navigate = useNavigate();
   // Context/navigate
+  const navigate = useNavigate();
   const { user, authenticateUser } = useContext(AuthContext);
 
   // Error message from backend
@@ -55,7 +55,7 @@ function EditProfileModal() {
         // Error 500
         navigate("/error");
       }
-      console.log("error");
+      
     }
   };
 
