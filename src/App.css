@@ -139,7 +139,7 @@ body {
   border: 1px solid;
   border-radius: 10%;
   right: 50px;
-  top: 10%;
+  top: 11%;
   height: 35px;
   display: flex;
   align-items: center;
@@ -164,6 +164,8 @@ body {
   right: 1;
   color: rgb(255, 77, 77);
 }
+
+
 
 /* Navbar */
 
@@ -278,11 +280,24 @@ body {
   border-radius: 3%;
   box-shadow: 0 0px 0 1px #888888;
   background-position: center;
+
+  box-shadow: 0 3px 3px 3px #888888;
+  
 }
 
 .desserts:hover, .drinks:hover, .food:hover, .all-foods:hover {
-  transition: all .5s ease 0s;
-  box-shadow: 0 3px 3px 3px #888888;
+  transition: all .7s ease 0s;
+  transform: scale(1.1);
+  box-shadow: 0px 40px 20px 10px #888888;
+}
+
+.ant-divider-inner-text {
+  font-size: 1.5rem;
+}
+
+.details-divider {
+  font-size: 1.5rem;
+  margin-top:20px
 }
 
 /* purchase*/
@@ -404,8 +419,9 @@ body {
 }
 
 .ant-card:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
   transition: all .5s ease 0s;
+  box-shadow: 0px 20px 25px 0px!important;
 }
 
 #favourites-wrapper {
@@ -523,14 +539,20 @@ body {
 }
 
 .link-profile{
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: var(--brown-tasteit);
   margin: 25px;
+  border: 1px solid;
+  padding: 2px 5px;
+  box-shadow: 0 1px 4px 3px #888888;
+  border-radius: 3px;
 }
 
 .link-profile:hover{
-  font-size: 1.2rem;
   transition: all .5s ease 0s;
+  background: linear-gradient(180deg, rgba(106,92,92,1) 25%, rgba(0,0,0,1) 96%);
+  border-color: transparent;
+  color: white;
 }
 
 

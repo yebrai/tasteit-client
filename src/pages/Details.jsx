@@ -14,7 +14,7 @@ import ShoppingCart from "../components/ShoppingCart";
 import { AuthContext } from "../context/auth.context";
 import { ThemeContext} from "../context/theme.context.js"
 import { IoArrowBackCircleSharp } from "react-icons/io5";
-import { Button, Rate } from "antd";
+import { Button, Divider, Rate } from "antd";
 import { AiOutlineStar } from "react-icons/ai";
 
 function Details() {
@@ -92,13 +92,8 @@ function Details() {
     <Link onClick={()=> navigation(-1)} className="back-details-icon" to="/" >
       <IoArrowBackCircleSharp />
     </Link>
-      <p
-        style={{
-          textAlign: "center",
-          margin: "30px 0",
-          fontWeight: "bold",
-          color: "darkgray",
-        }}
+      <Divider className="details-divider"
+        
       >
         {productDetails.category === "foods"
           ? "Comidas"
@@ -107,7 +102,7 @@ function Details() {
           : productDetails.category === "drinks"
           ? "Bebidas"
           : null}
-      </p>
+      </Divider>
 
       {/* Checks if product owner is the same as current online user */}
       <IsOwner owner={productDetails.owner._id}>

@@ -19,7 +19,7 @@ function Home() {
         <Link to="/all/products" className="container-home all-foods">
           <img/>
           <div className="overlay-home">
-            <span>Todas las Comidas</span>
+            <span>Todos</span>
           </div>
         </Link>
         <Link to="/drinks/products" className="container-home drinks">
