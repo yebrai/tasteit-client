@@ -6,12 +6,13 @@ import { useNavigate } from "react-router-dom";
 import {
   CardElement,
   useStripe,
-  useElements,
+  useElements
 } from "@stripe/react-stripe-js";
 
 import { deleteAllShoppingCartService, sendStripePaymentService } from "../services/shoppingCart.services.js";
 
-function CheckoutModal({ requestPurchase }) {
+function CheckoutModal({ requestPurchase, totalPrice }) {
+  
 
   const stripe = useStripe(); // Stripe Hook which returns connection to stripe
   const elements = useElements(); // Stripe Hook which allows to access and manipulate stripe elements like <CardElement />
@@ -23,9 +24,11 @@ function CheckoutModal({ requestPurchase }) {
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
 
-  const handleSubmit = async() => {
+  const handleSubmit = async(e) => {
+    e.prevent.default()
     setConfirmLoading(true);
 
+    
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement), // getElement gets CardElement input (the number)
@@ -39,7 +42,7 @@ function CheckoutModal({ requestPurchase }) {
         // Response from backend
         await sendStripePaymentService({
           id,
-          amount: 100000,
+          amount: totalPrice,
         });
         await deleteAllShoppingCartService() // Remove the entire shoppingCart
 
@@ -75,7 +78,7 @@ function CheckoutModal({ requestPurchase }) {
         onCancel={handleCancel}
         destroyOnClose
       >
-        <Form>
+        <Form className="payForm" id="payment-form">
           <label htmlFor=""></label>
           <CardElement />
         </Form>
