@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import { ThemeContext } from "../context/theme.context";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Button, Card, Col, Row } from "antd";
 
@@ -12,6 +13,8 @@ import { deleteFavouriteService, getMyFavouritesService } from "../services/tast
 const { Meta } = Card;
 
 function Favourites() {
+  const navigate = useNavigate();
+
   // Context
   const { toggleCart} = useContext(ThemeContext);
   const { isLoggedIn, cartProducts, loadingSpinner  } = useContext(AuthContext);
@@ -32,7 +35,7 @@ function Favourites() {
       setList(response.data.favourites);
       setIsFetching(false);
     } catch (error) {
-      console.log(error);
+      navigate("/error")
     }
   };
 
@@ -52,7 +55,7 @@ function Favourites() {
       }, 300);
 
     } catch (error) {
-      console.log(error);
+      navigate("/error")
     }
   };
 

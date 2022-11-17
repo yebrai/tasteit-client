@@ -1,6 +1,6 @@
-import { Modal } from "antd";
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Modal } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { deleteProductService } from "../services/tasteit.services";
 
@@ -21,7 +21,7 @@ function ProductDeletionModal(props) {
         navigate("/");
       }, 1000);
     } catch (error) {
-      console.log(error);
+      navigate("/error")
     }
   };
 

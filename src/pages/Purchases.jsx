@@ -1,10 +1,13 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PurchaseModal from "../components/PurchaseModal";
 import { getPurchaseService } from "../services/purchase.services";
 
 import { AuthContext } from "../context/auth.context";
 
 function Purchases() {
+  const navigate = useNavigate();
+
   const [historyPurchases, setHistoryPurchases] = useState();
   const [isFetching, setIsFetching] = useState(true);
 
@@ -23,10 +26,9 @@ function Purchases() {
         return a - b
       })
       setHistoryPurchases(copyResponse);
-      console.log()
       setIsFetching(false)
     } catch (error) {
-      console.log(error);
+      navigate("/error")
     }
   };
 

@@ -1,5 +1,6 @@
 import { Button, Modal } from "antd";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { deleteCommentService } from "../services/tasteit.services";
 import { CloseCircleFilled } from "@ant-design/icons";
@@ -7,6 +8,8 @@ import { CloseCircleFilled } from "@ant-design/icons";
 const { confirm } = Modal;
 
 function CommentDeletionModal(props) {
+
+  const navigate = useNavigate();
 
   // Current product in props
   const { comment, setIsDeleted } = props;
@@ -21,7 +24,7 @@ function CommentDeletionModal(props) {
       setIsDeleted(true) 
       
     } catch (error) {
-      console.log(error);
+      navigate("/error")
     }
   };
 

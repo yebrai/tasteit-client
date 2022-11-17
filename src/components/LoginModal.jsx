@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 
 //Antd
-import { Button, Modal, Form, Input } from "antd";
+import { Modal, Form, Input } from "antd";
 const { Item } = Form;
 
 function LoginModal() {

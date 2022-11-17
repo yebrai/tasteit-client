@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { useNavigate } from "react-router-dom";
 import { getUserService } from '../services/tasteit.services'
 import EditProfileModal from '../components/EditProfileModal';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/auth.context';
 
 function Profile() {
+  const navigate = useNavigate();
 
   const {loadingSpinner} = useContext(AuthContext)
 
@@ -20,7 +22,7 @@ function Profile() {
       setUser(response.data)
       setIsFetching(false)
     } catch (error) {
-      console.log(error)
+      navigate("/error")
     }
   }
 

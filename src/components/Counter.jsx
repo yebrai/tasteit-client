@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from 'react-hot-toast';
 
 // Antd
@@ -10,6 +11,8 @@ import { ThemeContext } from "../context/theme.context";
 
 
 function Counter(props) {
+  const navigate = useNavigate();
+
   const {toggleCart} = useContext(ThemeContext)
 
   // To update cart products when "añadir al carrito" button is pressed
@@ -52,7 +55,7 @@ function Counter(props) {
       success()
 
     } catch(error) {
-      console.log(error);
+      navigate("/error")
     }
   }
 

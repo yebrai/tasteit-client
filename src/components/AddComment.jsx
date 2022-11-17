@@ -6,6 +6,7 @@ import { addCommentService, getCommentService } from "../services/tasteit.servic
 // Antd
 import IsOwner from "./IsOwner";
 import CommentDeletionModal from "./CommentDeletionModal";
+import { useNavigate } from "react-router-dom";
 
 const { TextArea } = Input;
 
@@ -57,6 +58,7 @@ function AddComment(props) {
 
   // Context
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   // Current product details where adding the new comment
   const { product } = props;
@@ -108,7 +110,7 @@ function AddComment(props) {
       setIsDeleted(false)
 
     } catch (error) {
-      console.log(error);
+      navigate("/error")
     }
   };
 
@@ -132,7 +134,7 @@ function AddComment(props) {
       }, 1000);
 
     } catch(error) {
-      console.log(error)
+      navigate("/error")
     }
   };
 

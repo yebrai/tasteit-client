@@ -47,7 +47,6 @@ function ProductEditModal(props) {
     formValue.append("category", editProductForm.category);
     formValue.append("image", image);
 
-    //console.log(formValue)
     setConfirmLoading(true);
 
     try {
@@ -60,14 +59,11 @@ function ProductEditModal(props) {
       }, 2000);
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        // Error 400
         setErrorMessage(error.response.data.errorMessage);
         setConfirmLoading(false);
       } else {
-        // Error 500
         navigate("/error");
       }
-      console.log("error");
     }
   };
 

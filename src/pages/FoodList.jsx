@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link, useParams } from "react-router-dom";
 import { Button, Card, Col, Row } from "antd";
 import SearchFood from "../components/SearchFood";
@@ -19,6 +20,8 @@ import {
 const { Meta } = Card;
 
 function FoodList() {
+  const navigate = useNavigate();
+
   const { toggleCart } = useContext(ThemeContext);
   const { isLoggedIn, cartProducts, loadingSpinner } = useContext(AuthContext);
 
@@ -56,7 +59,7 @@ function FoodList() {
       }
       setIsFetching(false);
     } catch (error) {
-      console.log(error);
+      navigate("/error")
     }
   };
 
@@ -69,7 +72,7 @@ function FoodList() {
         handleFood(type);
       }, 300);
     } catch (error) {
-      console.log(error);
+      navigate("/error")
     }
   };
 
@@ -88,7 +91,7 @@ function FoodList() {
         handleFood(type);
       }, 300);
     } catch (error) {
-      console.log(error);
+      navigate("/error")
     }
   };
   
@@ -99,10 +102,11 @@ function FoodList() {
 
   return (
     <div className="cards-list-main">
-    <div className="searcher-list">
-      <SearchFood type={type} filterFood={filterFood} />
-      </div>
-        <div className="cards-list-container" >
+      {isLoggedIn 
+      ? <SearchFood type={type} filterFood={filterFood} />
+      : null}
+      
+      <div className="cards-list-container" >
       <Row justify={"center"}>
         {foodToShow.map((eachProduct) => {
           return (
