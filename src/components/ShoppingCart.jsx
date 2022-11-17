@@ -9,6 +9,9 @@ import {
 import { addPurchaseService } from "../services/purchase.services";
 import { Button, Divider } from "antd";
 
+// Stripe
+import { Elements } from "@stripe/react-stripe-js";
+
 // Antd
 import { CloseCircleFilled, ShoppingOutlined } from "@ant-design/icons";
 import { ThemeContext } from "../context/theme.context";
@@ -17,7 +20,8 @@ import CheckoutModal from "./CheckoutModal";
 function ShoppingCart() {
   // Context
   const { cartProducts, findCart } = useContext(AuthContext);
-  const { renderCart, toggleCart, renderCartWrapper } = useContext(ThemeContext);
+  const { renderCart, toggleCart, renderCartWrapper } =
+    useContext(ThemeContext);
 
   useEffect(() => {
     findCart();
@@ -67,11 +71,21 @@ function ShoppingCart() {
     subtotalProductsPrice += eachProduct.price;
   });
 
+  // Stripe 
+  const appearance = {
+    theme: "stripe",
+  };
+
+  const options = {
+    appearance,
+  };
+
+
   // Total price
   let totalPrice = subtotalProductsPrice + shippingCosts;
 
   return (
-    <div style={renderCartWrapper()} >
+    <div style={renderCartWrapper()}>
       <div style={renderCart()} className="shopping-container-main">
         <div className="shopping-card-container">
           <button
@@ -102,24 +116,14 @@ function ShoppingCart() {
               <div>
                 {cartProductsToShow.map((eachProduct) => {
                   return (
-                    <div className="cart-container"
-                      key={eachProduct._id}
-                    >
-                      <img
-                        src={eachProduct.image}
-                        alt={eachProduct.name}
-                      />
-                      <div className="product-cart-container"
-                      >
-                        <div className="product-cart-details"
-                        >
-                          <p >{eachProduct.name}</p>
-                          <p>
-                            {eachProduct.price} €
-                          </p>
+                    <div className="cart-container" key={eachProduct._id}>
+                      <img src={eachProduct.image} alt={eachProduct.name} />
+                      <div className="product-cart-container">
+                        <div className="product-cart-details">
+                          <p>{eachProduct.name}</p>
+                          <p>{eachProduct.price} €</p>
                         </div>
-                        <div className="product-cart-details"
-                        >
+                        <div className="product-cart-details">
                           <p className="quantity-cart-text">
                             Cantidad: {eachProduct.quantity}
                           </p>
@@ -140,18 +144,21 @@ function ShoppingCart() {
                   <h3>{subtotalProductsPrice}€</h3>
                 </div>
                 <Divider className="divider-cart"></Divider>
-                <div className="product-cart-details"
-                >
+                <div className="product-cart-details">
                   <h3>Gastos de envío:</h3>
                   <h3>{shippingCosts}€</h3>
                 </div>
                 <Divider className="divider-cart"></Divider>
-                <div className="product-cart-details"
-                >
+                <div className="product-cart-details">
                   <h2>Total:</h2>
                   <h2>{totalPrice}€</h2>
                 </div>
-                <CheckoutModal requestPurchase={requestPurchase} />
+                <Elements options={options}>
+                  <CheckoutModal
+                    requestPurchase={requestPurchase}
+                    totalPrice={totalPrice}
+                  />
+                </Elements>
               </div>
             </div>
           )}
