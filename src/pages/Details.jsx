@@ -98,9 +98,9 @@ function Details() {
   
   return (
     <div className="main-details-container">
-      <button onClick={()=> navigation(-1)} className="back-details-icon" to="/" >
+      <Link onClick={()=> navigation(-1)} className="back-details-icon" to="/" >
         <IoArrowBackCircleSharp />
-      </button>
+      </Link>
       <h2 className="main-details-title">
         {productDetails.category === "foods"
           ? "Comidas"
@@ -122,13 +122,11 @@ function Details() {
       <div className="product-details-container">
         <img src={productDetails.image} alt={productDetails.name} />
         <div className="product-details-wrapper" >
-          <h2 style={{ fontSize: 50, color: "#324d67" }}>
-            {productDetails.name}
-          </h2>
+          <h3>{productDetails.name}</h3>
 
           {/* Rating buttons */}
-          <div>
-            <Rate allowHalf className="ant-rate-text" style={{fontSize: "30px", backgroundColor: "grey"}} value={currentRate} onChange={(value) => handleRate(value)} allowClear/>
+          <div className="rate-star-container">
+            <Rate allowHalf className="ant-rate-text" style={{fontSize: "25px", margin: "2px 0 0 0"}} value={currentRate} onChange={(value) => handleRate(value)} allowClear/>
             <p>({productDetails.ratings.length} valoraciones de usuarios)</p>
           </div>
           
