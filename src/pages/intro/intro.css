@@ -8,9 +8,6 @@
 .three {
     background-color: grey;
 }
-.four {
-    background-color: burlywood;
-}
 
 .section-main {
     display: flex;
@@ -52,4 +49,63 @@
 
 .intro-step {
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
+
+.intro-step img{
+width: 200px;
+}
+
+.intro-footer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.users-valoration {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+
+.valoration img {
+    width: 1.8vw;
+    margin: 2px;
+}
+
+.userImg {
+    border-radius: 100px;
+    width: 120px;
+    margin: 30px;
+}
+
+.valoration-container {
+    display: flex;
+}
+
+.users-valoration {
+    height: 80%;
+}
+
+.users-valoration h1{
+    font-size: 2rem;
+    margin: 70px 30px;
+}
+
+footer {
+    width: 100%;
+    height: 20%;
+    background-color: black;
+    color: aliceblue;
+    display: flex;
+    justify-content: space-evenly;
+}
+
