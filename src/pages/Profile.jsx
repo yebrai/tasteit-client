@@ -29,7 +29,7 @@ function Profile() {
   }
 
   return (
-    <div style={{textAlign:"center"}}>
+    <div style={{textAlign:"center", paddingTop: "100px"}}>
       <img src={user.profileImage} alt="" />
       <h3>Name: {user.name}</h3>
       <h5>Email: {user.email}</h5>

@@ -117,6 +117,7 @@ function FoodList() {
                     <p ><span >Localidad:</span>{eachProduct.location}</p>
                   </Link>
                   
+                  
                   {isLoggedIn 
                   ? <div className="list-fav-icons">
                     {favourites.includes(eachProduct._id) ? (
