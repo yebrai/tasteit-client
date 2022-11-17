@@ -10,21 +10,25 @@ import silviaImg from "./silvia.png";
 import valoracion from "./estrella.png";
 import linkedin from "./in.png";
 import github from "./git.png";
+import { Link } from "react-router-dom";
 
 function Intro() {
   return (
     <div className="intro">
       <section className="section-main">
-        <section className="intro-start-container intro-section-container one">
+        <section className="intro-start-container intro-section-container">
           <div className="main-head">
             <h1>Taste It!</h1>
             <p>
               Con esta app podras tanto pedir como vender tus propios platos!
             </p>
+            <div className="button-container">
+             <Link className="main-head-link" to="/home">Comienza ahora!!</Link>
+            </div>
           </div>
           <img src={headImg} alt="" />
         </section>
-        <section className="intro-steps-container intro-section-container two">
+        <section className="intro-steps-container intro-section-container">
           <div className="intro-step">
             <h2>1º Paso</h2>
             <p>Seleciona tu comida preferida</p>
@@ -37,7 +41,7 @@ function Intro() {
           </div>
           <div className="intro-step">
             <h2>3º Paso</h2>
-            <p>Nuestros repartidores de entragaran la comida</p>
+            <p>Nuestros repartidores te la entregaran</p>
             <img src={step3} alt="" />
           </div>
           <div className="intro-step">
@@ -46,7 +50,7 @@ function Intro() {
             <img src={step4} alt="" />
           </div>
         </section>
-        <section className="intro-footer-container intro-section-container three">
+        <section className="intro-footer-container intro-section-container bottom-page">
           <section className="users-valoration">
             <div className="top-footer-title">
               <h1>Valoraciones de nuestros usuarios</h1>
