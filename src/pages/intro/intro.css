@@ -1,24 +1,14 @@
-
-
-.intro-section-container {
-    width: 80%;
-    height: 91vh;
+.one {
     background-color: grey;
-    font-size: 4rem;
 }
-.intro-section-container2 {
-    width: 80%;
-    height: 91vh;;
+
+.two {
     background-color: burlywood;
 }
-.intro-section-container3 {
-    width: 80%;
-    height: 91vh;
+.three {
     background-color: grey;
 }
-.intro-section-container4 {
-    width: 80%;
-    height: 91vh;
+.four {
     background-color: burlywood;
 }
 
@@ -27,5 +17,39 @@
     flex-wrap: wrap;
     justify-content: center;
     margin: 40px auto;
+}
 
+.intro-section-container {
+    display: flex;
+    width: 80%;
+    height: 91vh;
+}
+
+.intro-start-container {
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.intro-start-container div{
+    width: 50%;
+}
+
+.intro-start-container img{
+
+    width: 30vw;
+
+}
+
+.intro-steps-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.intro-step {
+    width: 50%;
 }
