@@ -1,5 +1,5 @@
 import { Button, Modal } from "antd";
-import React, { useState } from "react";
+import React from "react";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { deleteCommentService } from "../services/tasteit.services";
 import { CloseCircleFilled } from "@ant-design/icons";
@@ -9,13 +9,16 @@ const { confirm } = Modal;
 function CommentDeletionModal(props) {
 
   // Current product in props
-  const { comment } = props;
+  const { comment, setIsDeleted } = props;
   
   // To execute when "Sí" button in Modal is pressed
   const handleDeletion = async () => {
     
     try {
       await deleteCommentService(comment._id);
+
+      // Updates the page because the useEffect contains isDeleted
+      setIsDeleted(true) 
       
     } catch (error) {
       console.log(error);

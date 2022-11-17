@@ -47,7 +47,6 @@ function SignupModal() {
       if (error.response && error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);
       } else {
-        // Error 500
         navigate("/error");
       }
     }
