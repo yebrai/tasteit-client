@@ -18,8 +18,8 @@ import {
 const { Meta } = Card;
 
 function FoodList() {
-  const { toggleCart, loadingSpinner } = useContext(ThemeContext);
-  const { isLoggedIn, cartProducts } = useContext(AuthContext);
+  const { toggleCart } = useContext(ThemeContext);
+  const { isLoggedIn, cartProducts, loadingSpinner } = useContext(AuthContext);
 
   // Food category received from Home.jsx link
   const { type } = useParams();

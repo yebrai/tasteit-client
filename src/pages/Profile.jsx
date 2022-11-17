@@ -2,11 +2,11 @@ import React, { useContext, useEffect, useState } from 'react'
 import { getUserService } from '../services/tasteit.services'
 import EditProfileModal from '../components/EditProfileModal';
 import { Link } from 'react-router-dom';
-import { ThemeContext } from '../context/theme.context';
+import { AuthContext } from '../context/auth.context';
 
 function Profile() {
 
-  const {loadingSpinner} = useContext(ThemeContext)
+  const {loadingSpinner} = useContext(AuthContext)
 
   const [user, setUser] = useState("")
   const [isFetching, setIsFetching] = useState(true)

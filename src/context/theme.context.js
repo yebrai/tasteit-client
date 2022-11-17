@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import gifFood from "../assets/spinners/food-spinner.gif"
+
 
 const ThemeContext = createContext()
 
@@ -62,20 +62,11 @@ function ThemeWrapper(props) {
         return showCart ? cartWrapperOn : cartWrapperOff
       }
 
-      const loadingSpinner = () => {
-        return (
-          <div className="spinner-container">
-        <h2 className="spinner-title blinking">Taste It...</h2>
-        <img className="spinner" src={gifFood} alt="" />
-        </div>
-        );
-      }
 
       const passedContext = {
         renderCart,
         toggleCart,
-        renderCartWrapper,
-        loadingSpinner
+        renderCartWrapper
       }
 
   

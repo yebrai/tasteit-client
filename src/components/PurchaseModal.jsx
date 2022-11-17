@@ -17,33 +17,34 @@ function PurchaseModal({ purchase }) {
     setOpen(false);
   };
 
-   // Products and quantities to render in the shopping cart
-   let uniqueProduct = [];
-   let subtotalProductsPrice = 0;
-   let shippingCosts = 4.50;
-   
-   purchase.items.forEach(eachProduct => {
-     let productToModify = uniqueProduct.find(product => product._id === eachProduct._id)
- 
-     if (productToModify) {
-       productToModify.quantity += 1;
-       productToModify.price += eachProduct.price;
- 
-     } else {
-       uniqueProduct.push({
-         _id: eachProduct._id,
-         image: eachProduct.image,
-         name: eachProduct.name,
-         quantity: 1,
-         price: eachProduct.price
-       })
-     }
- 
-     subtotalProductsPrice += eachProduct.price;
-   })
- 
-   // Total price
-   let totalPrice = subtotalProductsPrice + shippingCosts;
+  // Products and quantities to render in the shopping cart
+  let uniqueProduct = [];
+  let subtotalProductsPrice = 0;
+  let shippingCosts = 4.5;
+
+  purchase.items.forEach((eachProduct) => {
+    let productToModify = uniqueProduct.find(
+      (product) => product._id === eachProduct._id
+    );
+
+    if (productToModify) {
+      productToModify.quantity += 1;
+      productToModify.price += eachProduct.price;
+    } else {
+      uniqueProduct.push({
+        _id: eachProduct._id,
+        image: eachProduct.image,
+        name: eachProduct.name,
+        quantity: 1,
+        price: eachProduct.price,
+      });
+    }
+
+    subtotalProductsPrice += eachProduct.price;
+  });
+
+  // Total price
+  let totalPrice = subtotalProductsPrice + shippingCosts;
   return (
     <>
       <Button
@@ -60,7 +61,7 @@ function PurchaseModal({ purchase }) {
         footer={null}
       >
         <div className="modal-purchase-main">
-          <table >
+          <table>
             <thead>
               <tr>
                 <th>Nombre</th>
@@ -72,11 +73,13 @@ function PurchaseModal({ purchase }) {
             <tbody>
               {uniqueProduct.map((eachProduct, index) => {
                 return (
-                  <tr>
+                  <tr key={eachProduct._id}>
                     <td>
                       <h3>{`${index + 1}º ${eachProduct.name}`}</h3>
                     </td>
-                    <td><img src={eachProduct.image} alt="" width={80}/></td>
+                    <td>
+                      <img src={eachProduct.image} alt="" width={80} />
+                    </td>
                     <td>{eachProduct.quantity}</td>
                     <td>{eachProduct.price}€</td>
                   </tr>
@@ -96,7 +99,7 @@ function PurchaseModal({ purchase }) {
               </tr>
 
               <tr>
-                <td className="modal-footer-text" >Total</td>
+                <td className="modal-footer-text">Total</td>
                 <td className="modal-footer-cost">{totalPrice}€</td>
               </tr>
             </tfoot>

@@ -2,16 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import PurchaseModal from "../components/PurchaseModal";
 import { getPurchaseService } from "../services/purchase.services";
 
-import toast, { Toaster } from 'react-hot-toast';
 import { AuthContext } from "../context/auth.context";
-
-import { ThemeContext } from "../context/theme.context.js";
 
 function Purchases() {
   const [historyPurchases, setHistoryPurchases] = useState();
   const [isFetching, setIsFetching] = useState(true);
 
-  const {loadingSpinner} = useContext(ThemeContext)
+  const {loadingSpinner} = useContext(AuthContext)
 
   useEffect(() => {
     purchaseHistory();
@@ -54,7 +51,7 @@ function Purchases() {
         <tbody>
           {historyPurchases.map((eachPurchase) => {
             return (
-              <tr key={eachPurchase._id}>
+              <tr key={eachPurchase._id} >
               <td>
                 <PurchaseModal purchase={eachPurchase}/>
               </td>

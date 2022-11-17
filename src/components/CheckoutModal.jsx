@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Button, Modal, Form } from "antd";
 import { useNavigate } from "react-router-dom";
 
-import creditImg from "../assets/credit-card.png"
+import creditImg from "../assets/credit-card.png";
 
 import { AuthContext } from "../context/auth.context.js";
 
@@ -28,7 +28,7 @@ function CheckoutModal({ requestPurchase, totalPrice }) {
   const [confirmLoading, setConfirmLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-    console.log("wtf")
+    console.log("wtf");
     setConfirmLoading(true);
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -83,10 +83,14 @@ function CheckoutModal({ requestPurchase, totalPrice }) {
         <Form>
           <div className="payment-container">
             <div className="payment-header">
-            <img src={creditImg} alt="" />
-            <div>
-            <h2><b></b> Cargo de: <span>{totalPrice}€</span></h2>
-              <h3><b>Solicitante:</b>  <p>{user.name}</p></h3>
+              <img src={creditImg} alt="" />
+              <div>
+                <h2>
+                  <b></b> Cargo de: <span>{totalPrice}€</span>
+                </h2>
+                <h3>
+                  <b>Solicitante:</b> <p>{user.name}</p>
+                </h3>
               </div>
             </div>
             <div>

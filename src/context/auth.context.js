@@ -2,6 +2,9 @@ import { createContext, useState, useEffect } from "react"
 import { verifyService } from "../services/auth.services"
 import { getShoppingCartService } from "../services/shoppingCart.services"
 
+
+import gifFood from "../assets/spinners/food-spinner.gif"
+
 const AuthContext = createContext()
 
 function AuthWrapper(props) {
@@ -47,6 +50,19 @@ function AuthWrapper(props) {
       console.log(error);
     }
   };
+  
+  const loadingSpinner = () => {
+    return (
+      <div className="spinner-container">
+    <h2 className="spinner-title blinking">Taste It...</h2>
+    <img className="spinner" src={gifFood} alt="" />
+    </div>
+    );
+  }
+
+  if (isFetching === true) {
+    return loadingSpinner()
+  }
 
   const passedContext = {
     isLoggedIn,
@@ -56,18 +72,10 @@ function AuthWrapper(props) {
     setUser,
     cartProducts,
     setCartProducts,
-    findCart
-  }
-
-  if (isFetching === true) {
-    return (
-      <div className="App">
-        <h3>Cargando...</h3>
-      </div>
-    )
+    findCart,
+    loadingSpinner
   }
   
-// Consultar
   return (
     <AuthContext.Provider value={passedContext}>
       {props.children}
@@ -75,8 +83,8 @@ function AuthWrapper(props) {
   )
 }
 
-//Exporta funciones en general pero tambien pasa el passedContext por props?
 export {
   AuthContext,
-  AuthWrapper
+  AuthWrapper,
+  
 }

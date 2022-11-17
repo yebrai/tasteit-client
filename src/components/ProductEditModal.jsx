@@ -31,7 +31,7 @@ function ProductEditModal(props) {
     price: "",
     location: "",
     description: "",
-    category: ""
+    category: "",
   });
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -40,16 +40,16 @@ function ProductEditModal(props) {
   const handleEditProduct = async () => {
     // Data transmission element
     const formValue = new FormData();
-    formValue.append("name", editProductForm.name)
-    formValue.append("price", editProductForm.price)
-    formValue.append("location", editProductForm.location)
-    formValue.append("description", editProductForm.description)
-    formValue.append("category", editProductForm.category)
-    formValue.append("image", image)
+    formValue.append("name", editProductForm.name);
+    formValue.append("price", editProductForm.price);
+    formValue.append("location", editProductForm.location);
+    formValue.append("description", editProductForm.description);
+    formValue.append("category", editProductForm.category);
+    formValue.append("image", image);
 
     //console.log(formValue)
     setConfirmLoading(true);
-    
+
     try {
       await editProductService(product._id, formValue);
 
@@ -58,7 +58,6 @@ function ProductEditModal(props) {
         setConfirmLoading(false);
         authenticateUser();
       }, 2000);
-
     } catch (error) {
       if (error.response && error.response.status === 400) {
         // Error 400
@@ -71,7 +70,6 @@ function ProductEditModal(props) {
       console.log("error");
     }
   };
-
 
   // Modal functions
   const showModal = () => {
@@ -107,23 +105,29 @@ function ProductEditModal(props) {
         <div>
           <Form>
             <Item label="Nombre del producto">
-              <Input name="name" onChange={handleChange}/>
+              <Input name="name" onChange={handleChange} />
             </Item>
             <Item label="Descripción">
-              <Input name="description" onChange={handleChange}/>
+              <Input name="description" onChange={handleChange} />
             </Item>
             <Item label="Categoría">
-              <Select placeholder="Elige el tipo de producto" onChange={event => setEditProductForm({...editProductForm, category: event})} allowClear>
+              <Select
+                placeholder="Elige el tipo de producto"
+                onChange={(event) =>
+                  setEditProductForm({ ...editProductForm, category: event })
+                }
+                allowClear
+              >
                 <Option value="drinks">Bebida</Option>
                 <Option value="desserts">Postre</Option>
                 <Option value="foods">Comida</Option>
               </Select>
             </Item>
             <Item label="Precio">
-              <Input name="price" onChange={handleChange}/>
+              <Input name="price" onChange={handleChange} />
             </Item>
             <Item label="Localidad">
-              <Input name="location" onChange={handleChange}/>
+              <Input name="location" onChange={handleChange} />
             </Item>
             <Item label="Imagen">
               <Input
