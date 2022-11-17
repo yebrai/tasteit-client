@@ -12,10 +12,12 @@ body {
 
 /* Details page*/
 .back-details-icon {
-  position: absolute;
-  margin:4.5vh 75vw 1vh 4vw;
+  position: fixed;
+  top: 8.5%;
+  left: 50px;
   font-size: 2.5rem;
   color: black;
+  z-index: 1;
 }
 
 .back-details-icon:hover {
@@ -28,6 +30,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 50px;
 }
 
 .product-details-container {
@@ -325,7 +328,7 @@ body {
   border: 1px solid;
   border-radius: 10%;
   right: 50px;
-  top: 11%;
+  top: 10%;
   height: 35px;
   display: flex;
   align-items: center;
@@ -351,10 +354,7 @@ body {
   color: rgb(255, 77, 77);
 }
 
-
-
 /* Navbar */
-
 
 .icons:hover {
   transform: scale(1.5);
@@ -367,6 +367,8 @@ body {
   width: 100vw;
   background: linear-gradient(180deg, rgba(106,92,92,1) 25%, rgba(0,0,0,1) 96%);
   box-shadow: 0 1px 6px 3px #888888;
+  position: fixed;
+  z-index: 1;
 }
 
 .navbar-container {
@@ -400,6 +402,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 50px;
 }
 
 .homeBoxContainer {
@@ -570,6 +573,10 @@ body {
 
 
 /* Food list*/
+
+.searcher-list {
+  padding-top: 70px;
+}
 
 .card-images {
   width: 200px;

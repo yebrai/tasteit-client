@@ -15,6 +15,7 @@ function ThemeWrapper(props) {
         position: "fixed",
         right: "0",
         top: "0",
+        opacity: "1",
         zIndex: "100",
         transition: "all s ease-in-out"
       }
@@ -26,6 +27,7 @@ function ThemeWrapper(props) {
         position: "fixed",
         right: "0",
         top: "0",
+        opacity: "0",
         zIndex: "100",
         transition: "all 1s ease-in-out"
       }
@@ -33,10 +35,11 @@ function ThemeWrapper(props) {
       const cartWrapperOn = {
         width: "100vw",
         height: "100vh",
-        background: "rgba(0, 0, 0, 0.6)",
+        background: "rgba(0, 0, 0, 0.3)",
         position: "fixed",
         right: "0",
         top: "0",
+        opacity: "1",
         transition: "all 1s ease-in-out"
       }
 
@@ -47,6 +50,7 @@ function ThemeWrapper(props) {
         position: "fixed",
         right: "0",
         top: "0",
+        opacity: "0",
         transition: "all 1s ease-in-out"
       }
   
