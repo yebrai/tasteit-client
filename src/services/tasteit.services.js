@@ -56,6 +56,10 @@ const getCommentService = (productId) => {
   return service.get(`/comment/${productId}`)
 }
 
+const deleteCommentService = (commentId) => {
+  return service.delete(`/comment/${commentId}`)
+}
+
 const addRatingService = (productId, newRate) => {
   return service.patch(`/product/${productId}/rate`, newRate)
 }
@@ -75,5 +79,6 @@ const addRatingService = (productId, newRate) => {
     deleteProductService,
     addCommentService,
     getCommentService,
+    deleteCommentService,
     addRatingService
   }

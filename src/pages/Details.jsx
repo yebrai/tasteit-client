@@ -19,7 +19,7 @@ import { AuthContext } from "../context/auth.context";
 import { ThemeContext } from "../context/theme.context.js";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 import toast from "react-hot-toast";
-import { Button, Divider, Rate } from "antd";
+import { Divider, Rate } from "antd";
 
 function Details() {
   const navigation = useNavigate();
