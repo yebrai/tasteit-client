@@ -592,7 +592,15 @@ body {
   background: linear-gradient(rgba(247, 243, 243, 0.8), rgba(231, 227, 227, 0.8));
   border: none;
   box-shadow: 0 0 4px 0;
+  opacity: 1;
+  animation-name: cards;
+  animation-iteration-count: 1;
+  animation-duration: .7s;
 } 
+
+@keyframes cards {
+  50% {transform: rotate(10deg)}
+}
 
 .card-link {
   padding-bottom: 280px
@@ -616,6 +624,7 @@ body {
   transform: scale(1.1);
   transition: all .5s ease 0s;
   box-shadow: 0px 20px 25px 0px;
+  transform: rotate(3deg)
 }
 
 
@@ -1048,10 +1057,19 @@ body {
     width: 100%;
   }
 
+  .icon-profile {
+    margin: 20px
+  
+  }
   .profile-wrapper {
     width: 90%
   }
 }
+}
+
+ .profile-wrapper {
+    width: 90%
+  }
 
 @media (max-width: 900px) {
   .profile-personal-details {
