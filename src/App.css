@@ -821,6 +821,22 @@ body {
   border-radius: 3px;
 }
 
+.intro-link-start {
+  background-color: var(--brown-tasteit);
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  border-radius: 20px;
+  padding: 8px;
+  box-shadow: 0 2px 20px 1px #1e1e1e;
+}
+
+.intro-link-start:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 8px 2px #1e1e1e;
+
+}
+
 .link-profile:hover{
   transition: all .5s ease 0s;
   background: linear-gradient(180deg, rgba(106,92,92,1) 25%, rgba(0,0,0,1) 96%);

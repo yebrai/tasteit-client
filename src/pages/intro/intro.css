@@ -3,19 +3,16 @@
   margin: 0 50px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   color: aliceblue;
   padding-top: 200px;
+  text-align: center;
 }
 
 .main-head h1 {
   color: aliceblue;
   font-size: 3.5rem;
-}
-
-.main-head-Link {
-  color: aliceblue;
 }
 
 .section-main {
@@ -42,16 +39,24 @@
   background: linear-gradient(rgba(31, 31, 31, 0.1), rgba(31, 31, 31, 0.4));
   color: aliceblue;
   flex-wrap: wrap;
+  
 }
 
-.intro-start-container div {
-  width: 50%;
-}
 
 .intro-start-container img {
   width: 50vh;
   z-index: 0.5;
+  animation-name: burger;
+  animation-iteration-count: infinite;
+  animation-duration: 4s;
+  animation-play-state: running;
+  animation-delay: 1s; 
 }
+
+@keyframes burger {
+    40% {transform: scale(1.1) }
+}
+
 
 .intro-steps-container {
   display: flex;
@@ -105,9 +110,17 @@
   flex-wrap: wrap;
 }
 
+.valoration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .valoration img {
   width: 20px;
   margin: 2px;
+
 }
 
 .userImg {
@@ -132,6 +145,11 @@
   color: aliceblue;
 }
 
+.valoration-container p {
+    width: 80%;
+    margin: 20px 0;
+}
+
 .users-valoration h1 {
   font-size: 2rem;
   margin: 70px 30px;
@@ -145,6 +163,7 @@ footer {
   color: black;
   text-align: center;
   color: aliceblue;
+  margin-top: 40px;
 }
 
 .developers-container img {
@@ -223,10 +242,36 @@ footer {
       height: 100vh;
     }
   }
+  @media (max-width: 700px) {
+    
+    .intro-start-container img {
+        width: 300px;
+      }
+  }
 
   @media (max-width: 420px) {
     footer {
     flex-direction: column;
     }
+    
+    .intro-start-container img {
+        width: 250px;
+        margin: 80px;
+      }
+
+      .main-head {
+        padding-top: 60px;
+      }
+
+      .main-head h1 {
+        font-size: 3rem;
+      }
+
+      .intro-link-start {
+        font-size: 1rem;
+        padding: 0 50px;
+      }
+
+      
   }
   

@@ -25,10 +25,10 @@ function Intro() {
               Con esta app podras tanto pedir como vender tus propios platos!
             </p>
             <div className="button-container">
-             <Link className="main-head-link" to="/home">Comienza ahora!!</Link>
+             <Link className="link-profile intro-link-start" to="/home">Comienza ahora!!</Link>
             </div>
           </div>
-          <img src={headImg} alt="" />
+          <img  src={headImg} alt="" />
         </section>
         <section className="intro-steps-container intro-section-container">
           <div className="intro-step">
@@ -62,36 +62,41 @@ function Intro() {
                 <img className="userImg" src={emmaImg} alt="" />
                 <h2>Emma</h2>
                 <div className="valoration">
+                <div>
                   <img src={valoracion} alt="" />
                   <img src={valoracion} alt="" />
                   <img src={valoracion} alt="" />
                   <img src={valoracion} alt="" />
                   <img src={valoracion} alt="" />
-                  <p>chapo</p>
+                  </div>
+                  <p>El pedido fue rapido y la atencion fue excelente!</p>
                 </div>
               </div>
               <div>
                 <img className="userImg" src={jhonImg} alt="" />
                 <h2>John Doe</h2>
-                <div className="valoration">
+                <div className="valoration"><div>
                   <img src={valoracion} alt="" />
                   <img src={valoracion} alt="" />
                   <img src={valoracion} alt="" />
                   <img src={valoracion} alt="" />
                   <img src={valoracion} alt="" />
-                  <p>chapo</p>
+                  </div>
+                  <p>La comida mas deliciosa de la ciudad en tu casa.</p>
                 </div>
               </div>
               <div>
                 <img className="userImg" src={silviaImg} alt="" />
                 <h2>Silvia</h2>
                 <div className="valoration">
+                <div>
                   <img src={valoracion} alt="" />
                   <img src={valoracion} alt="" />
                   <img src={valoracion} alt="" />
                   <img src={valoracion} alt="" />
                   <img src={valoracion} alt="" />
-                  <p>chapo</p>
+                  </div>
+                  <p>Siempre me sobraba comida y ahora puedo sacarle partido en vez de tirarla.</p>
                 </div>
               </div>
             </div>
