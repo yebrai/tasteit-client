@@ -55,7 +55,6 @@ const addCommentService = (productId, newComment) => {
 const getCommentService = (productId) => {
   return service.get(`/comment/${productId}`)
 }
-
 const deleteCommentService = (commentId) => {
   return service.delete(`/comment/${commentId}`)
 }

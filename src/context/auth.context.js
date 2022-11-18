@@ -12,7 +12,7 @@ function AuthWrapper(props) {
   // Global states and functions
   const [ isLoggedIn, setIsLoggedIn ] = useState(false)
   const [ user, setUser ] = useState(null)
-  const [ isFetching, setIsFetching ] = useState(true)
+  const [ isFetching, setIsFetching ] = useState(false)
 
   // Shopping cart items
   const [cartProducts, setCartProducts] = useState([])
