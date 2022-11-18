@@ -117,8 +117,8 @@ function FoodList() {
                     <Meta />
                     <img alt={eachProduct.name} src={eachProduct.image} className="card-images" />
                     <h2>{eachProduct.name}</h2>
-                    <p><span>Precio:</span> {eachProduct.price}€</p>
-                    <p ><span >Localidad:</span>{eachProduct.location}</p>
+                    <p><span>Precio: </span> {eachProduct.price}€</p>
+                    <p ><span >Localidad: </span>{eachProduct.location}</p>
                   </Link>
                   
                   

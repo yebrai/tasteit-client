@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 :root {
  --brown-tasteit: rgb(106,92,92)
 }
@@ -8,6 +8,7 @@ body {
   background-image: url('./assets/background.jpg');
   background-size: cover;
   font-weight: 500;
+  font-family: 'Roboto', sans-serif;
 }
 
 /* Details page*/
@@ -771,7 +772,7 @@ body {
 .price-cart-container {
   display: flex;
   flex-direction: column;
-  justify-content:flex-end
+  justify-content:flex-end;
 }
 
 .price-cart-container .divider-cart{
@@ -819,6 +820,8 @@ body {
 .button-delete:hover {
   background-color: rgb(136, 17, 17);
 }
+
+
 
 /* Profile*/
 .profile-container {
@@ -937,9 +940,21 @@ body {
   box-shadow: 0 2px 20px 1px #1e1e1e;
 }
 
+.payment-button{
+  margin: 20px 0;
+  width: 100%;
+  font-size: 1.1rem;
+  background-color: #1e1e1e;
+}
+
+.payment-button:hover {
+  background-color: green;
+}
+
 .intro-link-start:hover {
   transform: scale(1.2);
   box-shadow: 0 4px 8px 2px #1e1e1e;
+  transition: all .5s ease 0s;
 
 }
 
