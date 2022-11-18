@@ -1,70 +1,160 @@
-# Getting Started with Create React App
+# Taste It
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## _Your new app for tasting food_
 
-## Available Scripts
+[![TasteIt](./src/pages/intro/tasteit-main.png)](https://taste-it-app.netlify.app/)
 
-In the project directory, you can run:
+Welcome to TasteIt.
+Our app connects users from everywhere letting them to buy and sell their self-made meals so that everyone can taste those wonderful meals which have no other way of attracting people attention in the marketplace.
 
-### `npm start`
+Made in:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React
+- Node.js
+- Express
+- MongoDB
+- Javascript
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Dependencies:
+- Stripe
+- Ant Design
+- Axios
+- Toast
+- Cloudinary
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### FRONT-END ROUTES
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### HOME
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```http
+/ 
+```
+| METHOD    | URL      | DESCRIPTION                | PROTECTED|
+| :-------- | :------- | :------------------------- |:---------|
+| `Link` | `/` | introduction and main page |   All users       |
+| `Link` | `/home` | home with 4 categories choice |   All users     |
+| `Link` | `/:type/products` | foods list |   All users       |
+| `Link` | `/:productId/details` | food details |   Logged    |
+| `Link` | `/profile` | profile |   Logged       |
+| `Link` | `/purchases` | confirmed orders after purchase |   Logged      |
+| `Link` | `/my-favourites` | favourite foods list |   Logged       |
+| `Link` | `/error` | error 500 |   All users       |
+| `Link` | `/*` | error 404 not found |   All users       |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### BACK-END ROUTES
 
-### `npm run eject`
+#### HOME
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```http
+/api 
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+| METHOD    | URL      | DESCRIPTION                | PROTECTED|
+| :-------- | :------- | :------------------------- |:---------|
+| `GET` | `/` | to test proper API operation  | Todos         |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### AUTH
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```http
+/api/auth
+```
 
-## Learn More
+| METHOD    | URL      | DESCRIPTION                | PROTECTED|
+| :-------- | :------- | :------------------------- |:---------|
+| `POST` | `/signup` | validates sign up information |   All users  |
+| `POST` | `/login` | validates log in information |   All users  |
+| `POST` | `/verify` | authenticates user token |   Logged     |
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### USER
 
-### Code Splitting
+```http
+/api/user
+```
+| METHOD    | URL      | DESCRIPTION                | PROTECTED|
+| :-------- | :------- | :------------------------- |:---------|
+| `GET` | `/` | gets all users information |     Logged     |
+| `GET` | `/details` | gets current user information |     Logged     |
+| `PATCH` | `/:userId/details` | edits user information |     Logged     |
+| `DELETE` | `/:userId` | deletes a user |     Logged     |
+| `PATCH` | `/cartd/add` | adds a food to the shopping cart |     Logged     |
+| `GET` | `/cart` | gets shopping cart from a user |     Logged     |
+| `DELETE` | `/cart/:productId/delete` | deletes a shopping cart product |     Logged     |
+| `DELETE` | `/cart/delete` | deletes whole shopping cart |     Logged     |
+| `GET` | `/favourites` | gets favourite user products |     Logged     |
+| `GET` | `/my-favourites` | gets populated favourite products |     Logged     |
+| `POST` | `/:favouriteId/delete` | deletes a favourite product |     Logged     |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+#### PRODUCT
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```http
+/api/product
+```
+| METHOD    | URL      | DESCRIPTION                | PROTECTED|
+| :-------- | :------- | :------------------------- |:---------|
+| `GET` | `/` | gets all products |    All users      |
+| `GET` | `/:type` | gets products depending on category |    All users       |
+| `POST` | `/add` | registers a new food |    Logged     |
+| `GET` | `/:productId/details` | gets a unique food details |    Logged     |
+| `PATCH` | `/:productId/details` | edits a food details |    Logged      |
+| `DELETE` | `/:productId` | deletes a product |    Logged      |
+| `PATCH` | `/:productId/rate` | adds a new rating to the product |    Logged      |
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### COMMENT
 
-### Advanced Configuration
+```http
+/api/comment
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+| METHOD    | URL      | DESCRIPTION                | PROTECTED|
+| :-------- | :------- | :------------------------- |:---------|
+| `GET` | `/` | gets all comments of a food |   Logged       |
+| `POST` | `/:productId/add` | adds a comment to a food |     Logged     |
+| `DELETE` | `/:commentId` | deletes a comment from current user |       Logged   |
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+#### PURCHASE
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```http
+/api/purchase
+```
+
+| METHOD    | URL      | DESCRIPTION                | PROTECTED|
+| :-------- | :------- | :------------------------- |:---------|
+| `GET` | `/` | gets all purchases from current user |    Logged      |
+| `POST` | `/add` | registers a new purchase |    Logged    |
+
+
+#### STRIPE
+
+```http
+/api/stripe
+```
+
+| METHOD    | URL      | DESCRIPTION                | PROTECTED|
+| :-------- | :------- | :------------------------- |:---------|
+| `POST` | `/` | registers a new payment in Stripe |    Logged      |
+
+
+## Authors
+
+- [Borja Cabello Luna](https://www.github.com/borjacabello) 
+- [Iván Yebra](https://www.github.com/yebrai)
+
+
+## 🛠 Skills
+React, Node.js, Express, MongoDB, Javascript, CSS, HTML
+
+
+## 🚀 About Us
+We are Iván and Borja, Full-Stack developers from Ironhack remote course. This is our final bootcamp project (MERN stack application).
+
+
+## Demo
+
+You can test our app here --> https://taste-it-app.netlify.app/
