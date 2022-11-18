@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Wendy+One&display=swap');
+
+:root {
+    --brown-tasteit: rgb(106,92,92)
+   }
+
 .main-head {
   width: 50%;
   margin: 0 50px;
@@ -13,12 +19,19 @@
 .main-head h1 {
   color: aliceblue;
   font-size: 3.5rem;
+  font-family: 'Wendy One', sans-serif;
+  font-weight: 0;
+  color: var(--brown-tasteit);
+}
+.intro {
+    font-family: 'Roboto', sans-serif;
 }
 
 .section-main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  
 }
 
 .intro-section-container {
@@ -87,6 +100,7 @@
 .intro-step img {
   width: 200px;
 }
+
 
 .top-footer-title {
   background-color: #1e1e1e;
@@ -223,7 +237,7 @@ footer {
       font-size: 3rem;
     }
     .main-head h1 {
-      font-size: 5rem;
+      font-size: 6rem;
     }
     .intro-steps-container {
       height: 100vh;

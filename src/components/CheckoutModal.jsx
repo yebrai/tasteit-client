@@ -67,7 +67,7 @@ function CheckoutModal({ requestPurchase, totalPrice }) {
 
   return (
     <>
-      <button onClick={showModal}>
+      <button className="intro-link-start payment-button" onClick={showModal}>
         Pagar
       </button>
       <Modal
