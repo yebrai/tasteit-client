@@ -1000,6 +1000,51 @@ body {
   font-size: 1.5rem;
 }
 
+/* Error 404 */
+.not-found-container {
+  width: 100vw;
+  height: 100vh;
+  padding: 40px 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start
+}
+
+.not-found-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  margin: 0;
+}
+
+.not-found-logo {
+  width: 460px;
+  height: 460px;
+}
+
+.not-found-container h2 {
+  font-size: 30px;
+  font-weight: bolder;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.not-found-btn {
+  width: 130px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+
+
+
 @media (max-width: 600px) {
   .home-main-container {
     flex-direction: column;
