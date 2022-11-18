@@ -31,13 +31,13 @@ function Navbar() {
   return (
     <div className="navbar-container-main">
       <div className="navbar-container">
-        <Link className="home-icon icons" to="/home">
+        <Link className="home-icon icons " to="/home">
           <HomeOutlined />
         </Link>
 
         {isLoggedIn ? (
           <div className="loged-icons-container">
-            <Link className="home-icon icons" to="/profile">
+            <Link className="home-icon icons icon-profile" to="/profile">
               <UserOutlined />
             </Link>
             <AddFoodModal />

@@ -592,7 +592,15 @@ body {
   background: linear-gradient(rgba(247, 243, 243, 0.8), rgba(231, 227, 227, 0.8));
   border: none;
   box-shadow: 0 0 4px 0;
+  opacity: 1;
+  animation-name: cards;
+  animation-iteration-count: 1;
+  animation-duration: .7s;
 } 
+
+@keyframes cards {
+  50% {transform: rotate(10deg)}
+}
 
 .card-link {
   padding-bottom: 280px
@@ -616,6 +624,7 @@ body {
   transform: scale(1.1);
   transition: all .5s ease 0s;
   box-shadow: 0px 20px 25px 0px;
+  transform: rotate(3deg)
 }
 
 
@@ -900,6 +909,10 @@ body {
 
   .product-details-wrapper {
     width: 100%;
+  }
+
+  .icon-profile {
+    margin: 20px
   }
 }
 
