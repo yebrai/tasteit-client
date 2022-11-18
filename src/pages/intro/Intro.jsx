@@ -22,7 +22,7 @@ function Intro() {
           <div className="main-head">
             <h1>Taste It!</h1>
             <p>
-              Compra y vende tus platos favoritos
+              Compra y vende tus platos preferidos!
             </p>
             <div className="button-container">
              <Link className="link-profile intro-link-start" to="/home">Comienza ahora</Link>
