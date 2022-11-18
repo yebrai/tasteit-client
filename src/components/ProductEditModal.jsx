@@ -131,7 +131,7 @@ function ProductEditModal(props) {
                 onChange={(event) => setImage(event.target.files[0])}
               />
             </Item>
-            {errorMessage !== "" && <p>{errorMessage}</p>}
+            {errorMessage !== "" && <p className="error-message">{errorMessage}</p>}
           </Form>
         </div>
       </Modal>

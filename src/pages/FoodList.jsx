@@ -16,7 +16,6 @@ import {
   getProductTypeService,
 } from "../services/tasteit.services";
 
-
 const { Meta } = Card;
 
 function FoodList() {
@@ -59,7 +58,7 @@ function FoodList() {
       }
       setIsFetching(false);
     } catch (error) {
-      navigate("/error")
+      navigate("/error");
     }
   };
 
@@ -72,7 +71,7 @@ function FoodList() {
         handleFood(type);
       }, 300);
     } catch (error) {
-      navigate("/error")
+      navigate("/error");
     }
   };
 
@@ -91,10 +90,10 @@ function FoodList() {
         handleFood(type);
       }, 300);
     } catch (error) {
-      navigate("/error")
+      navigate("/error");
     }
   };
-  
+
   // Guard clause
   if (isFetching) {
     return loadingSpinner();
@@ -102,51 +101,66 @@ function FoodList() {
 
   return (
     <div className="cards-list-main">
-      {isLoggedIn 
-      ? <SearchFood type={type} filterFood={filterFood} />
-      : null}
-      
-      <div className="cards-list-container" >
-      <Row justify={"center"}>
-        {foodToShow.map((eachProduct) => {
-          return (
-            <Col key={eachProduct._id}>
-              <Card hoverable>
-                
-                  <Link to={isLoggedIn ? `/${eachProduct._id}/details` : `/${type}/products`} className="card-link">
+      {isLoggedIn ? <SearchFood type={type} filterFood={filterFood} /> : null}
+
+      <div className="cards-list-container">
+        <Row justify={"center"}>
+          {foodToShow.map((eachProduct) => {
+            return (
+              <Col key={eachProduct._id}>
+                <Card hoverable>
+                  <Link
+                    to={
+                      isLoggedIn
+                        ? `/${eachProduct._id}/details`
+                        : `/${type}/products`
+                    }
+                    className="card-link"
+                  >
                     <Meta />
-                    <img alt={eachProduct.name} src={eachProduct.image} className="card-images" />
+                    <img
+                      alt={eachProduct.name}
+                      src={eachProduct.image}
+                      className="card-images"
+                    />
                     <h2>{eachProduct.name}</h2>
-                    <p><span>Precio: </span> {eachProduct.price}€</p>
-                    <p ><span >Localidad: </span>{eachProduct.location}</p>
+                    <p>
+                      <span>Precio: </span> {eachProduct.price}€
+                    </p>
+                    <p>
+                      <span>Localidad: </span>
+                      {eachProduct.location}
+                    </p>
                   </Link>
-                  
-                  
-                  {isLoggedIn 
-                  ? <div className="list-fav-icons">
-                    {favourites.includes(eachProduct._id) ? (
-                      <Button
-                        className="icons-like"
-                        type="text"
-                        icon={<FaHeart style={{ color: "red" }} size="20px"/>}
-                        onClick={() => deleteFavourite(eachProduct._id)}
-                      ></Button>
-                    ) : (
-                      <Button
-                        className="icons-like"
-                        type="text"
-                        icon={<FaRegHeart style={{ color: "red" }} size="20px" />}
-                        onClick={() => addFavouriteToUser(eachProduct)}
-                      ></Button>
-                    )}
-                  </div>
-                  : null}
-                  
-              </Card>
-            </Col>
-          );
-        })}
-      </Row>
+
+                  {isLoggedIn ? (
+                    <div className="list-fav-icons">
+                      {favourites.includes(eachProduct._id) ? (
+                        <Button
+                          className="icons-like"
+                          type="text"
+                          icon={
+                            <FaHeart style={{ color: "red" }} size="20px" />
+                          }
+                          onClick={() => deleteFavourite(eachProduct._id)}
+                        ></Button>
+                      ) : (
+                        <Button
+                          className="icons-like"
+                          type="text"
+                          icon={
+                            <FaRegHeart style={{ color: "red" }} size="20px" />
+                          }
+                          onClick={() => addFavouriteToUser(eachProduct)}
+                        ></Button>
+                      )}
+                    </div>
+                  ) : null}
+                </Card>
+              </Col>
+            );
+          })}
+        </Row>
       </div>
       {isLoggedIn && (
         <button onClick={toggleCart} className="cart-button">

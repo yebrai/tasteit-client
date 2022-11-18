@@ -400,6 +400,11 @@ body {
 }
 
 /* Home */
+
+.error-message {
+  color: red;
+}
+
 .home-main-container {
   display: flex;
   align-items: center;
