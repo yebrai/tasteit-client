@@ -1,7 +1,10 @@
 import { Avatar, Button, Comment, Form, Input, List } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/auth.context";
-import { addCommentService, getCommentService } from "../services/tasteit.services";
+import {
+  addCommentService,
+  getCommentService,
+} from "../services/tasteit.services";
 
 // Antd
 import IsOwner from "./IsOwner";
@@ -10,52 +13,51 @@ import { useNavigate } from "react-router-dom";
 
 const { TextArea } = Input;
 
-// Comments list: ({ comments }) is props.comments
+// Comments list: ({ comments, setIsDeleted }) are the destructured props from AddComment
 const CommentList = ({ comments, setIsDeleted }) => {
-
   return (
-  <List
-    className="comment-list"
-    dataSource={comments}
-    header={`${comments.length} ${comments.length > 1 ? "reseñas" : "reseña"}`}
-    itemLayout="horizontal"
-    renderItem={(props) => {
-    return (
-      <div className="comment-btn-container">
-        <Comment {...props} className="comment-user"/>
-        
-        {/* Checks if product owner is the same as current online user */}
-        <IsOwner owner={props.user}>
-          <CommentDeletionModal comment={props} setIsDeleted={setIsDeleted}/>
-        </IsOwner>
-      </div>
-      )
-    }}
-  />
-)}
+    <List
+      className="comment-list"
+      dataSource={comments}
+      header={`${comments.length} ${
+        comments.length > 1 ? "reseñas" : "reseña"
+      }`}
+      itemLayout="horizontal"
+      renderItem={(props) => {
+        return (
+          <div className="comment-btn-container">
+            <Comment {...props} className="comment-user" />
 
-// Comment editor: { onChange, onSubmit, submitting, value } are the destructured props from below in the page
+            {/* Checks if product owner is the same as current online user */}
+            <IsOwner owner={props.user}>
+              <CommentDeletionModal
+                comment={props}
+                setIsDeleted={setIsDeleted}
+              />
+            </IsOwner>
+          </div>
+        );
+      }}
+    />
+  );
+};
+
+// Comment editor: { onChange, onSubmit, submitting, value } are the destructured props from AddComment component
 const Editor = ({ onChange, onSubmit, submitting, value }) => (
   <>
     <Form.Item>
       <TextArea rows={2} onChange={onChange} value={value} />
     </Form.Item>
     <Form.Item>
-      <Button
-        htmlType="submit"
-        loading={submitting}
-        onClick={onSubmit}
-      >
+      <Button htmlType="submit" loading={submitting} onClick={onSubmit}>
         Añadir Comentario
       </Button>
     </Form.Item>
   </>
 );
 
-
 // Main function
 function AddComment(props) {
-
   // Context
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -68,7 +70,7 @@ function AddComment(props) {
   const [isFetching, setIsFetching] = useState(true);
 
   // To check if a comment has been deleted or not
-  const [isDeleted, setIsDeleted] = useState(false)
+  const [isDeleted, setIsDeleted] = useState(false);
 
   // Submitting state
   const [submitting, setSubmitting] = useState(false);
@@ -76,22 +78,22 @@ function AddComment(props) {
   // Input of the comment box
   const [value, setValue] = useState("");
 
-  // New comment object structure
   const newComment = {
-    message: value
-  }
+    message: value,
+  };
 
+  // To re-render if product details page changes or a comment is deleted
   useEffect(() => {
     handleComments();
   }, [product._id, isDeleted]);
 
   const handleComments = async () => {
     try {
-      let commentsList = await getCommentService(product._id)
-      
+      let commentsList = await getCommentService(product._id);
+
       let modifiedCommentsList = [];
       // Array copy from commentsList with fields adapted to the required Ant design comment format (author, avatar, content, datetime)
-      commentsList.data.forEach(eachComment => {
+      commentsList.data.forEach((eachComment) => {
         modifiedCommentsList.unshift({
           _id: eachComment._id,
           user: eachComment.user._id,
@@ -101,16 +103,15 @@ function AddComment(props) {
           datetime: new Intl.DateTimeFormat("es-ES", {
             timeStyle: "medium",
             dateStyle: "short",
-          }).format(new Date(eachComment.createdAt))
-        })
-      })
-      
-      setComments(modifiedCommentsList)
-      setIsFetching(false);
-      setIsDeleted(false)
+          }).format(new Date(eachComment.createdAt)),
+        });
+      });
 
+      setComments(modifiedCommentsList);
+      setIsFetching(false);
+      setIsDeleted(false);
     } catch (error) {
-      navigate("/error")
+      navigate("/error");
     }
   };
 
@@ -122,19 +123,18 @@ function AddComment(props) {
   const handleSubmit = async () => {
     // If there is no input, do nothing
     if (!value) return;
-    
+
     try {
-      await addCommentService(product._id, newComment) // Add new comment to the current id product details page
-      
+      await addCommentService(product._id, newComment);
+
       setSubmitting(true);
       setTimeout(() => {
         setSubmitting(false);
         setValue("");
-        handleComments()
+        handleComments();
       }, 1000);
-
-    } catch(error) {
-      navigate("/error")
+    } catch (error) {
+      navigate("/error");
     }
   };
 
@@ -147,9 +147,7 @@ function AddComment(props) {
     <div className="comments-container">
       <h2 id="comments-title">Reseñas de los usuarios en TasteIt</h2>
       <Comment
-        avatar={
-          <Avatar src={user.profileImage} alt={user.name} />
-        }
+        avatar={<Avatar src={user.profileImage} alt={user.name} />}
         content={
           <Editor
             onChange={handleChange}
@@ -162,7 +160,9 @@ function AddComment(props) {
       />
 
       {/* If comments list contains at least a comment, show it */}
-      {comments.length > 0 && <CommentList comments={comments} setIsDeleted={setIsDeleted}/>}
+      {comments.length > 0 && (
+        <CommentList comments={comments} setIsDeleted={setIsDeleted} />
+      )}
     </div>
   );
 }

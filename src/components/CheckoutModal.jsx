@@ -1,12 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Modal, Form } from "antd";
 import { useNavigate } from "react-router-dom";
-
+import { AuthContext } from "../context/auth.context.js";
 import creditImg from "../assets/credit-card.png";
 
-import { AuthContext } from "../context/auth.context.js";
-
-// stripe
+// Stripe
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 
 import {
@@ -15,13 +13,12 @@ import {
 } from "../services/shoppingCart.services.js";
 
 function CheckoutModal({ requestPurchase, totalPrice }) {
+  // Context
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const stripe = useStripe(); // Stripe Hook which returns connection to stripe
   const elements = useElements(); // Stripe Hook which allows to access and manipulate stripe elements like <CardElement />
-
-  //Navigate
-  const navigate = useNavigate();
 
   // Modal configuration
   const [open, setOpen] = useState(false);
@@ -52,11 +49,12 @@ function CheckoutModal({ requestPurchase, totalPrice }) {
         navigate("/purchases");
         setConfirmLoading(true);
       } catch (error) {
-        navigate("/error")
+        navigate("/error");
       }
     }
   };
 
+  // Modal configuration
   const showModal = () => {
     setOpen(true);
   };

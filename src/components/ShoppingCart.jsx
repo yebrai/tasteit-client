@@ -16,7 +16,8 @@ import CheckoutModal from "./CheckoutModal";
 function ShoppingCart() {
   // Context
   const { cartProducts, findCart } = useContext(AuthContext);
-  const { renderCart, toggleCart, renderCartWrapper } = useContext(ThemeContext);
+  const { renderCart, toggleCart, renderCartWrapper } =
+    useContext(ThemeContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,7 +30,7 @@ function ShoppingCart() {
       await deleteShoppingCartService(productId);
       findCart();
     } catch (error) {
-      navigate("/error")
+      navigate("/error");
     }
   };
 
@@ -37,7 +38,7 @@ function ShoppingCart() {
     try {
       await addPurchaseService(cartProducts);
     } catch (error) {
-      navigate("/error")
+      navigate("/error");
     }
   };
 

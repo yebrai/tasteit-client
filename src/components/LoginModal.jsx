@@ -41,7 +41,6 @@ function LoginModal() {
         setConfirmLoading(false);
         authenticateUser();
       }, 1000);
-      
     } catch (error) {
       if (error.response && error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);
@@ -62,7 +61,7 @@ function LoginModal() {
 
   const handleCancel = () => {
     setOpen(false);
-    setErrorMessage("")
+    setErrorMessage("");
   };
 
   const handleChange = (event) => {
@@ -92,7 +91,9 @@ function LoginModal() {
             <Item label="Password">
               <Input.Password name="password" onChange={handleChange} />
             </Item>
-            {errorMessage !== "" && <p className="error-message">{errorMessage}</p>}
+            {errorMessage !== "" && (
+              <p className="error-message">{errorMessage}</p>
+            )}
           </Form>
         </div>
       </Modal>

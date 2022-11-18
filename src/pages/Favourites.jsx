@@ -8,7 +8,10 @@ import { Button, Card, Col, Row } from "antd";
 // Shopping Cart
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import ShoppingCart from "../components/ShoppingCart";
-import { deleteFavouriteService, getMyFavouritesService } from "../services/tasteit.services";
+import {
+  deleteFavouriteService,
+  getMyFavouritesService,
+} from "../services/tasteit.services";
 
 const { Meta } = Card;
 
@@ -16,13 +19,12 @@ function Favourites() {
   const navigate = useNavigate();
 
   // Context
-  const { toggleCart} = useContext(ThemeContext);
-  const { isLoggedIn, cartProducts, loadingSpinner  } = useContext(AuthContext);
+  const { toggleCart } = useContext(ThemeContext);
+  const { isLoggedIn, cartProducts, loadingSpinner } = useContext(AuthContext);
 
   // To manage list of favourite products
   const [list, setList] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
-  
 
   // When page is rendered
   useEffect(() => {
@@ -35,7 +37,7 @@ function Favourites() {
       setList(response.data.favourites);
       setIsFetching(false);
     } catch (error) {
-      navigate("/error")
+      navigate("/error");
     }
   };
 
@@ -53,15 +55,14 @@ function Favourites() {
       setTimeout(() => {
         handleMyFavourites();
       }, 300);
-
     } catch (error) {
-      navigate("/error")
+      navigate("/error");
     }
   };
 
   // Guard clause
   if (isFetching === true) {
-    return loadingSpinner()
+    return loadingSpinner();
   }
 
   return (
@@ -73,17 +74,25 @@ function Favourites() {
             <Col key={eachProduct._id}>
               <Card hoverable>
                 <Link to={`/${eachProduct._id}/details`} className="card-link">
-                  <Meta/>
-                  <img className="card-images" alt={eachProduct.name} src={eachProduct.image} />
+                  <Meta />
+                  <img
+                    className="card-images"
+                    alt={eachProduct.name}
+                    src={eachProduct.image}
+                  />
                   <h2>{eachProduct.name}</h2>
-                  <p><span>Precio:</span> {eachProduct.price}€</p>
-                  <p><span>Localidad:</span> {eachProduct.location}</p>
+                  <p>
+                    <span>Precio:</span> {eachProduct.price}€
+                  </p>
+                  <p>
+                    <span>Localidad:</span> {eachProduct.location}
+                  </p>
                 </Link>
                 <div className="icon-heart-btn-container">
                   <Button
                     className="icons-like"
                     type="text"
-                    icon={<FaHeart style={{ color: "red"}} size="20px"/>}
+                    icon={<FaHeart style={{ color: "red" }} size="20px" />}
                     onClick={() => deleteFavourite(eachProduct._id)}
                   ></Button>
                 </div>

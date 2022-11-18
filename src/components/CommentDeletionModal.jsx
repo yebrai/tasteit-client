@@ -8,23 +8,20 @@ import { CloseCircleFilled } from "@ant-design/icons";
 const { confirm } = Modal;
 
 function CommentDeletionModal(props) {
-
   const navigate = useNavigate();
 
-  // Current product in props
+  // Current comment in props
   const { comment, setIsDeleted } = props;
-  
+
   // To execute when "Sí" button in Modal is pressed
   const handleDeletion = async () => {
-    
     try {
       await deleteCommentService(comment._id);
 
       // Updates the page because the useEffect contains isDeleted
-      setIsDeleted(true) 
-      
+      setIsDeleted(true);
     } catch (error) {
-      navigate("/error")
+      navigate("/error");
     }
   };
 
@@ -38,7 +35,7 @@ function CommentDeletionModal(props) {
       okType: "danger",
       cancelText: "No",
       onOk() {
-          handleDeletion(); // Function which deletes the current comment id
+        handleDeletion(); // Function which deletes the current comment id
       },
       onCancel() {},
     });
@@ -51,8 +48,7 @@ function CommentDeletionModal(props) {
         danger
         icon={<CloseCircleFilled />}
         onClick={showDeleteConfirm}
-      >
-      </Button>
+      ></Button>
     </>
   );
 }

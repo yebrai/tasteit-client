@@ -1,7 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ProductEditModal from "../components/ProductEditModal";
-import { addRatingService, getProductDetailsService, getProductsService } from "../services/tasteit.services";
+import {
+  addRatingService,
+  getProductDetailsService,
+  getProductsService,
+} from "../services/tasteit.services";
 import IsOwner from "../components/IsOwner";
 import ProductDeletionModal from "../components/ProductDeletionModal";
 import AddComment from "../components/AddComment";
@@ -33,6 +37,7 @@ function Details() {
   const [currentRate, setCurrentRate] = useState(0);
   const [isFetching, setIsFetching] = useState(true);
 
+  // To re-render details page if a new product is selected in the carousel or a rating is done
   useEffect(() => {
     getDetails();
   }, [productId, currentRate]);
@@ -60,7 +65,7 @@ function Details() {
 
       setIsFetching(false);
     } catch (error) {
-      navigate("/error")
+      navigate("/error");
     }
   };
 
@@ -92,7 +97,7 @@ function Details() {
 
       setCurrentRate(newAverage);
     } catch (error) {
-      navigate("/error")
+      navigate("/error");
     }
   };
 

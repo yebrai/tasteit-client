@@ -3,6 +3,7 @@ import { AuthContext } from "../context/auth.context";
 import { Link, useNavigate } from "react-router-dom";
 import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
+import AddFoodModal from "./AddFoodModal";
 
 // Antd
 import { Button } from "antd";
@@ -10,8 +11,6 @@ import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 
 // React icon
 import { AiOutlinePoweroff } from "react-icons/ai";
-
-import AddFoodModal from "./AddFoodModal";
 
 function Navbar() {
   const { authenticateUser, isLoggedIn } = useContext(AuthContext);

@@ -42,6 +42,7 @@ function FoodList() {
     setFoodToShow(filteredFood);
   };
 
+  // Render a list of products depending on the passed type params
   useEffect(() => {
     handleFood(type);
   }, []);

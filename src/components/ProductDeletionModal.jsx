@@ -6,8 +6,8 @@ import { deleteProductService } from "../services/tasteit.services";
 
 const { confirm } = Modal;
 
+// Modal which opens when "eliminar producto" option in details is selected
 function ProductDeletionModal(props) {
-  // Redirect hook
   const navigate = useNavigate();
 
   // Current product in props
@@ -21,7 +21,7 @@ function ProductDeletionModal(props) {
         navigate("/");
       }, 1000);
     } catch (error) {
-      navigate("/error")
+      navigate("/error");
     }
   };
 

@@ -17,6 +17,7 @@ function EditProfileModal() {
 
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [open, setOpen] = useState(false);
+
   // Cloudinary State
   const [image, setImage] = useState("");
 
@@ -31,31 +32,28 @@ function EditProfileModal() {
   //Form submit function
   const handleEditProfile = async () => {
     // Data transmission element
-      const formValue = new FormData();
-      formValue.append("name", editProfileForm.name);
-      formValue.append("email", editProfileForm.email);
-      formValue.append("age", editProfileForm.age);
-      formValue.append("password", editProfileForm.password);
-      formValue.append("image", image);
-      
-      try {
-        await editUserService(user._id, formValue);
-        setConfirmLoading(true)
+    const formValue = new FormData();
+    formValue.append("name", editProfileForm.name);
+    formValue.append("email", editProfileForm.email);
+    formValue.append("age", editProfileForm.age);
+    formValue.append("password", editProfileForm.password);
+    formValue.append("image", image);
 
-        setTimeout(() => {
-          setOpen(false);
-          setConfirmLoading(false);
-          authenticateUser();
-        }, 2000);
-        
+    try {
+      await editUserService(user._id, formValue);
+      setConfirmLoading(true);
+
+      setTimeout(() => {
+        setOpen(false);
+        setConfirmLoading(false);
+        authenticateUser();
+      }, 2000);
     } catch (error) {
       if (error.response && error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);
       } else {
-        // Error 500
         navigate("/error");
       }
-      
     }
   };
 
@@ -70,7 +68,7 @@ function EditProfileModal() {
 
   const handleCancel = () => {
     setOpen(false);
-    setErrorMessage("")
+    setErrorMessage("");
   };
 
   const handleChange = (event) => {
@@ -80,7 +78,10 @@ function EditProfileModal() {
 
   return (
     <>
-      <button className="main-buttons edit-button profile-btn" onClick={showModal}>
+      <button
+        className="main-buttons edit-button profile-btn"
+        onClick={showModal}
+      >
         Editar Perfil
       </button>
       <Modal
@@ -111,7 +112,9 @@ function EditProfileModal() {
                 onChange={(event) => setImage(event.target.files[0])}
               />
             </Item>
-            {errorMessage !== "" && <p className="error-message">{errorMessage}</p>}
+            {errorMessage !== "" && (
+              <p className="error-message">{errorMessage}</p>
+            )}
           </Form>
         </div>
       </Modal>

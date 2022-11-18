@@ -8,6 +8,7 @@ function PurchaseModal({ purchase }) {
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
 
+  // Modal configuration
   const showModal = () => {
     setOpen(true);
   };
@@ -44,6 +45,7 @@ function PurchaseModal({ purchase }) {
 
   // Total price
   let totalPrice = subtotalProductsPrice + shippingCosts;
+
   return (
     <>
       <Button

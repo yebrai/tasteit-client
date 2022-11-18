@@ -62,7 +62,7 @@ function SignupModal() {
 
   const handleCancel = () => {
     setOpen(false);
-    setErrorMessage("")
+    setErrorMessage("");
   };
 
   const handleChange = (event) => {
@@ -105,7 +105,9 @@ function SignupModal() {
               />
             </Item>
 
-            {errorMessage !== "" && <p className="error-message">{errorMessage}</p>}
+            {errorMessage !== "" && (
+              <p className="error-message">{errorMessage}</p>
+            )}
           </Form>
         </div>
       </Modal>

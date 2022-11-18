@@ -14,6 +14,8 @@ const { Option } = Select;
 function AddFoodModal() {
   // Navigate
   const navigate = useNavigate();
+
+  // Context
   const { authenticateUser } = useContext(AuthContext);
 
   // Error message from backend
@@ -31,6 +33,8 @@ function AddFoodModal() {
     description: "",
     category: "",
   });
+
+  // Create a state for the image which is transmited in a different way
   const [image, setImage] = useState("");
 
   const handleAddProduct = async () => {
@@ -42,7 +46,7 @@ function AddFoodModal() {
     formValue.append("description", addProduct.description);
     formValue.append("category", addProduct.category);
     formValue.append("image", image);
-    console.log(addProduct);
+
     try {
       await addProductService(formValue);
       setConfirmLoading(true);
