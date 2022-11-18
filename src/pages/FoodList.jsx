@@ -123,12 +123,13 @@ function FoodList() {
                       src={eachProduct.image}
                       className="card-images"
                     />
-                    <h2>{eachProduct.name}</h2>
+                    <h2><b>{eachProduct.name}</b></h2>
+                    <hr />
                     <p>
-                      <span>Precio: </span> {eachProduct.price}€
+                      <span><b> Precio: </b></span> {eachProduct.price}€
                     </p>
                     <p>
-                      <span>Localidad: </span>
+                      <span><b> Localidad: </b></span>
                       {eachProduct.location}
                     </p>
                   </Link>
