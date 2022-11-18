@@ -37,7 +37,7 @@ function FoodList() {
   // Function to manage search in SearchFood.jsx
   const filterFood = (filterQuery) => {
     const filteredFood = list.filter((eachFood) =>
-      eachFood.name.includes(filterQuery)
+      eachFood.name.toLowerCase().includes(filterQuery.toLowerCase())
     );
     // Updates current displayed list
     setFoodToShow(filteredFood);
