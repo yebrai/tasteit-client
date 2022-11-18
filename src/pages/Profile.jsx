@@ -31,15 +31,27 @@ function Profile() {
   }
 
   return (
-    <div style={{textAlign:"center"}}>
-      <img src={user.profileImage} alt="" />
-      <h3>Name: {user.name}</h3>
-      <h5>Email: {user.email}</h5>
-      <p>Edad: {user.age}</p>
-      <p>Tipo: {user.role}</p>
-      <EditProfileModal />
-      <Link className='link-profile' to="/purchases">Historial de compras</Link>
-      <Link className='link-profile' to="/my-favourites">Mis favoritos</Link>
+    <div className="profile-container">
+      <div className="profile-wrapper">
+        <div className="profile-details">
+          <img src={user.profileImage} alt={user.name} className="profile-photo"/>
+          <div className="profile-personal-details">
+            <h1>Mi Perfil</h1>
+            <h3><span>Nombre:</span> {user.name}</h3>
+            <div className="profile-divider"></div>
+            <h3><span>Correo electrónico:</span> {user.email}</h3>
+            <div className="profile-divider"></div>
+            <h3>Edad: <span>{user.age}</span></h3>
+            <div className="profile-divider"></div>
+            <h3>Tipo: {user.role}</h3>       
+          </div>
+        </div>
+        <div className="profile-buttons">
+          <EditProfileModal />
+          <Link className='main-buttons edit-button profile-btn' to="/purchases">Historial de compras</Link>
+          <Link className='main-buttons edit-button profile-btn' to="/my-favourites">Mis favoritos</Link>
+        </div>
+      </div>
     </div>
   )
 }
