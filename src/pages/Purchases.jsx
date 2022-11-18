@@ -22,8 +22,8 @@ function Purchases() {
     try {
       const response = await getPurchaseService();
       const copyResponse = [...response.data]
-      copyResponse.sort((b, a) => {
-        return a - b
+      copyResponse.sort((a, b) => {
+        return new Date(b.createdAt) - new Date(a.createdAt)
       })
       setHistoryPurchases(copyResponse);
       setIsFetching(false)
