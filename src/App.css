@@ -1006,7 +1006,7 @@ body {
 }
 
 /* Error 404 */
-.not-found-container {
+.error-container {
   width: 100vw;
   height: 100vh;
   padding: 40px 90px;
@@ -1016,7 +1016,7 @@ body {
   justify-content: flex-start
 }
 
-.not-found-wrapper {
+.error-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1030,7 +1030,7 @@ body {
   height: 460px;
 }
 
-.not-found-container h2 {
+.error-container h2 {
   font-size: 30px;
   font-weight: bolder;
   margin: 0;
@@ -1038,13 +1038,18 @@ body {
   text-align: center;
 }
 
-.not-found-btn {
+.error-btn {
   width: 130px;
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+.error-logo {
+  width: 400px;
+  height: 330px;
 }
 
 
