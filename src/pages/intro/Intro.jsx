@@ -22,10 +22,10 @@ function Intro() {
           <div className="main-head">
             <h1>Taste It!</h1>
             <p>
-              Compra y vende tus platos favoritos!
+              Compra y vende tus platos favoritos
             </p>
             <div className="button-container">
-             <Link className="link-profile intro-link-start" to="/home">Comienza ahora!!</Link>
+             <Link className="link-profile intro-link-start" to="/home">Comienza ahora</Link>
             </div>
           </div>
           <img  src={headImg} alt="" />
@@ -33,7 +33,7 @@ function Intro() {
         <section className="intro-steps-container intro-section-container">
           <div className="intro-step step1">
             <h2>1º</h2>
-            <p>Seleciona tu comida preferida</p>
+            <p>Selecciona tu comida preferida</p>
             <img src={step1} alt="" />
           </div>
           <div className="intro-step step2">
@@ -43,12 +43,12 @@ function Intro() {
           </div>
           <div className="intro-step step3">
             <h2>3º</h2>
-            <p>Nuestros repartidores te la entregaran</p>
+            <p>Nuestros repartidores te la entregarán</p>
             <img src={step3} alt="" />
           </div>
           <div className="intro-step step4">
             <h2>4º</h2>
-            <p>Distruta de la comida y valora si te gusto la experiencia!</p>
+            <p>¡Distruta de la comida y valora si te gustó la experiencia!</p>
             <img src={step4} alt="" />
           </div>
         </section>
@@ -69,7 +69,7 @@ function Intro() {
                   <img src={valoracion} alt="" />
                   <img src={valoracion} alt="" />
                   </div>
-                  <p>El pedido fue rapido y la atencion fue excelente!</p>
+                  <p>¡El pedido fue rápido y la atención fue excelente!</p>
                 </div>
               </div>
               <div>
@@ -82,7 +82,7 @@ function Intro() {
                   <img src={valoracion} alt="" />
                   <img src={valoracion} alt="" />
                   </div>
-                  <p>La comida mas deliciosa de la ciudad en tu casa.</p>
+                  <p>La comida más deliciosa de la ciudad en tu casa.</p>
                 </div>
               </div>
               <div>
@@ -116,7 +116,7 @@ function Intro() {
               </div>
             </div>
             <div className="footer-contacts">
-              <h4 className="header-footer">Contactanos</h4>
+              <h4 className="header-footer">Contáctanos</h4>
               <div>
                 <img className="email-img" src={email} alt="" />
                 <p>support@tasteit.com</p>
