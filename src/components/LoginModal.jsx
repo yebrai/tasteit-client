@@ -6,67 +6,68 @@ import { loginService } from "../services/auth.services";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 
+
 //Antd
 import { Modal, Form, Input } from "antd";
 const { Item } = Form;
 
-function LoginModal() {
-  // Context/navigate
-  const { authenticateUser } = useContext(AuthContext);
-  const navigate = useNavigate();
-
-  // Error message from backend
-  const [errorMessage, setErrorMessage] = useState("");
-
-  // Modal configuration
+const useModal = () => {
   const [open, setOpen] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [confirmLoading, setConfirmLoading] = useState(false)
+  //formData
+  const [loginForm, setLoginForm] = useState();
+  const loginFormData = () => loginForm
 
-  // Form states
-  const [loginForm, setLoginForm] = useState({
-    email: "",
-    password: "",
-  });
-
-  const handleLogin = async () => {
-    try {
-      // Login user
-      const response = await loginService(loginForm);
-      // Store Token in browser local storage
-      localStorage.setItem("authToken", response.data.authToken);
-
-      setConfirmLoading(true);
-      setTimeout(() => {
-        setOpen(false);
-        setConfirmLoading(false);
-        authenticateUser();
-      }, 1000);
-    } catch (error) {
-      if (error.response && error.response.status === 400) {
-        setErrorMessage(error.response.data.errorMessage);
-      } else {
-        navigate("/error");
-      }
-    }
-  };
-
-  // Modal functions
-  const showModal = () => {
-    setOpen(true);
-  };
-
-  const handleOk = () => {
-    handleLogin();
-  };
+  const showLoading = () => confirmLoading
+  const setLoading = (controller) => setConfirmLoading(controller)
+  const showErrorMesage = () =>  errorMessage
+  const handleSetErrorMessage = (error) => setErrorMessage(error)
+  const showModal = () => setOpen(true)
+  const isOpen = () => open
 
   const handleCancel = () => {
     setOpen(false);
     setErrorMessage("");
   };
-
+  
   const handleChange = (event) => {
     const { name, value } = event.target;
     setLoginForm({ ...loginForm, [name]: value });
+  };
+
+  return {
+    showModal, isOpen, handleCancel, showLoading, setLoading, showErrorMesage, handleSetErrorMessage, handleChange, loginFormData
+  }
+}
+
+function LoginModal() {
+  //custom hook
+  const {showModal, isOpen, handleCancel, showLoading, setLoading, showErrorMesage, handleSetErrorMessage, handleChange, loginFormData} = useModal()
+  
+  // Context/navigate
+  const { authenticateUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    try {
+      // Login user
+      const response = await loginService(loginFormData);
+      // Store Token in browser local storage
+      localStorage.setItem("authToken", response.data.authToken);
+      setLoading(true);
+      setTimeout(() => {
+        showModal();
+        setLoading(false);
+        authenticateUser();
+      }, 1000);
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        handleSetErrorMessage(error.response.data.errorMessage);
+      } else {
+        navigate("/error");
+      }
+    }
   };
 
   // Render
@@ -77,9 +78,9 @@ function LoginModal() {
       </button>
       <Modal
         title="Iniciar Sesión"
-        open={open}
-        onOk={handleOk}
-        confirmLoading={confirmLoading}
+        open={isOpen()}
+        onOk={handleLogin}
+        confirmLoading={showLoading()}
         onCancel={handleCancel}
         destroyOnClose
       >
@@ -91,8 +92,8 @@ function LoginModal() {
             <Item label="Password">
               <Input.Password name="password" onChange={handleChange} />
             </Item>
-            {errorMessage !== "" && (
-              <p className="error-message">{errorMessage}</p>
+            {showErrorMesage !== "" && (
+              <p className="error-message">{showErrorMesage}</p>
             )}
           </Form>
         </div>
