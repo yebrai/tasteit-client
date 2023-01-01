@@ -51,8 +51,9 @@ function LoginModal() {
 
   const handleLogin = async () => {
     try {
+      console.log(loginFormData())
       // Login user
-      const response = await loginService(loginFormData);
+      const response = await loginService(loginFormData());
       // Store Token in browser local storage
       localStorage.setItem("authToken", response.data.authToken);
       setLoading(true);
@@ -79,7 +80,7 @@ function LoginModal() {
       <Modal
         title="Iniciar Sesión"
         open={isOpen()}
-        onOk={handleLogin()}
+        onOk={handleLogin}
         confirmLoading={showLoading()}
         onCancel={handleCancel}
         destroyOnClose
