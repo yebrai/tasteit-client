@@ -79,7 +79,7 @@ function LoginModal() {
       <Modal
         title="Iniciar Sesión"
         open={isOpen()}
-        onOk={handleLogin}
+        onOk={handleLogin()}
         confirmLoading={showLoading()}
         onCancel={handleCancel}
         destroyOnClose

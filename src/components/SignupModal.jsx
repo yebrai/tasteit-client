@@ -21,13 +21,7 @@ function SignupModal() {
   // Modal states
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const [signupForm, setSignupForm] = useState({
-    name: "",
-    email: "",
-    age: "",
-    password: "",
-    passwordConfirmation: "",
-  });
+  const [signupForm, setSignupForm] = useState();
 
   const handleSignup = async () => {
     try {
