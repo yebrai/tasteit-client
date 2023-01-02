@@ -1,24 +1,22 @@
-import axios from "axios"
+import axios from "axios";
 
 const service = axios.create({
-  baseURL: process.env.REACT_APP_SERVER_URL
-})
+  baseURL: process.env.REACT_APP_SERVER_URL,
+});
 
 //
 service.interceptors.request.use((config) => {
-  
-  // 1. Search for the token in localStorage
-  const authToken = localStorage.getItem("authToken")
+  // Search for the token in localStorage
+  const authToken = localStorage.getItem("authToken");
 
-  const tokenFull = `Bearer ${authToken}`
+  const tokenFull = `Bearer ${authToken}`;
 
-  // 2. adds the authorization
+  // Adds the authorization
   if (authToken) {
-    config.headers.authorization = tokenFull
+    config.headers.authorization = tokenFull;
   }
 
-  return config
-})
+  return config;
+});
 
-
-export default service
+export default service;

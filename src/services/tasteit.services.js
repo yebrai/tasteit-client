@@ -1,83 +1,83 @@
 import service from "./config.services";
 
 const getUserService = () => {
-  return service.get(`/user/details`)
-}
+  return service.get(`/user/details`);
+};
 
 const getFavouritesService = () => {
-  return service.get(`/user/favourites`)
-}
+  return service.get(`/user/favourites`);
+};
 
 const getMyFavouritesService = () => {
-  return service.get(`/user/my-favourites`)
-}
+  return service.get(`/user/my-favourites`);
+};
 
 const addFavouritesService = (product) => {
-  return service.post("/user/favourite/add", product)
-}
+  return service.post("/user/favourite/add", product);
+};
 
 const deleteFavouriteService = (productId) => {
-  return service.delete(`/user/${productId}/delete`)
-}
+  return service.delete(`/user/${productId}/delete`);
+};
 
 const getProductsService = () => {
-  return service.get(`/product`)
-}
+  return service.get(`/product`);
+};
 
 const getProductTypeService = (type) => {
-  return service.get(`/product/${type}`)
-}
+  return service.get(`/product/${type}`);
+};
 
 const addProductService = (newProduct) => {
-    return service.post("/product/add", newProduct)
-  }
+  return service.post("/product/add", newProduct);
+};
 
 const editUserService = (userId, userUpdates) => {
-  return service.patch(`/user/${userId}/details`, userUpdates)
-}
+  return service.patch(`/user/${userId}/details`, userUpdates);
+};
 
 const getProductDetailsService = (productId) => {
   return service.get(`/product/${productId}/details`);
-}
+};
 
 const editProductService = (productUpdates, productId) => {
-  return service.patch(`/product/${productId}/details`, productUpdates)
-}
+  return service.patch(`/product/${productId}/details`, productUpdates);
+};
 
 const deleteProductService = (productId) => {
-  return service.delete(`/product/${productId}`)
-}
+  return service.delete(`/product/${productId}`);
+};
 
 const addCommentService = (productId, newComment) => {
-  return service.post(`/comment/${productId}/add`, newComment)
-}
+  return service.post(`/comment/${productId}/add`, newComment);
+};
 
 const getCommentService = (productId) => {
-  return service.get(`/comment/${productId}`)
-}
+  return service.get(`/comment/${productId}`);
+};
 const deleteCommentService = (commentId) => {
-  return service.delete(`/comment/${commentId}`)
-}
+  return service.delete(`/comment/${commentId}`);
+};
 
 const addRatingService = (productId, newRate) => {
-  return service.patch(`/product/${productId}/rate`, newRate)
-}
+  return service.patch(`/product/${productId}/rate`, newRate);
+};
 
-  export {
-    getProductsService,
-    getProductTypeService,
-    addProductService,
-    getUserService,
-    getFavouritesService,
-    getMyFavouritesService,
-    addFavouritesService,
-    deleteFavouriteService,
-    editUserService,
-    getProductDetailsService,
-    editProductService,
-    deleteProductService,
-    addCommentService,
-    getCommentService,
-    deleteCommentService,
-    addRatingService
-  }
+export {
+  getProductsService,
+  getProductTypeService,
+  addProductService,
+  getUserService,
+  getFavouritesService,
+  getMyFavouritesService,
+  addFavouritesService,
+  deleteFavouriteService,
+  editUserService,
+  getProductDetailsService,
+  editProductService,
+  deleteProductService,
+  addCommentService,
+  getCommentService,
+  deleteCommentService,
+  addRatingService,
+};

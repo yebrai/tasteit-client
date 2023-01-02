@@ -24,7 +24,7 @@ function AddFoodModal() {
     showErrorMesage,
     handleChange,
     showFormData,
-    setFormData
+    setFormData,
   } = useModalForm();
 
   // Navigate
@@ -32,12 +32,11 @@ function AddFoodModal() {
   // Context
   const { authenticateUser } = useContext(AuthContext);
 
-
   // Create a state for the image which is transmited in a different way
   const [image, setImage] = useState("");
 
   const handleAddProduct = async () => {
-    setLoading(true)
+    setLoading(true);
     // Data transmission element
     const formValue = new FormData();
     formValue.append("name", showFormData().name);
