@@ -1,21 +1,12 @@
-import React, { useState } from "react";
-
 import { Button, Modal } from "antd";
 
 import { TiDocumentText } from "react-icons/ti";
 
+import { useModalForm } from "../hooks/useModal";
+
 function PurchaseModal({ purchase }) {
-  const [open, setOpen] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
-
   // Modal configuration
-  const showModal = () => {
-    setOpen(true);
-  };
-
-  const handleCancel = () => {
-    setOpen(false);
-  };
+  const { showModal, isOpen, handleCancel, showLoading } = useModalForm();
 
   // Products and quantities to render in the shopping cart
   let uniqueProduct = [];
@@ -55,8 +46,8 @@ function PurchaseModal({ purchase }) {
       ></Button>
       <Modal
         title={`Detalles de pedido: ${purchase._id.slice(0, 5)}`}
-        open={open}
-        confirmLoading={confirmLoading}
+        open={isOpen()}
+        confirmLoading={showLoading()}
         onCancel={handleCancel}
         destroyOnClose
         footer={null}

@@ -8,7 +8,7 @@ export const useModalForm = () => {
     const [confirmLoading, setConfirmLoading] = useState(false)
     //formData
     const [Form, setForm] = useState();
-    const formData = () => Form
+    const showFormData = () => Form
     //Navigate
     const navigate = useNavigate();
 
@@ -31,11 +31,14 @@ export const useModalForm = () => {
       setForm({ ...Form, [name]: value });
     };
 
-    const handleLogin = async (service) => {
+    const setFormData = (data) => setForm(data)
+
+    const handleAuth = async (service) => {
         setLoading(true);
+        console.log(Form)
         try {
           // Login user
-          const response = await service(formData());
+          const response = await service(showFormData());
           // Store Token in browser local storage
           localStorage.setItem("authToken", response.data.authToken);
           showModal();
@@ -52,6 +55,6 @@ export const useModalForm = () => {
     }
   
     return {
-      showModal, isOpen, handleCancel, showLoading, setLoading, showErrorMesage, handleSetErrorMessage, handleChange, formData, handleLogin
+      showModal, isOpen, handleCancel, showLoading, setLoading, showErrorMesage, handleSetErrorMessage, handleChange, showFormData, handleAuth, setFormData
     }
   }

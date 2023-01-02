@@ -1,8 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Modal, Form } from "antd";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context.js";
 import creditImg from "../assets/credit-card.png";
+
+import { useModalForm } from "../hooks/useModal";
 
 // Stripe
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
@@ -17,16 +19,21 @@ function CheckoutModal({ requestPurchase, totalPrice }) {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const {
+    showModal,
+    isOpen,
+    handleCancel,
+    showLoading,
+    setLoading,
+  } = useModalForm();
+
   const stripe = useStripe(); // Stripe Hook which returns connection to stripe
   const elements = useElements(); // Stripe Hook which allows to access and manipulate stripe elements like <CardElement />
 
   // Modal configuration
-  const [open, setOpen] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-    setConfirmLoading(true);
-
+    setLoading(true);
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement), // getElement gets CardElement input (the number)
@@ -47,21 +54,13 @@ function CheckoutModal({ requestPurchase, totalPrice }) {
         elements.getElement(CardElement).clear();
         requestPurchase();
         navigate("/purchases");
-        setConfirmLoading(true);
+        setLoading(true);
       } catch (error) {
         navigate("/error");
       }
     }
   };
 
-  // Modal configuration
-  const showModal = () => {
-    setOpen(true);
-  };
-
-  const handleCancel = () => {
-    setOpen(false);
-  };
 
   return (
     <>
@@ -70,10 +69,10 @@ function CheckoutModal({ requestPurchase, totalPrice }) {
       </button>
       <Modal
         title="Realizar pago"
-        open={open}
+        open={isOpen()}
         onOk={handleSubmit}
         okText="Realizar pago"
-        confirmLoading={confirmLoading}
+        confirmLoading={showLoading()}
         onCancel={handleCancel}
         destroyOnClose
       >

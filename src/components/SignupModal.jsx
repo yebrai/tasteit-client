@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { loginService, signupService } from "../services/auth.services";
+import {signupService } from "../services/auth.services";
 // CustomHook
 import { useModalForm } from "../hooks/useModal";
 
@@ -16,7 +15,7 @@ function SignupModal() {
     showLoading,
     showErrorMesage,
     handleChange,
-    handleLogin
+    handleAuth
   } = useModalForm();
 
   // Render
@@ -28,7 +27,7 @@ function SignupModal() {
       <Modal
         title="Registrarse"
         open={isOpen()}
-        onOk={()=>handleLogin(signupService)}
+        onOk={()=>handleAuth(signupService)}
         confirmLoading={showLoading()}
         onCancel={handleCancel}
         destroyOnClose

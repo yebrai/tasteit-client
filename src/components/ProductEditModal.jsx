@@ -26,13 +26,7 @@ function ProductEditModal(props) {
   const [image, setImage] = useState("");
 
   // Form states
-  const [editProductForm, setEditProductForm] = useState({
-    name: "",
-    price: "",
-    location: "",
-    description: "",
-    category: "",
-  });
+  const [editProductForm, setEditProductForm] = useState();
 
   const [errorMessage, setErrorMessage] = useState("");
 

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { editUserService } from "../services/tasteit.services.js";
 
+import { useModalForm } from "../hooks/useModal";
 //Antd
 import { Modal, Form, Input } from "antd";
 const { Item } = Form;
@@ -10,47 +11,43 @@ const { Item } = Form;
 function EditProfileModal() {
   // Context/navigate
   const navigate = useNavigate();
+
+  const {
+    showModal,
+    isOpen,
+    setLoading,
+    showLoading,
+    handleCancel,
+    handleSetErrorMessage,
+    showErrorMesage,
+    handleChange,
+    showFormData
+  } = useModalForm();
+  
   const { user, authenticateUser } = useContext(AuthContext);
-
-  // Error message from backend
-  const [errorMessage, setErrorMessage] = useState("");
-
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const [open, setOpen] = useState(false);
 
   // Cloudinary State
   const [image, setImage] = useState("");
 
-  // Form states
-  const [editProfileForm, setEditProfileForm] = useState({
-    name: "",
-    email: "",
-    age: "",
-    password: "",
-  });
-
   //Form submit function
   const handleEditProfile = async () => {
+    setLoading(true);
     // Data transmission element
     const formValue = new FormData();
-    formValue.append("name", editProfileForm.name);
-    formValue.append("email", editProfileForm.email);
-    formValue.append("age", editProfileForm.age);
-    formValue.append("password", editProfileForm.password);
+    formValue.append("name", showFormData().name);
+    formValue.append("email", showFormData().email);
+    formValue.append("age", showFormData().age);
+    formValue.append("password", showFormData().password);
     formValue.append("image", image);
-
     try {
       await editUserService(user._id, formValue);
-      setConfirmLoading(true);
-
-      setTimeout(() => {
-        setOpen(false);
-        setConfirmLoading(false);
+        showModal();
         authenticateUser();
-      }, 2000);
+        setLoading(false);
     } catch (error) {
+      setLoading(false)
       if (error.response && error.response.status === 400) {
-        setErrorMessage(error.response.data.errorMessage);
+        handleSetErrorMessage(error.response.data.errorMessage);
       } else {
         navigate("/error");
       }
@@ -58,23 +55,6 @@ function EditProfileModal() {
   };
 
   // Modal functions
-  const showModal = () => {
-    setOpen(true);
-  };
-
-  const handleOk = () => {
-    handleEditProfile();
-  };
-
-  const handleCancel = () => {
-    setOpen(false);
-    setErrorMessage("");
-  };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setEditProfileForm({ ...editProfileForm, [name]: value });
-  };
 
   return (
     <>
@@ -86,9 +66,9 @@ function EditProfileModal() {
       </button>
       <Modal
         title="Editar perfil"
-        open={open}
-        onOk={handleOk}
-        confirmLoading={confirmLoading}
+        open={isOpen()}
+        onOk={handleEditProfile}
+        confirmLoading={showLoading()}
         onCancel={handleCancel}
         destroyOnClose
       >
@@ -112,8 +92,8 @@ function EditProfileModal() {
                 onChange={(event) => setImage(event.target.files[0])}
               />
             </Item>
-            {errorMessage !== "" && (
-              <p className="error-message">{errorMessage}</p>
+            {showErrorMesage && (
+              <p className="error-message">{showErrorMesage()}</p>
             )}
           </Form>
         </div>

@@ -16,7 +16,7 @@ function LoginModal() {
     showLoading,
     showErrorMesage,
     handleChange,
-    handleLogin
+    handleAuth
   } = useModalForm();
 
   // Render
@@ -28,7 +28,7 @@ function LoginModal() {
       <Modal
         title="Iniciar Sesión"
         open={isOpen()}
-        onOk={()=>handleLogin(loginService)}
+        onOk={()=>handleAuth(loginService)}
         confirmLoading={showLoading()}
         onCancel={handleCancel}
         destroyOnClose
