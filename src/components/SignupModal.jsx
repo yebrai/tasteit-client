@@ -1,68 +1,23 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { loginService, signupService } from "../services/auth.services";
+// CustomHook
+import { useModalForm } from "../hooks/useModal";
 
-//Context
-import { useContext } from "react";
-import { AuthContext } from "../context/auth.context";
-
-//Antd
+// Antd
 import { Modal, Form, Input } from "antd";
 const { Item } = Form;
 
 function SignupModal() {
-  // Context/navigate
-  const { authenticateUser } = useContext(AuthContext);
-  const navigate = useNavigate();
-
-  // Error message from backend
-  const [errorMessage, setErrorMessage] = useState("");
-
-  // Modal states
-  const [open, setOpen] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const [signupForm, setSignupForm] = useState();
-
-  const handleSignup = async () => {
-    try {
-      // Create user
-      await signupService(signupForm);
-      //login user and Store Token in browser local storage,
-      const response = await loginService(signupForm);
-      localStorage.setItem("authToken", response.data.authToken);
-      setConfirmLoading(true);
-      setTimeout(() => {
-        setOpen(false);
-        setConfirmLoading(false);
-        authenticateUser();
-      }, 1000);
-    } catch (error) {
-      if (error.response && error.response.status === 400) {
-        setErrorMessage(error.response.data.errorMessage);
-      } else {
-        navigate("/error");
-      }
-    }
-  };
-
-  // Modal functions
-  const showModal = () => {
-    setOpen(true);
-  };
-
-  const handleOk = () => {
-    handleSignup();
-  };
-
-  const handleCancel = () => {
-    setOpen(false);
-    setErrorMessage("");
-  };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setSignupForm({ ...signupForm, [name]: value });
-  };
+  // CustomHook
+  const {
+    showModal,
+    isOpen,
+    handleCancel,
+    showLoading,
+    showErrorMesage,
+    handleChange,
+    handleLogin
+  } = useModalForm();
 
   // Render
   return (
@@ -72,9 +27,9 @@ function SignupModal() {
       </button>
       <Modal
         title="Registrarse"
-        open={open}
-        onOk={handleOk}
-        confirmLoading={confirmLoading}
+        open={isOpen()}
+        onOk={()=>handleLogin(signupService)}
+        confirmLoading={showLoading()}
         onCancel={handleCancel}
         destroyOnClose
       >
@@ -99,8 +54,8 @@ function SignupModal() {
               />
             </Item>
 
-            {errorMessage !== "" && (
-              <p className="error-message">{errorMessage}</p>
+            {showErrorMesage && (
+              <p className="error-message">{showErrorMesage()}</p>
             )}
           </Form>
         </div>

@@ -41,7 +41,7 @@ function LoginModal() {
             <Item label="Password">
               <Input.Password name="password" onChange={handleChange} />
             </Item>
-            {showErrorMesage !== "" && (
+            {showErrorMesage && (
               <p className="error-message">{showErrorMesage()}</p>
             )}
           </Form>
