@@ -3,44 +3,48 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 
 export const useModalForm = () => {
-    const [open, setOpen] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
-    const [confirmLoading, setConfirmLoading] = useState(false)
+    //Navigate
+    const navigate = useNavigate();
+    
     //formData
     const [Form, setForm] = useState();
     const showFormData = () => Form
-    //Navigate
-    const navigate = useNavigate();
-
+    const setFormData = (data) => setForm(data)
     const { authenticateUser } = useContext(AuthContext);
-  
+    
+    //Loading Modal spinner
+    const [confirmLoading, setConfirmLoading] = useState(false)
     const showLoading = () => confirmLoading
     const setLoading = (controller) => setConfirmLoading(controller)
+    
+    //Errors
+    const [errorMessage, setErrorMessage] = useState("");
     const showErrorMesage = () =>  errorMessage
     const handleSetErrorMessage = (error) => setErrorMessage(error)
+    
+    //Modal statement
+    const [open, setOpen] = useState(false);
     const showModal = () => setOpen(true)
     const isOpen = () => open
-  
     const handleCancel = () => {
       setOpen(false);
       setErrorMessage("");
     };
     
+    //Get data from form events.target
     const handleChange = (event) => {
       const { name, value } = event.target;
       setForm({ ...Form, [name]: value });
     };
 
-    const setFormData = (data) => setForm(data)
-
+    //SendData and verify auth
     const handleAuth = async (service) => {
         setLoading(true);
-        console.log(Form)
         try {
           // Login user
-          const response = await service(showFormData());
+          const response = await service(Form);
           // Store Token in browser local storage
-          localStorage.setItem("authToken", response.data.authToken);
+              localStorage.setItem("authToken", response.data.authToken);
           showModal();
           setLoading(false);
           authenticateUser();
@@ -53,6 +57,7 @@ export const useModalForm = () => {
           }
         }
     }
+    
   
     return {
       showModal, isOpen, handleCancel, showLoading, setLoading, showErrorMesage, handleSetErrorMessage, handleChange, showFormData, handleAuth, setFormData

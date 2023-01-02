@@ -4,8 +4,6 @@ import { createContext, useState } from "react";
 const ThemeContext = createContext()
 
 function ThemeWrapper(props) {
-
-    // creamos todos los estados y funciones que queremos pasar por contexto
     const [showCart, setShowCart] = useState(false);
       
       const shoppingCartOn = {

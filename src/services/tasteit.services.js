@@ -40,7 +40,7 @@ const getProductDetailsService = (productId) => {
   return service.get(`/product/${productId}/details`);
 }
 
-const editProductService = (productId, productUpdates) => {
+const editProductService = (productUpdates, productId) => {
   return service.patch(`/product/${productId}/details`, productUpdates)
 }
 

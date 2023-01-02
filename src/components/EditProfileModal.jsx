@@ -21,9 +21,9 @@ function EditProfileModal() {
     handleSetErrorMessage,
     showErrorMesage,
     handleChange,
-    showFormData
+    showFormData,
   } = useModalForm();
-  
+
   const { user, authenticateUser } = useContext(AuthContext);
 
   // Cloudinary State
@@ -41,11 +41,11 @@ function EditProfileModal() {
     formValue.append("image", image);
     try {
       await editUserService(user._id, formValue);
-        showModal();
-        authenticateUser();
-        setLoading(false);
+      showModal();
+      authenticateUser();
+      setLoading(false);
     } catch (error) {
-      setLoading(false)
+      setLoading(false);
       if (error.response && error.response.status === 400) {
         handleSetErrorMessage(error.response.data.errorMessage);
       } else {
@@ -53,8 +53,6 @@ function EditProfileModal() {
       }
     }
   };
-
-  // Modal functions
 
   return (
     <>

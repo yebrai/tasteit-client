@@ -27,7 +27,7 @@ function SignupModal() {
       <Modal
         title="Registrarse"
         open={isOpen()}
-        onOk={()=>handleAuth(signupService)}
+        onOk={()=>handleAuth(signupService, true)}
         confirmLoading={showLoading()}
         onCancel={handleCancel}
         destroyOnClose
