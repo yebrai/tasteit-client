@@ -1,75 +1,23 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import { loginService } from "../services/auth.services";
-
-//Context
-import { useContext } from "react";
-import { AuthContext } from "../context/auth.context";
-
+// CustomHook
+import { useModalForm } from "../hooks/useModal";
 
 //Antd
 import { Modal, Form, Input } from "antd";
 const { Item } = Form;
 
-const useModal = () => {
-  const [open, setOpen] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [confirmLoading, setConfirmLoading] = useState(false)
-  //formData
-  const [loginForm, setLoginForm] = useState();
-  const loginFormData = () => loginForm
-
-  const showLoading = () => confirmLoading
-  const setLoading = (controller) => setConfirmLoading(controller)
-  const showErrorMesage = () =>  errorMessage
-  const handleSetErrorMessage = (error) => setErrorMessage(error)
-  const showModal = () => setOpen(true)
-  const isOpen = () => open
-
-  const handleCancel = () => {
-    setOpen(false);
-    setErrorMessage("");
-  };
-  
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setLoginForm({ ...loginForm, [name]: value });
-  };
-
-  return {
-    showModal, isOpen, handleCancel, showLoading, setLoading, showErrorMesage, handleSetErrorMessage, handleChange, loginFormData
-  }
-}
-
 function LoginModal() {
-  //custom hook
-  const {showModal, isOpen, handleCancel, showLoading, setLoading, showErrorMesage, handleSetErrorMessage, handleChange, loginFormData} = useModal()
-  
-  // Context/navigate
-  const { authenticateUser } = useContext(AuthContext);
-  const navigate = useNavigate();
-
-  const handleLogin = async () => {
-    try {
-      console.log(loginFormData())
-      // Login user
-      const response = await loginService(loginFormData());
-      // Store Token in browser local storage
-      localStorage.setItem("authToken", response.data.authToken);
-      setLoading(true);
-      setTimeout(() => {
-        showModal();
-        setLoading(false);
-        authenticateUser();
-      }, 1000);
-    } catch (error) {
-      if (error.response && error.response.status === 400) {
-        handleSetErrorMessage(error.response.data.errorMessage);
-      } else {
-        navigate("/error");
-      }
-    }
-  };
+  // Custom hook
+  const {
+    showModal,
+    isOpen,
+    handleCancel,
+    showLoading,
+    showErrorMesage,
+    handleChange,
+    handleLogin
+  } = useModalForm();
 
   // Render
   return (
@@ -80,7 +28,7 @@ function LoginModal() {
       <Modal
         title="Iniciar Sesión"
         open={isOpen()}
-        onOk={handleLogin}
+        onOk={()=>handleLogin(loginService)}
         confirmLoading={showLoading()}
         onCancel={handleCancel}
         destroyOnClose
@@ -94,7 +42,7 @@ function LoginModal() {
               <Input.Password name="password" onChange={handleChange} />
             </Item>
             {showErrorMesage !== "" && (
-              <p className="error-message">{showErrorMesage}</p>
+              <p className="error-message">{showErrorMesage()}</p>
             )}
           </Form>
         </div>
