@@ -4,7 +4,8 @@ import { Link, useParams } from "react-router-dom";
 import { Button, Card, Col, Row } from "antd";
 import SearchFood from "../components/SearchFood";
 
-// React icon
+import { useFetching } from "../hooks/isFetching";
+
 import { FaShoppingCart, FaHeart, FaRegHeart } from "react-icons/fa";
 import ShoppingCart from "../components/ShoppingCart";
 import { ThemeContext } from "../context/theme.context.js";
@@ -16,13 +17,19 @@ import {
   getProductTypeService,
 } from "../services/tasteit.services";
 
+// React icon
+
+
 const { Meta } = Card;
 
 function FoodList() {
+  //CustomHook
+  const {loadingSpinner, disableFetching, showIsFetching} = useFetching()
+
   const navigate = useNavigate();
 
   const { toggleCart } = useContext(ThemeContext);
-  const { isLoggedIn, cartProducts, loadingSpinner } = useContext(AuthContext);
+  const { isLoggedIn, cartProducts } = useContext(AuthContext);
 
   // Food category received from Home.jsx link
   const { type } = useParams();
@@ -31,7 +38,6 @@ function FoodList() {
   const [list, setList] = useState([]);
   const [favourites, setFavourites] = useState([]);
   const [foodToShow, setFoodToShow] = useState([]);
-  const [isFetching, setIsFetching] = useState(true);
 
   // Function to manage search in SearchFood.jsx
   const filterFood = (filterQuery) => {
@@ -50,14 +56,14 @@ function FoodList() {
   const handleFood = async (type) => {
     try {
       const response = await getProductTypeService(type);
-      setList(response.data);
-      setFoodToShow(response.data);
-
+        setList(response.data);
+        setFoodToShow(response.data);
+        disableFetching();
       if (isLoggedIn) {
         const userFavourites = await getFavouritesService();
         setFavourites(userFavourites.data.favourites);
       }
-      setIsFetching(false);
+
     } catch (error) {
       navigate("/error");
     }
@@ -91,8 +97,7 @@ function FoodList() {
     }
   };
 
-  // Guard clause
-  if (isFetching) {
+  if (showIsFetching()) {
     return loadingSpinner();
   }
 

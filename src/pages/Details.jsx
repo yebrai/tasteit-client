@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { Suspense, useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ProductEditModal from "../components/ProductEditModal";
 import {
@@ -8,20 +8,29 @@ import {
 } from "../services/tasteit.services";
 import IsOwner from "../components/IsOwner";
 import ProductDeletionModal from "../components/ProductDeletionModal";
-import AddComment from "../components/AddComment";
 import Counter from "../components/Counter";
 
 // React icon
 import { FaShoppingCart } from "react-icons/fa";
 import ShoppingCart from "../components/ShoppingCart";
+import { IoArrowBackCircleSharp } from "react-icons/io5";
 
+//Context
 import { AuthContext } from "../context/auth.context";
 import { ThemeContext } from "../context/theme.context.js";
-import { IoArrowBackCircleSharp } from "react-icons/io5";
+//Toast
 import toast from "react-hot-toast";
+//Antd
 import { Divider, Rate } from "antd";
+import { useFetching } from "../hooks/isFetching";
 
 function Details() {
+  //Suspense / lazy for codeSplitting (Cascade rendering components)
+  const Article = React.lazy(()=> import('../components/AddComment'))
+  //CustomHook
+  const {loadingSpinner, disableFetching, showIsFetching} = useFetching()
+
+
   const navigation = useNavigate();
   const navigate = useNavigate();
 
@@ -29,13 +38,13 @@ function Details() {
   const { productId } = useParams();
 
   // Shopping cart item
-  const { isLoggedIn, cartProducts, loadingSpinner } = useContext(AuthContext);
+  const { isLoggedIn, cartProducts} = useContext(AuthContext);
   const { toggleCart } = useContext(ThemeContext);
 
   const [productDetails, setProductDetails] = useState("");
   const [allProducts, setAllProducts] = useState("");
   const [currentRate, setCurrentRate] = useState(0);
-  const [isFetching, setIsFetching] = useState(true);
+
 
   // To re-render details page if a new product is selected in the carousel or a rating is done
   useEffect(() => {
@@ -63,16 +72,13 @@ function Details() {
       setCurrentRate(averageRateToShow);
       setAllProducts(allResponse.data);
 
-      setIsFetching(false);
+      disableFetching();
     } catch (error) {
       navigate("/error");
     }
   };
 
   // Guard clause
-  if (isFetching) {
-    return loadingSpinner();
-  }
 
   // Function to execute when a new user gives a rate to the product
   const handleRate = async (value) => {
@@ -100,6 +106,10 @@ function Details() {
       navigate("/error");
     }
   };
+
+  if (showIsFetching()) {
+    return loadingSpinner();
+  }
 
   return (
     <div className="main-details-container">
@@ -197,8 +207,10 @@ function Details() {
           </div>
         </div>
       </div>
+      <Suspense fallback={loadingSpinner()}>
+      <Article product={productDetails} style={{ margin: 0 }} />
+      </Suspense>
 
-      <AddComment product={productDetails} style={{ margin: 0 }} />
       <ShoppingCart />
     </div>
   );

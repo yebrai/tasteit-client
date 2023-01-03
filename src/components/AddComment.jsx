@@ -67,7 +67,6 @@ function AddComment(props) {
 
   // Comments list
   const [comments, setComments] = useState([]);
-  const [isFetching, setIsFetching] = useState(true);
 
   // To check if a comment has been deleted or not
   const [isDeleted, setIsDeleted] = useState(false);
@@ -90,8 +89,7 @@ function AddComment(props) {
   const handleComments = async () => {
     try {
       let commentsList = await getCommentService(product._id);
-
-      let modifiedCommentsList = [];
+        let modifiedCommentsList = [];
       // Array copy from commentsList with fields adapted to the required Ant design comment format (author, avatar, content, datetime)
       commentsList.data.forEach((eachComment) => {
         modifiedCommentsList.unshift({
@@ -108,16 +106,13 @@ function AddComment(props) {
       });
 
       setComments(modifiedCommentsList);
-      setIsFetching(false);
       setIsDeleted(false);
+
     } catch (error) {
       navigate("/error");
     }
   };
 
-  if (isFetching) {
-    return <h3>loading...</h3>;
-  }
 
   // Function to execute when comment is submitted
   const handleSubmit = async () => {

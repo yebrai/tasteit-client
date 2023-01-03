@@ -1,17 +1,19 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PurchaseModal from "../components/PurchaseModal";
 import { getPurchaseService } from "../services/purchase.services";
 
-import { AuthContext } from "../context/auth.context";
+import { useFetching } from "../hooks/isFetching";
 
 function Purchases() {
+
+   //CustomHook
+   const {loadingSpinner, disableFetching, showIsFetching} = useFetching()
+
   const navigate = useNavigate();
 
   const [historyPurchases, setHistoryPurchases] = useState();
-  const [isFetching, setIsFetching] = useState(true);
 
-  const { loadingSpinner } = useContext(AuthContext);
 
   useEffect(() => {
     purchaseHistory();
@@ -26,16 +28,14 @@ function Purchases() {
         return new Date(b.createdAt) - new Date(a.createdAt);
       });
       setHistoryPurchases(copyResponse);
-      setIsFetching(false);
+      disableFetching();
     } catch (error) {
       navigate("/error");
     }
   };
 
-  if (isFetching) {
-    if (isFetching) {
-      return loadingSpinner();
-    }
+  if (showIsFetching()) {
+    return loadingSpinner();
   }
   
   return (

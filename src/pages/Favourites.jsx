@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Button, Card, Col, Row } from "antd";
 
+//CustomHook
+import { useFetching } from "../hooks/isFetching";
+
 // Shopping Cart
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import ShoppingCart from "../components/ShoppingCart";
@@ -16,15 +19,17 @@ import {
 const { Meta } = Card;
 
 function Favourites() {
+  //CustomHook
+  const {loadingSpinner, disableFetching, showIsFetching} = useFetching()
+
   const navigate = useNavigate();
 
   // Context
   const { toggleCart } = useContext(ThemeContext);
-  const { isLoggedIn, cartProducts, loadingSpinner } = useContext(AuthContext);
+  const { isLoggedIn, cartProducts} = useContext(AuthContext);
 
   // To manage list of favourite products
   const [list, setList] = useState([]);
-  const [isFetching, setIsFetching] = useState(true);
 
   // When page is rendered
   useEffect(() => {
@@ -35,7 +40,7 @@ function Favourites() {
     try {
       const response = await getMyFavouritesService();
       setList(response.data.favourites);
-      setIsFetching(false);
+      disableFetching();
     } catch (error) {
       navigate("/error");
     }
@@ -61,7 +66,7 @@ function Favourites() {
   };
 
   // Guard clause
-  if (isFetching === true) {
+  if (showIsFetching()) {
     return loadingSpinner();
   }
 

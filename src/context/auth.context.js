@@ -1,10 +1,6 @@
 import { createContext, useState, useEffect } from "react"
 import { verifyService } from "../services/auth.services"
 import { getShoppingCartService } from "../services/shoppingCart.services"
-
-
-import gifFood from "../assets/spinners/food-spinner.gif"
-
 const AuthContext = createContext()
 
 function AuthWrapper(props) {
@@ -12,7 +8,6 @@ function AuthWrapper(props) {
   // Global states and functions
   const [ isLoggedIn, setIsLoggedIn ] = useState(false)
   const [ user, setUser ] = useState(null)
-  const [ isFetching, setIsFetching ] = useState(false)
 
   // Shopping cart items
   const [cartProducts, setCartProducts] = useState([])
@@ -23,18 +18,13 @@ function AuthWrapper(props) {
   }, []) 
 
   const authenticateUser = async () => {
-    setIsFetching(true)
     try {
       const response = await verifyService()
       setIsLoggedIn(true)
       setUser(response.data.user)
-      setIsFetching(false)
-
     } catch (error) {
-      console.log(error)
       setIsLoggedIn(false)
       setUser(null)
-      setIsFetching(false)
     }
   }
 
@@ -48,19 +38,6 @@ function AuthWrapper(props) {
       console.log(error);
     }
   };
-  
-  const loadingSpinner = () => {
-    return (
-      <div className="spinner-container">
-        <h2 className="spinner-title blinking">Taste It...</h2>
-        <img className="spinner" src={gifFood} alt="" />
-      </div>
-    );
-  }
-
-  if (isFetching === true) {
-    return loadingSpinner()
-  }
 
   const passedContext = {
     isLoggedIn,
@@ -70,9 +47,9 @@ function AuthWrapper(props) {
     setUser,
     cartProducts,
     setCartProducts,
-    findCart,
-    loadingSpinner
+    findCart
   }
+
   
   return (
     <AuthContext.Provider value={passedContext}>

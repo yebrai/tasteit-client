@@ -1,18 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUserService } from "../services/tasteit.services";
 import EditProfileModal from "../components/EditProfileModal";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../context/auth.context";
+import { useFetching } from "../hooks/isFetching";
 
 function Profile() {
   const navigate = useNavigate();
 
-  const { loadingSpinner } = useContext(AuthContext);
-
+  const {loadingSpinner, disableFetching, showIsFetching} = useFetching()
   // Current user configuration
   const [user, setUser] = useState("");
-  const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
     getUser();
@@ -22,14 +20,14 @@ function Profile() {
   const getUser = async () => {
     try {
       const response = await getUserService();
-      setUser(response.data);
-      setIsFetching(false);
+        setUser(response.data);
+        disableFetching();
     } catch (error) {
       navigate("/error");
     }
   };
 
-  if (isFetching) {
+  if (showIsFetching()) {
     return loadingSpinner();
   }
 
