@@ -68,9 +68,7 @@ function FoodList() {
     try {
       const addedProduct = await addFavouritesService(product);
       setFavourites([...favourites, addedProduct.data]);
-      setTimeout(() => {
         handleFood(type);
-      }, 300);
     } catch (error) {
       navigate("/error");
     }
@@ -87,9 +85,7 @@ function FoodList() {
         }
       });
       setFavourites(newArr);
-      setTimeout(() => {
         handleFood(type);
-      }, 300);
     } catch (error) {
       navigate("/error");
     }
@@ -103,7 +99,6 @@ function FoodList() {
   return (
     <div className="cards-list-main">
       {isLoggedIn ? <SearchFood type={type} filterFood={filterFood} /> : null}
-
       <div className="cards-list-container">
         <Row justify={"center"}>
           {foodToShow.map((eachProduct) => {

@@ -48,7 +48,7 @@ function ProductEditModal(props) {
     formValue.append("category", showFormData().category);
     formValue.append("image", image);
     try {
-      await editProductService(formValue, product._id, formValue);
+      await editProductService(formValue, product._id);
       showModal();
       setLoading(false);
       authenticateUser();

@@ -37,6 +37,8 @@ export const useModalForm = () => {
     setForm({ ...Form, [name]: value });
   };
 
+  const sendHome = () => navigate("/home")
+  
   //SendData and verify auth
   const handleAuth = async (service) => {
     setLoading(true);
@@ -48,6 +50,7 @@ export const useModalForm = () => {
       showModal();
       setLoading(false);
       authenticateUser();
+      sendHome()
     } catch (error) {
       setLoading(false);
       if (error.response && error.response.status === 400) {
@@ -57,7 +60,7 @@ export const useModalForm = () => {
       }
     }
   };
-
+  
   return {
     showModal,
     isOpen,
@@ -70,5 +73,6 @@ export const useModalForm = () => {
     showFormData,
     handleAuth,
     setFormData,
+    sendHome
   };
 };

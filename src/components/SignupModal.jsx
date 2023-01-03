@@ -15,7 +15,7 @@ function SignupModal() {
     showLoading,
     showErrorMesage,
     handleChange,
-    handleAuth
+    handleAuth,
   } = useModalForm();
 
   // Render
@@ -27,7 +27,7 @@ function SignupModal() {
       <Modal
         title="Registrarse"
         open={isOpen()}
-        onOk={()=>handleAuth(signupService, true)}
+        onOk={()=>handleAuth(signupService)}
         confirmLoading={showLoading()}
         onCancel={handleCancel}
         destroyOnClose

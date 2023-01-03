@@ -123,16 +123,13 @@ function AddComment(props) {
   const handleSubmit = async () => {
     // If there is no input, do nothing
     if (!value) return;
+    setSubmitting(true);
 
     try {
       await addCommentService(product._id, newComment);
-
-      setSubmitting(true);
-      setTimeout(() => {
         setSubmitting(false);
         setValue("");
         handleComments();
-      }, 1000);
     } catch (error) {
       navigate("/error");
     }

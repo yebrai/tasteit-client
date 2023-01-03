@@ -37,7 +37,7 @@ function Purchases() {
       return loadingSpinner();
     }
   }
-
+  
   return (
     <div className="purchase-table-main">
       <h2>Historial de pedidos</h2>
