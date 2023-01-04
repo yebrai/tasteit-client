@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import { Divider, Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
-function SearchFood(props) {
-  // Destructuring filterFood function
-  const { type, filterFood } = props;
-
+function SearchFood({ type, filterFood }) {
   // Searched input element state
   const [search, setSearch] = useState("");
 
@@ -19,7 +16,7 @@ function SearchFood(props) {
     <div className="searchContainer">
       <label htmlFor="query"></label>
       <Input
-      className="searchInput"
+        className="searchInput"
         prefix={<SearchOutlined />}
         placeholder="Buscar"
         value={search}

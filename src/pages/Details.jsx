@@ -23,10 +23,12 @@ import toast from "react-hot-toast";
 //Antd
 import { Divider, Rate } from "antd";
 import { useFetching } from "../hooks/useFetching";
+import LoadingSpinner from "../components/LodingSpinner";
 
+import AddComment from "../components/AddComment"
 function Details() {
   //Suspense / lazy for codeSplitting (Cascade rendering components)
-  const Article = React.lazy(()=> import('../components/AddComment'))
+  //const AddComment = React.lazy(()=> import('../components/AddComment'))
   //CustomHook
   const {loadingSpinner, disableFetching, showIsFetching} = useFetching()
 
@@ -205,10 +207,9 @@ function Details() {
           </div>
         </div>
       </div>
-      <Suspense fallback={loadingSpinner()}>
-      <Article product={productDetails} style={{ margin: 0 }} />
+      <Suspense fallback={<LoadingSpinner/>}>
+      <AddComment product={productDetails} style={{ margin: 0 }} />
       </Suspense>
-
       <ShoppingCart />
     </div>
   );
