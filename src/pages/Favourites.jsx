@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { Button, Card, Col, Row } from "antd";
 
 //CustomHook
-import { useFetching } from "../hooks/isFetching";
+import { useFetching } from "../hooks/useFetching";
 
 // Shopping Cart
 import { FaHeart, FaShoppingCart } from "react-icons/fa";

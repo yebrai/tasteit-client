@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { getUserService } from "../services/tasteit.services";
 import EditProfileModal from "../components/EditProfileModal";
 import { Link } from "react-router-dom";
-import { useFetching } from "../hooks/isFetching";
+import { useFetching } from "../hooks/useFetching";
 
 function Profile() {
   const navigate = useNavigate();

@@ -22,14 +22,13 @@ import { ThemeContext } from "../context/theme.context.js";
 import toast from "react-hot-toast";
 //Antd
 import { Divider, Rate } from "antd";
-import { useFetching } from "../hooks/isFetching";
+import { useFetching } from "../hooks/useFetching";
 
 function Details() {
   //Suspense / lazy for codeSplitting (Cascade rendering components)
   const Article = React.lazy(()=> import('../components/AddComment'))
   //CustomHook
   const {loadingSpinner, disableFetching, showIsFetching} = useFetching()
-
 
   const navigation = useNavigate();
   const navigate = useNavigate();
@@ -77,7 +76,6 @@ function Details() {
       navigate("/error");
     }
   };
-
   // Guard clause
 
   // Function to execute when a new user gives a rate to the product

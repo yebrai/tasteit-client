@@ -16,24 +16,16 @@ function SearchFood(props) {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        paddingTop: "60px",
-      }}
-    >
-      <br />
+    <div className="searchContainer">
       <label htmlFor="query"></label>
       <Input
+      className="searchInput"
         prefix={<SearchOutlined />}
         placeholder="Buscar"
         value={search}
         type="text"
         name="query"
         onChange={handleSearch}
-        style={{ width: "60%", borderRadius: "10px" }}
       />
 
       <Divider className="divider">

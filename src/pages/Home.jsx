@@ -5,8 +5,6 @@ import { ThemeContext } from "../context/theme.context";
 import { AuthContext } from "../context/auth.context";
 import ShoppingCart from "../components/ShoppingCart";
 
-//Lazy
-
 // React icon
 import { FaShoppingCart } from "react-icons/fa";
 

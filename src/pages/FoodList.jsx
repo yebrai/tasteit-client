@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { Button, Card, Col, Row } from "antd";
 import SearchFood from "../components/SearchFood";
 
-import { useFetching } from "../hooks/isFetching";
+import { useFetching } from "../hooks/useFetching";
 
 import { FaShoppingCart, FaHeart, FaRegHeart } from "react-icons/fa";
 import ShoppingCart from "../components/ShoppingCart";
@@ -18,8 +18,6 @@ import {
 } from "../services/tasteit.services";
 
 // React icon
-
-
 const { Meta } = Card;
 
 function FoodList() {

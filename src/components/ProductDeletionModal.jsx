@@ -17,9 +17,7 @@ function ProductDeletionModal(props) {
   const handleDeletion = async () => {
     try {
       await deleteProductService(product._id);
-      setTimeout(() => {
-        navigate("/");
-      }, 1000);
+      navigate("/all/products");
     } catch (error) {
       navigate("/error");
     }

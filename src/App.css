@@ -582,6 +582,18 @@ body {
 
 /* Food list*/
 
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+}
+
+.searchInput {
+  width: 60%;
+  border-radius: 10px;
+}
+
 .searcher-list {
   padding-top: 70px;
 }

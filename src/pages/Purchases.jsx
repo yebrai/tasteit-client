@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import PurchaseModal from "../components/PurchaseModal";
 import { getPurchaseService } from "../services/purchase.services";
 
-import { useFetching } from "../hooks/isFetching";
+//Custom Hook
+import { useFetching } from "../hooks/useFetching";
 
 function Purchases() {
 

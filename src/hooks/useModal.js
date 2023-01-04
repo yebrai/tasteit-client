@@ -24,7 +24,7 @@ export const useModalForm = () => {
 
   //Modal statement
   const [open, setOpen] = useState(false);
-  const showModal = () => setOpen(true);
+  const showModal = () => setOpen(!open);
   const isOpen = () => open;
   const handleCancel = () => {
     setOpen(false);
