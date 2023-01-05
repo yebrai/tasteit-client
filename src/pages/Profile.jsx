@@ -4,11 +4,12 @@ import { getUserService } from "../services/tasteit.services";
 import EditProfileModal from "../components/EditProfileModal";
 import { Link } from "react-router-dom";
 import { useFetching } from "../hooks/useFetching";
+import LoadingSpinner from "../components/LodingSpinner";
 
 function Profile() {
   const navigate = useNavigate();
 
-  const {loadingSpinner, disableFetching, showIsFetching} = useFetching()
+  const {disableFetching, showIsFetching} = useFetching()
   // Current user configuration
   const [user, setUser] = useState("");
 
@@ -28,7 +29,7 @@ function Profile() {
   };
 
   if (showIsFetching()) {
-    return loadingSpinner();
+    return <LoadingSpinner/>;
   }
 
   return (

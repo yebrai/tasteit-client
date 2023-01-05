@@ -15,12 +15,13 @@ import {
   deleteFavouriteService,
   getMyFavouritesService,
 } from "../services/tasteit.services";
+import LoadingSpinner from "../components/LodingSpinner";
 
 const { Meta } = Card;
 
 function Favourites() {
   //CustomHook
-  const {loadingSpinner, disableFetching, showIsFetching} = useFetching()
+  const {disableFetching, showIsFetching} = useFetching()
 
   const navigate = useNavigate();
 
@@ -67,7 +68,7 @@ function Favourites() {
 
   // Guard clause
   if (showIsFetching()) {
-    return loadingSpinner();
+    return <LoadingSpinner/>;
   }
 
   return (

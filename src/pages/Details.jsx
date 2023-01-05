@@ -25,12 +25,9 @@ import { Divider, Rate } from "antd";
 import { useFetching } from "../hooks/useFetching";
 import LoadingSpinner from "../components/LodingSpinner";
 
-import AddComment from "../components/AddComment"
+import AddComment from "../components/AddComment";
 function Details() {
-  //Suspense / lazy for codeSplitting (Cascade rendering components)
-  //const AddComment = React.lazy(()=> import('../components/AddComment'))
-  //CustomHook
-  const {loadingSpinner, disableFetching, showIsFetching} = useFetching()
+  const { disableFetching, showIsFetching } = useFetching();
 
   const navigation = useNavigate();
   const navigate = useNavigate();
@@ -39,13 +36,12 @@ function Details() {
   const { productId } = useParams();
 
   // Shopping cart item
-  const { isLoggedIn, cartProducts} = useContext(AuthContext);
+  const { isLoggedIn, cartProducts } = useContext(AuthContext);
   const { toggleCart } = useContext(ThemeContext);
 
   const [productDetails, setProductDetails] = useState("");
   const [allProducts, setAllProducts] = useState("");
   const [currentRate, setCurrentRate] = useState(0);
-
 
   // To re-render details page if a new product is selected in the carousel or a rating is done
   useEffect(() => {
@@ -108,7 +104,7 @@ function Details() {
   };
 
   if (showIsFetching()) {
-    return loadingSpinner();
+    return <LoadingSpinner />;
   }
 
   return (
@@ -207,8 +203,8 @@ function Details() {
           </div>
         </div>
       </div>
-      <Suspense fallback={<LoadingSpinner/>}>
-      <AddComment product={productDetails} style={{ margin: 0 }} />
+      <Suspense fallback={<LoadingSpinner />}>
+        <AddComment product={productDetails} style={{ margin: 0 }} />
       </Suspense>
       <ShoppingCart />
     </div>

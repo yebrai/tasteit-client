@@ -12,13 +12,16 @@ import {
 } from "../services/tasteit.services";
 import { AuthContext } from "../context/auth.context";
 import SearchFood from "./SearchFood";
+
+import LoadingSpinner from "../components/LodingSpinner";
 import { useFetching } from "../hooks/useFetching";
 
 const { Meta } = Card;
 
 function LisOfFood({ type }) {
 
-  const { loadingSpinner, showIsFetching, disableFetching  } = useFetching();
+  const {disableFetching, showIsFetching} = useFetching()
+
   // To manage list of selected products from Home.jsx: all, foods, desserts or drinks
   const [list, setList] = useState([]);
   const [favourites, setFavourites] = useState([]);
@@ -38,10 +41,11 @@ function LisOfFood({ type }) {
         const response = await getProductTypeService(type);
         setList(response.data);
         setFoodToShow(response.data);
-      if (isLoggedIn) {
-        const userFavourites = await getFavouritesService();
-        setFavourites(userFavourites.data.favourites);
-      }
+        disableFetching()
+        if (isLoggedIn) {
+          const userFavourites = await getFavouritesService();
+          setFavourites(userFavourites.data.favourites);
+        }
     } catch (error) {
       navigate("/error");
     }
@@ -84,8 +88,8 @@ function LisOfFood({ type }) {
     }
   };
 
-  if(showIsFetching()) {
-    loadingSpinner()
+  if (showIsFetching()) {
+    return <LoadingSpinner/>;
   }
 
   return (

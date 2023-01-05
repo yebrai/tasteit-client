@@ -5,11 +5,12 @@ import { getPurchaseService } from "../services/purchase.services";
 
 //Custom Hook
 import { useFetching } from "../hooks/useFetching";
+import LoadingSpinner from "../components/LodingSpinner";
 
 function Purchases() {
 
    //CustomHook
-   const {loadingSpinner, disableFetching, showIsFetching} = useFetching()
+   const {disableFetching, showIsFetching} = useFetching()
 
   const navigate = useNavigate();
 
@@ -36,7 +37,7 @@ function Purchases() {
   };
 
   if (showIsFetching()) {
-    return loadingSpinner();
+    return <LoadingSpinner/>;
   }
   
   return (

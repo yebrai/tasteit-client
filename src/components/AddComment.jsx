@@ -104,10 +104,8 @@ function AddComment(props) {
           }).format(new Date(eachComment.createdAt)),
         });
       });
-      setTimeout( () => {
       setComments(modifiedCommentsList);
       setIsDeleted(false);
-    }, 3000);
     } catch (error) {
       navigate("/error");
     }
