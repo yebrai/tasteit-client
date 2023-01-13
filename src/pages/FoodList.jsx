@@ -17,7 +17,7 @@ function FoodList() {
   return (
     <div className="cards-list-main">
       <SEO 
-      title="Foodlist | Taste it" 
+      title="Foods | Taste it" 
       description="List of foods" 
       />
       <ListOfFood type={type} />
