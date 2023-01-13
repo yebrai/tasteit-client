@@ -11,9 +11,10 @@ import IsPrivate from "./components/IsPrivate.jsx";
 import Purchases from "./pages/Purchases";
 import Favourites from "./pages/Favourites";
 import Intro from "./pages/intro/Intro";
-
+import { HelmetProvider } from 'react-helmet-async';
 function App() {
   return (
+    <HelmetProvider>
     <div className="App">
       <div>
         <Navbar />
@@ -30,6 +31,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
+    </HelmetProvider>
   );
 }
 

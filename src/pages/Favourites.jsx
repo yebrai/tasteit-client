@@ -16,6 +16,7 @@ import {
   getMyFavouritesService,
 } from "../services/tasteit.services";
 import LoadingSpinner from "../components/LodingSpinner";
+import SEO from "../components/SEO";
 
 const { Meta } = Card;
 
@@ -73,6 +74,10 @@ function Favourites() {
 
   return (
     <div id="favourites-wrapper">
+          <SEO
+        title="Favourites | Taste it"
+        description="Favourite list"
+      />
       <h2 id="favourites-wrapper-title">Mis favoritos</h2>
       <Row style={{ width: "100%", justifyContent: "center" }}>
         {list.map((eachProduct) => {

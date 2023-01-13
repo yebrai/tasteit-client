@@ -5,6 +5,7 @@ import EditProfileModal from "../components/EditProfileModal";
 import { Link } from "react-router-dom";
 import { useFetching } from "../hooks/useFetching";
 import LoadingSpinner from "../components/LodingSpinner";
+import SEO from "../components/SEO";
 
 function Profile() {
   const navigate = useNavigate();
@@ -34,6 +35,10 @@ function Profile() {
 
   return (
     <div className="profile-container">
+         <SEO
+        title="Profile | Taste it"
+        description="Profile of taste it"
+      />
       <div className="profile-wrapper">
         <div className="profile-details">
           <img

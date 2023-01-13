@@ -5,19 +5,21 @@ import ShoppingCart from "../components/ShoppingCart";
 import { ThemeContext } from "../context/theme.context.js";
 import { AuthContext } from "../context/auth.context";
 import ListOfFood from "../components/ListOfFood";
+import SEO from "../components/SEO";
 
 function FoodList() {
   const { toggleCart } = useContext(ThemeContext);
   const { isLoggedIn, cartProducts } = useContext(AuthContext);
 
-
   // Food category received from Home.jsx link
   const { type } = useParams();
 
-
-
   return (
     <div className="cards-list-main">
+      <SEO 
+      title="Foodlist | Taste it" 
+      description="List of foods" 
+      />
       <ListOfFood type={type} />
       {isLoggedIn && (
         <div>

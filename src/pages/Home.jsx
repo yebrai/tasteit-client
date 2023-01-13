@@ -7,6 +7,8 @@ import ShoppingCart from "../components/ShoppingCart";
 
 // React icon
 import { FaShoppingCart } from "react-icons/fa";
+import SEO from "../components/SEO";
+import { Helmet } from "react-helmet-async";
 
 // To render after intro page
 function Home() {
@@ -15,15 +17,19 @@ function Home() {
 
   return (
     <div className="home-main-container">
+    <SEO
+        title="Home | Taste it"
+        description="Error 404"
+        />
       <div className="homeBoxContainer">
         <Link to="/all/products" className="container-home all-foods">
-          <img />
+          <img/>
           <div className="overlay-home">
             <span>Todos</span>
           </div>
         </Link>
         <Link to="/drinks/products" className="container-home drinks">
-          <img />
+          <img/>
           <div className="overlay-home">
             <span>Bebidas</span>
           </div>
@@ -31,13 +37,13 @@ function Home() {
       </div>
       <div className="homeBoxContainer">
         <Link to="/foods/products" className="container-home food">
-          <img />
+          <img/>
           <div className="overlay-home">
             <span>Almuerzos</span>
           </div>
         </Link>
         <Link to="/desserts/products" className="container-home desserts">
-          <img />
+          <img/>
           <div className="overlay-home">
             <span>Postres</span>
           </div>

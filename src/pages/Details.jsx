@@ -26,6 +26,7 @@ import { useFetching } from "../hooks/useFetching";
 import LoadingSpinner from "../components/LodingSpinner";
 
 import AddComment from "../components/AddComment";
+import SEO from "../components/SEO";
 function Details() {
   const { disableFetching, showIsFetching } = useFetching();
 
@@ -109,6 +110,10 @@ function Details() {
 
   return (
     <div className="main-details-container">
+        <SEO
+        title={productDetails.name}
+        description={productDetails.name}
+      />
       <Link onClick={() => navigation(-1)} className="back-details-icon" to="/">
         <IoArrowBackCircleSharp />
       </Link>

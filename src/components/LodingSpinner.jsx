@@ -1,8 +1,7 @@
 import gifFood from "../assets/spinners/food-spinner.gif";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 export default function LoadingSpinner() {
 
-  
     return (
       <div className="spinner-container">
       <Helmet>

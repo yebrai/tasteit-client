@@ -6,6 +6,7 @@ import { getPurchaseService } from "../services/purchase.services";
 //Custom Hook
 import { useFetching } from "../hooks/useFetching";
 import LoadingSpinner from "../components/LodingSpinner";
+import SEO from "../components/SEO";
 
 function Purchases() {
 
@@ -42,6 +43,10 @@ function Purchases() {
   
   return (
     <div className="purchase-table-main">
+            <SEO
+        title="Purchases | Taste it"
+        description="List of purchases"
+      />
       <h2>Historial de pedidos</h2>
       <table className="table-container">
         <thead>
